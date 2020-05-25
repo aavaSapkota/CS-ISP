@@ -19,10 +19,11 @@ import java.awt.Graphics;
 public class Main implements ActionListener{
     static int screen; 
     JFrame mainScreen = new JFrame("Game Title");
-    JButton next = new JButton("NEXT"); 
+    JButton learn,play,highscores,next; 
     
 
     public Main(){
+        next = new JButton("NEXT");
         screen = 0; 
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         next.addActionListener(this);
@@ -35,12 +36,20 @@ public class Main implements ActionListener{
     public void actionPerformed(final ActionEvent e){
         if(e.getSource()==next){
             screen++;
+        }else if(screen==2&&e.getSource()==learn){
+            screen = 4; 
+            mainScreen.remove(learn);
+            mainScreen.remove(play);
+            mainScreen.remove(highscores);
         }
 
     }
 
     public void introduction(){
         mainScreen.getContentPane().setBackground(Color.gray);
+        mainScreen.add(learn);
+        mainScreen.add(play);
+        mainScreen.add(highscores);
     }
 
     public void mainMenu(){
