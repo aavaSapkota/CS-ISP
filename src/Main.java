@@ -16,43 +16,73 @@ import java.io.*;
 import java.util.*;
 import javax.swing.JComponent;
 import java.awt.Graphics;
-public class Main{
+public class Main implements ActionListener{
+    static int screen; 
+    JFrame mainScreen = new JFrame("Game Title");
+    JButton next = new JButton("NEXT"); 
+    
+
+    public Main(){
+        screen = 0; 
+        mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        next.addActionListener(this);
+        mainScreen.add(next);
+        mainScreen.setLayout(new FlowLayout());
+        mainScreen.setSize(1000,1000); 
+        mainScreen.setVisible(true);
+    }
+
+    public void actionPerformed(final ActionEvent e){
+        if(e.getSource()==next){
+            screen++;
+        }
+
+    }
 
     public void introduction(){
-        
+        mainScreen.getContentPane().setBackground(Color.gray);
     }
 
     public void mainMenu(){
-
+        mainScreen.getContentPane().setBackground(Color.blue);
     }
 
-    public void highschool(){
-
+    public void highscores(){
+        mainScreen.getContentPane().setBackground(Color.red);
     }
 
     public void learn(){
-
+        mainScreen.getContentPane().setBackground(Color.orange);
     }
 
     public void play(){
-
+        mainScreen.getContentPane().setBackground(Color.yellow); 
     }
 
     public void goodbye(){
-
+        mainScreen.getContentPane().setBackground(Color.lightGray);
     }
 
     public void credits(){
-        
+        mainScreen.getContentPane().setBackground(Color.black);
     }
-
-
 
     /**
      * Main method
      * @param args
      */
     public static void main(String args[]){
-
+        Main m = new Main();
+        while(screen!=6){
+            if(screen==1)m.introduction();
+            if(screen==2) m.mainMenu();
+            if(screen==3) m.highscores();
+            if(screen==4) m.learn();
+            if(screen==5) m.play();
+            if(screen==6) m.goodbye();
+            if(screen==7) m.credits();
+            System.out.println(screen);
+            
+        }
     }
 }
