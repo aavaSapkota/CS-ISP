@@ -35,43 +35,36 @@ public class Main {
     }
 
     public void introduction() {
-        mainScreen.getContentPane().removeAll();
-        //source: https://stackoverflow.com/questions/6810581/how-to-center-the-text-in-a-jlabel
+
         JLabel title = new JLabel(
                 "<html><div style='text-align: center; margin-top: 50px'> PHOENIX GAMES </div></html>");
         mainScreen.add(title);
-        // mainScreen.getContentPane().setBackground(Color.gray);
-        
-        try {
+        mainScreen.getContentPane().setBackground(Color.gray);
 
-            Image backgroundImage = ImageIO.read(new File("Menu Page.jpg"));
-            java.net.URL imgUrl = Main.class.getResource("Menu Page.jpg");
-            ImageIcon icon = new ImageIcon(imgUrl);
-            JLabel l = new JLabel(icon);
-            JLabel i = new JLabel("MAIN MENU");
-            mainScreen.add(l);
-            mainScreen.add(i);
+        try {
             Thread.sleep(1000);
         } catch (Exception a) {
         }
-        ;
+
         mainScreen.remove(title);
 
     }
 
     public void mainMenu() {
+
+        java.net.URL imgUrl = getClass().getResource("Menu-bkg.jpg");
+        ImageIcon icon = new ImageIcon(imgUrl);
+        JLabel l = new JLabel(icon); // gets flowers image
+        JLabel i = new JLabel("MAIN MENU");
+        l.setBounds(0,0,700,500); 
+        mainScreen.add(l);
+        mainScreen.add(i);
+        l.setVisible(true);
         try {
-            //source: https://stackoverflow.com/questions/13011705/how-to-add-an-imageicon-to-a-jframe
-            Image backgroundImage = ImageIO.read(new File("Menu Page.jpg"));
-            java.net.URL imgUrl = Main.class.getResource("Menu Page.jpg");
-            ImageIcon icon = new ImageIcon(imgUrl);
-            JLabel l = new JLabel(icon);
-            JLabel i = new JLabel("MAIN MENU");
-            mainScreen.add(l);
-            mainScreen.add(i);
             Thread.sleep(1000);
-        } catch (Exception a) {}
-        
+        } catch (Exception a) {
+        }
+        // mainScreen.remove(l);
 
     }
 
@@ -120,7 +113,6 @@ public class Main {
                 m.credits();
             }
             System.out.println(screen.getScreen());
-
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
