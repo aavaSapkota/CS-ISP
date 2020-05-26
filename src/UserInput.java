@@ -46,9 +46,11 @@ public class UserInput extends MouseAdapter implements  KeyListener{
     public void keyReleased(KeyEvent e){}
 
     //https://www.youtube.com/watch?v=bTaJKm43KGs
-    public void mousePressed(MouseEvent e){
+    public void mouseClicked(MouseEvent e){
         int x = e.getX(); 
         int y = e.getY();
+        System.out.println("x: "+x+" y: "+y);
+        screen.setScreen(screen.getScreen()+1);
 
     }
 

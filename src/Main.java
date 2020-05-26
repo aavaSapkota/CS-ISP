@@ -24,9 +24,9 @@ public class Main  {
     static JFrame mainScreen = new JFrame("Game Title");
 
     public Main() {
-        screen = new Screen(0);
+        screen = new Screen(1);
         mainScreen.setLayout(new FlowLayout());
-        mainScreen.setSize(700, 700);
+        mainScreen.setSize(700, 500);
         mainScreen.setVisible(true);
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         input = new UserInput(mainScreen,screen);
@@ -35,13 +35,33 @@ public class Main  {
 
 
     public void introduction() {
+        JLabel title = new JLabel("<html><div style='text-align: center; margin-top: 50px'> PHOENIX GAMES </div></html>");
+        mainScreen.add(title);
         mainScreen.getContentPane().setBackground(Color.gray);
+        try{
+            Thread.sleep(1000);
+        }catch(Exception a){};
+        mainScreen.remove(title);
 
     }
 
     public void mainMenu() {
-        mainScreen.getContentPane().setBackground(Color.blue);
-        mainScreen.setVisible(true);
+        JPanel menu = new JPanel(new FlowLayout());
+        JLabel title = new JLabel(" Main Menu:", SwingConstants.CENTER);
+        JLabel learn = new JLabel(" Learn ");
+        JLabel play = new JLabel("Play ");
+        JLabel exit = new JLabel("Exit ");
+        menu.add(title);
+        menu.add(play);
+        menu.add(learn);
+        menu.add(exit);
+        mainScreen.add(menu);
+        mainScreen.getContentPane().setBackground(Color.cyan);
+        try{
+            Thread.sleep(1000);
+        }catch(Exception a){};
+        mainScreen.remove(menu);
+        
     }
 
     public void highscores() {
@@ -64,9 +84,6 @@ public class Main  {
         mainScreen.getContentPane().setBackground(Color.black);
     }
 
-    
-
-    
     /**
      * Main method
      * 
