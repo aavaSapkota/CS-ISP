@@ -30,7 +30,7 @@ public class Main {
         mainScreen.setSize(700, 500);
         mainScreen.setVisible(true);
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        input = new UserInput(mainScreen, screen);
+        
 
     }
 
@@ -42,30 +42,29 @@ public class Main {
         mainScreen.getContentPane().setBackground(Color.gray);
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10000);
         } catch (Exception a) {
         }
 
+        screen.setScreen(screen.getScreen()+1);
         mainScreen.remove(title);
 
     }
 
     public void mainMenu() {
-
-        java.net.URL imgUrl = getClass().getResource("Menu-bkg.jpg");
+        input = new UserInput(mainScreen, screen);
+        java.net.URL imgUrl = getClass().getResource("Menu-bkg (1).jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel l = new JLabel(icon); // gets flowers image
-        JLabel i = new JLabel("MAIN MENU");
-        l.setBounds(0,0,700,500); 
-        mainScreen.add(l);
-        mainScreen.add(i);
-        l.setVisible(true);
+        JLabel bkg = new JLabel(icon); // get background image
+        bkg.setBounds(0,0,700,500); 
+        bkg.setVisible(true);
+        mainScreen.add(bkg);
+        
         try {
             Thread.sleep(1000);
         } catch (Exception a) {
         }
-        // mainScreen.remove(l);
-
+        bkg.setVisible(false);
     }
 
     public void highscores() {
@@ -95,11 +94,9 @@ public class Main {
      */
     public static void main(String args[]) {
         Main m = new Main();
-
+        m.introduction();
         while (screen.getScreen() <= 7) {
-            if (screen.getScreen() == 1) {
-                m.introduction();
-            } else if (screen.getScreen() == 2) {
+            if (screen.getScreen() == 2) {
                 m.mainMenu();
             } else if (screen.getScreen() == 3) {
                 m.highscores();

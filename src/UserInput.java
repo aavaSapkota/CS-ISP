@@ -33,24 +33,29 @@ public class UserInput extends MouseAdapter implements  KeyListener{
     public void keyPressed(KeyEvent e){
         int keyCode = e.getKeyCode(); 
 
-        if (keyCode == KeyEvent.VK_0) {
-            screen.setScreen(screen.getScreen()+1);
-        } else if (keyCode == KeyEvent.VK_1) {
-            screen.setScreen(3);
-        }else if (keyCode == KeyEvent.VK_2) {
-            screen.setScreen(4);
-        }else if (keyCode == KeyEvent.VK_3) {
-            screen.setScreen(5);
-        }
+
     }
     public void keyReleased(KeyEvent e){}
 
     //https://www.youtube.com/watch?v=bTaJKm43KGs
     public void mouseClicked(MouseEvent e){
+        try{
+            Thread.sleep(1000); 
+        }catch(Exception a){}
         int x = e.getX(); 
         int y = e.getY();
         System.out.println("x: "+x+" y: "+y);
-        screen.setScreen(screen.getScreen()+1);
+        if(x>=250&&x<= 485&&y>=175&&y<=220){
+            screen.setScreen(3);
+        }else if(x>=300&&x<= 420&&y>=238&& y<=285){
+            screen.setScreen(4);
+        }else if(x>=300&&x<= 420&&y>=300&&y<=350){
+            screen.setScreen(5);
+        }else if(x>=300&&x<=420&&y>=360&&y<=405){
+            screen.setScreen(6);
+        }else{
+            screen.setScreen(screen.getScreen()+1);
+        }
 
     }
 
