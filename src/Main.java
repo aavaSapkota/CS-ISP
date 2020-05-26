@@ -18,34 +18,21 @@ import java.util.*;
 import javax.swing.JComponent;
 import java.awt.Graphics;
 
-public class Main implements ActionListener {
-    static int screen;
+public class Main  {
+    static Screen screen;
+    static UserInput input; 
     static JFrame mainScreen = new JFrame("Game Title");
-    JButton learn, play, highscores, next;
 
     public Main() {
-        next = new JButton("NEXT");
-        screen = 0;
-        next.addActionListener(this);
-        mainScreen.add(next);
-    }
-
-    public void pauseProgram(){
-        JFrame pauseScreen = new JFrame("Pause");
+        screen = new Screen(0);
+        mainScreen.setLayout(new FlowLayout());
+        mainScreen.setSize(700, 700);
+        mainScreen.setVisible(true);
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        input = new UserInput(mainScreen,screen);
+        
     }
 
-    public void actionPerformed(final ActionEvent e) {
-        if (e.getSource() == next) {
-            screen++;
-        } else if (screen == 2 && e.getSource() == learn) {
-            screen = 4;
-            mainScreen.remove(learn);
-            mainScreen.remove(play);
-            mainScreen.remove(highscores);
-        }
-
-    }
 
     public void introduction() {
         mainScreen.getContentPane().setBackground(Color.gray);
@@ -54,12 +41,7 @@ public class Main implements ActionListener {
 
     public void mainMenu() {
         mainScreen.getContentPane().setBackground(Color.blue);
-        learn = new JButton("Learn");
-        play = new JButton("play");
-        highscores = new JButton("Highscores");
-        mainScreen.add(learn);
-        mainScreen.add(play);
-        mainScreen.add(highscores);
+        mainScreen.setVisible(true);
     }
 
     public void highscores() {
@@ -82,6 +64,9 @@ public class Main implements ActionListener {
         mainScreen.getContentPane().setBackground(Color.black);
     }
 
+    
+
+    
     /**
      * Main method
      * 
@@ -89,27 +74,27 @@ public class Main implements ActionListener {
      */
     public static void main(String args[]) {
         Main m = new Main();
-        mainScreen.setLayout(new FlowLayout());
-        mainScreen.setSize(700, 700);
-        mainScreen.setVisible(true);
-        while (screen != 6) {
-            if (screen == 1) {
+        
+        while (screen.getScreen() <= 7) {
+            if (screen.getScreen()==1) {
                 m.introduction();
-            } else if (screen == 2) {
+            } else if (screen.getScreen()==2) {
                 m.mainMenu();
-            } else if (screen == 3) {
+            } else if (screen.getScreen()==3) {
                 m.highscores();
-            } else if (screen == 4) {
+            } else if (screen.getScreen()==4) {
                 m.learn();
-            } else if (screen == 5) {
+            } else if (screen.getScreen()==5) {
                 m.play();
-            } else if (screen == 6) {
+            } else if (screen.getScreen()== 6) {
                 m.goodbye();
-            } else if (screen == 7) {
+            } else if (screen.getScreen()==7) {
                 m.credits();
             }
-            System.out.println(screen);
+            System.out.println(screen.getScreen());
 
         }
+        // source: https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
+        mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
     }
 }
