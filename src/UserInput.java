@@ -85,15 +85,47 @@ public class UserInput extends MouseAdapter implements KeyListener{
                 learn = new Level1(game,screen);
             }
         } else if(screen.getScreen()==7){
-            if(x>=40&&y>=150&&x<=340&&y<=290){
-                screen.setScreen(8);
+            System.out.println ("THIS IS WORKING");
+            while (correct.getCorrect()) {
+                if (screen.getScreen() == 7){
+                    learn.question1();
+                    if(x>=360&&y>=150&&x<=660&&y<=290){
+                        screen.setScreen(9);
+                        correct.setCorrect(true);
+                    }
+                }
+             } 
+            
+            /*else if (screen.getScreen() == 8) {
+                    info1();
+                }else if (screen.getScreen() == 9) {
+                    question2();
+                }else if (screen.getScreen() == 10) {
+                    info2();
+                }else if (screen.getScreen() == 11) {
+                    question3();
+                } else if (screen.getScreen() == 12) {
+                    info3();
+                } else if (screen.getScreen() == 13) {
+                    question4();
+                }else if (screen.getScreen() == 14) {
+                    info4();
+                }else if (screen.getScreen() == 15){
+                    end();
+                } 
+            }
+            if(correct.getCorrect()==false) failed();
+    */
+            
+            //else if(x>=40&&y>=315){
+            //     learn.correct.setCorrect(false);
+            // }
+        } else if(screen.getScreen()==8){
+            if(x>=360&&y>=150&&x<=660&&y<=290){
+                screen.setScreen(9);
             }//else if(x>=40&&y>=315){
             //     learn.correct.setCorrect(false);
             // }
-            
         }
     }
-
-
-
 }

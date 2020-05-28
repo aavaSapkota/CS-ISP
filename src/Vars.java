@@ -37,6 +37,4 @@ public class Vars {
     public void setCorrect(boolean w){
         win = w; 
     }
-
-    
 }
