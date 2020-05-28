@@ -20,10 +20,10 @@ import java.awt.Graphics;
 
 public class UserInput extends MouseAdapter implements KeyListener{
     JFrame game;
-    Screen screen;
+    Vars screen;
     Clear clearHighscores; 
 
-    public UserInput(JFrame game, Screen screen) {
+    public UserInput(JFrame game, Vars screen) {
         this.game = game;
         this.screen = screen;
         game.addKeyListener(this);
@@ -50,9 +50,9 @@ public class UserInput extends MouseAdapter implements KeyListener{
         int y = e.getY();
         System.out.println("x: " + x + " y: " + y);
         if (screen.getScreen() == 2) {
-            if (x >= 250 && x <= 485 && y >= 175 && y <= 220) {
+            if (x >= 240 && x <= 460 && y >=210 && y <= 240) {
                 screen.setScreen(3);
-            } else if (x >= 300 && x <= 420 && y >= 238 && y <= 285) {
+            } else if (x >= 220 && x <= 480 && y >= 270 && y <= 300) {
                 screen.setScreen(4);
             } else if (x >= 300 && x <= 420 && y >= 300 && y <= 350) {
                 screen.setScreen(5);
@@ -65,7 +65,15 @@ public class UserInput extends MouseAdapter implements KeyListener{
             }else if(x>=400&&x<=588&&y>=435&&y<=486){
                 clearHighscores.setStatus(true); 
             }
-        } 
+        } else if(screen.getScreen()==4){
+            if(x>=240&&x<=450&&y>=426&&y<=470){
+                screen.setScreen(2);
+            }
+        } else if(screen.getScreen()==5){
+            if(x>=190&&y>=415&&x<=510&&y<=480){
+                Level1 play = new Level1(game, screen);
+            }
+        }
     }
 
 
