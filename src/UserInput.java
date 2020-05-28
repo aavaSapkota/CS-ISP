@@ -72,6 +72,10 @@ public class UserInput extends MouseAdapter implements KeyListener{
             if(x>=190&&y>=415&&x<=510&&y<=480){
                 Level1 play = new Level1(game, screen);
             }
+        } else if(screen.getScreen()==7){
+            // if(x>=50&&y>=150&&x<=  &&y<=  ){
+            //     screen.setScreen()
+            // }
         }
     }
 
