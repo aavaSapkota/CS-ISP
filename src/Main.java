@@ -80,7 +80,7 @@ public class Main {
     }
 
     public void play() {
-        java.net.URL imgUrl = Main.class.getResource("Level 1-1.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Level 1-1 (1).jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets flowers image
         bkg.setBounds(-5,-5,700,500);
