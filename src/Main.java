@@ -23,6 +23,7 @@ public class Main {
     static UserInput input;
     static JFrame mainScreen = new JFrame("Game Title");
 
+
     public Main() {
         screen = new Vars(1);
         mainScreen.setLayout(new FlowLayout());
@@ -87,6 +88,7 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
+        
 
     }
 

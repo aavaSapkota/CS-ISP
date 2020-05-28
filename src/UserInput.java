@@ -18,12 +18,12 @@ import java.util.*;
 import javax.swing.JComponent;
 import java.awt.Graphics;
 
-public class UserInput extends MouseAdapter implements KeyListener{
+public class UserInput extends MouseAdapter implements KeyListener {
     JFrame game;
     Vars screen;
     Vars correct;
-    Clear clearHighscores; 
-    Level1 learn; 
+    Clear clearHighscores;
+    Level1 learn;
     Level2 play;
 
     public UserInput(JFrame game, Vars screen) {
@@ -60,7 +60,7 @@ public class UserInput extends MouseAdapter implements KeyListener{
         int y = e.getY();
         System.out.println("x: " + x + " y: " + y);
         if (screen.getScreen() == 2) {
-            if (x >= 240 && x <= 460 && y >=210 && y <= 240) {
+            if (x >= 240 && x <= 460 && y >= 210 && y <= 240) {
                 screen.setScreen(3);
             } else if (x >= 220 && x <= 480 && y >= 270 && y <= 300) {
                 screen.setScreen(4);
@@ -69,63 +69,45 @@ public class UserInput extends MouseAdapter implements KeyListener{
             } else if (x >= 300 && x <= 420 && y >= 360 && y <= 405) {
                 screen.setScreen(6);
             }
-        } else if(screen.getScreen() == 3){
-            if(x>=153&&x<=343&&y>=435&&y<=486){
-                screen.setScreen(2); 
-            }else if(x>=400&&x<=588&&y>=435&&y<=486){
-                clearHighscores.setStatus(true); 
+        } else if (screen.getScreen() == 3) {
+            if (x >= 153 && x <= 343 && y >= 435 && y <= 486) {
+                screen.setScreen(2);
+            } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
+                clearHighscores.setStatus(true);
             }
-        } else if(screen.getScreen()==4){
-            if(x>=240&&x<=450&&y>=426&&y<=470){
+        } else if (screen.getScreen() == 4) {
+            if (x >= 240 && x <= 450 && y >= 426 && y <= 470) {
                 screen.setScreen(2);
             }
-        } else if(screen.getScreen()==5){
-            if(x>=190&&y>=415&&x<=510&&y<=480){
+        } else if (screen.getScreen() == 5) {
+            if (x >= 190 && y >= 415 && x <= 510 && y <= 480) {
                 screen.setScreen(7);
-                learn = new Level1(game,screen);
+                learn = new Level1(game, screen);
+                // System.out.println(learn);
             }
-        } else if(screen.getScreen()==7){
-            System.out.println ("THIS IS WORKING");
-            while (correct.getCorrect()) {
-                if (screen.getScreen() == 7){
-                    learn.question1();
-                    if(x>=360&&y>=150&&x<=660&&y<=290){
-                        screen.setScreen(9);
-                        correct.setCorrect(true);
-                    }
-                }
-             } 
-            
-            /*else if (screen.getScreen() == 8) {
-                    info1();
-                }else if (screen.getScreen() == 9) {
-                    question2();
-                }else if (screen.getScreen() == 10) {
-                    info2();
-                }else if (screen.getScreen() == 11) {
-                    question3();
-                } else if (screen.getScreen() == 12) {
-                    info3();
-                } else if (screen.getScreen() == 13) {
-                    question4();
-                }else if (screen.getScreen() == 14) {
-                    info4();
-                }else if (screen.getScreen() == 15){
-                    end();
-                } 
-            }
-            if(correct.getCorrect()==false) failed();
-    */
-            
-            //else if(x>=40&&y>=315){
-            //     learn.correct.setCorrect(false);
-            // }
-        } else if(screen.getScreen()==8){
+        } else if (screen.getScreen() == 7) {
+            System.out.println("THIS IS WORKING");
+            learn.question1();
             if(x>=360&&y>=150&&x<=660&&y<=290){
                 screen.setScreen(9);
-            }//else if(x>=40&&y>=315){
-            //     learn.correct.setCorrect(false);
-            // }
+            }
+        }else if (screen.getScreen() == 8) {
+            learn.info1();
+        }else if (screen.getScreen() == 9) {
+            learn.question2();
+        }else if (screen.getScreen() == 10) {
+            learn.info2();
+        }else if (screen.getScreen() == 11) {
+            learn.question3();
+        } else if (screen.getScreen() == 12) {
+            learn.info3();
+        } else if (screen.getScreen() == 13) {
+            learn.question4();
+        }else if (screen.getScreen() == 14) {
+            learn.info4();
+        }else if (screen.getScreen() == 15){
+            learn.end();
+            // break;
         }
     }
 }
