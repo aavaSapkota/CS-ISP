@@ -10,17 +10,19 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 
 public class Level1 {
-    
     JFrame game; 
     Vars screen;
     UserInput input;
+    private int correct; 
 
-    //HELLO AAVA
     public Level1(JFrame game, Vars screen){
         this.game = game; 
         this.screen = screen;
+        correct = 0;
         input = new UserInput(this.game, this.screen); 
+        while (correct == 0){
         question1(); 
+        }
     }
 
     public void question1(){

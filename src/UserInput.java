@@ -37,7 +37,6 @@ public class UserInput extends MouseAdapter implements KeyListener{
 
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-
     }
 
     public void keyReleased(KeyEvent e) {
