@@ -13,41 +13,41 @@ public class Level1 {
     JFrame game;
     Vars screen;
     UserInput input;
-    private boolean correct;
+    Vars correct;
 
     public Level1(JFrame game, Vars screen) {
         this.game = game;
-        screen = new Vars(7);
-        correct = true;
-        input = new UserInput(this.game, this.screen);
-        while (screen.getScreen()<16) {
+        this.screen = screen;
+        correct = new Vars(true, "correct");
+        input = new UserInput(game, screen);
+        while (correct.getCorrect()) {
             if (screen.getScreen() == 7){
                 question1();
-                if (correct) {
-                    info1();
-                }else{
-                    failed();
-                }
             } else if (screen.getScreen() == 9) {
+                info1();
+            }else if (screen.getScreen() == 10) {
                 question2();
-            } else if (screen.getScreen() == 10) {
+            }else if (screen.getScreen() == 11) {
                 info2();
-            } else if (screen.getScreen() == 11) {
+            }else if (screen.getScreen() == 12) {
                 question3();
-            } else if (screen.getScreen() == 12) {
-                info3();
             } else if (screen.getScreen() == 13) {
-                question4();
+                info3();
             } else if (screen.getScreen() == 14) {
+                question4();
+            }else if (screen.getScreen() == 15) {
                 info4();
-            } else if (screen.getScreen() == 15){
+            }else if (screen.getScreen() == 16){
                 end();
             } 
         }
 
+        if(correct.getCorrect()==false) failed();
+
     }
 
     public void question1() {
+        System.out.println("I'M HERE");
         java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets question image

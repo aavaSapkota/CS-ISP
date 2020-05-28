@@ -106,7 +106,7 @@ public class Main {
     public static void main(String args[]) {
         Main m = new Main();
         m.introduction();
-        while (screen.getScreen() < 7) {
+        while (true) {
             if (screen.getScreen() == 2) {
                 m.mainMenu();
             } else if (screen.getScreen() == 3) {
@@ -117,7 +117,9 @@ public class Main {
                 m.play();
             } else if (screen.getScreen() == 6) {
                 m.goodbye();
+                break;
             }
+            // System.out.println(screen.getScreen());
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe

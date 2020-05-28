@@ -21,11 +21,22 @@ import java.awt.Graphics;
 public class UserInput extends MouseAdapter implements KeyListener{
     JFrame game;
     Vars screen;
+    Vars correct;
     Clear clearHighscores; 
+    Level1 learn; 
+    Level2 play;
 
     public UserInput(JFrame game, Vars screen) {
         this.game = game;
         this.screen = screen;
+        game.addKeyListener(this);
+        game.addMouseListener(this);
+    }
+
+    public UserInput(JFrame game, Vars screen, Vars correct) {
+        this.game = game;
+        this.screen = screen;
+        this.correct = correct;
         game.addKeyListener(this);
         game.addMouseListener(this);
     }
@@ -70,12 +81,16 @@ public class UserInput extends MouseAdapter implements KeyListener{
             }
         } else if(screen.getScreen()==5){
             if(x>=190&&y>=415&&x<=510&&y<=480){
-                Level1 play = new Level1(game, screen);
+                screen.setScreen(7);
+                learn = new Level1(game,screen);
             }
         } else if(screen.getScreen()==7){
-            // if(x>=50&&y>=150&&x<=  &&y<=  ){
-            //     screen.setScreen()
+            if(x>=40&&y>=150&&x<=340&&y<=290){
+                screen.setScreen(8);
+            }//else if(x>=40&&y>=315){
+            //     learn.correct.setCorrect(false);
             // }
+            
         }
     }
 
