@@ -46,7 +46,7 @@ public class Main {
     }
 
     public void mainMenu() {
-        java.net.URL imgUrl = Main.class.getResource("Menu-bkg (1).jpg");
+        java.net.URL imgUrl = Main.class.getResource("Menu-bkg (2).jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets flowers image
         
@@ -58,7 +58,7 @@ public class Main {
     }
 
     public void highscores() {
-        java.net.URL imgUrl = Main.class.getResource("highscores-screen.jpg");
+        java.net.URL imgUrl = Main.class.getResource("highscores-screen (2).jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets flowers image
         
@@ -69,7 +69,14 @@ public class Main {
     }
 
     public void learn() {
-        mainScreen.getContentPane().setBackground(Color.orange);
+        java.net.URL imgUrl = Main.class.getResource("Learn Instructions Page.jpg");
+        ImageIcon icon = new ImageIcon(imgUrl);
+        JLabel bkg = new JLabel(icon); // gets flowers image
+        
+        bkg.setBounds(-5,-5,700,500);
+        bkg.setVisible(true);
+        mainScreen.add(bkg);
+        mainScreen.setVisible(true);
     }
 
     public void play() {
