@@ -34,23 +34,25 @@ public class Main {
 
     public void introduction() {
 
-        JLabel title = new JLabel(
-                "<html><div style='text-align: center; margin-top: 50px'> PHOENIX GAMES </div></html>");
-        mainScreen.add(title);
-        mainScreen.getContentPane().setBackground(Color.gray);
+        java.net.URL imgUrl = Main.class.getResource("Title Card.jpg");
+        ImageIcon icon = new ImageIcon(imgUrl);
+        JLabel bkg = new JLabel(icon); //Gets background image
+        bkg.setBounds(0,0,700,500);
+        bkg.setVisible(true);
+        mainScreen.add(bkg);
+        mainScreen.setVisible(true);
         input = new UserInput(mainScreen, screen);
         
         try{
             Thread.sleep(2000);
         }catch(Exception e){}
 
-        title.setVisible(false);
         screen.setScreen(screen.getScreen()+1);
 
     }
 
     public void mainMenu() {
-        java.net.URL imgUrl = Main.class.getResource("Menu-bkg (2).jpg");
+        java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); //Gets background image
         bkg.setBounds(0,0,700,500);
@@ -81,7 +83,7 @@ public class Main {
     }
 
     public void play() {
-        java.net.URL imgUrl = Main.class.getResource("Level 1-1 (1).jpg");
+        java.net.URL imgUrl = Main.class.getResource("Level 1 Start.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets flowers image
         bkg.setBounds(-5,-5,700,500);
