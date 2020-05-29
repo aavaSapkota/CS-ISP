@@ -24,119 +24,95 @@ public class Level1 {
     }
 
     public void question1() {
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg = new JLabel(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Question 1.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void info1() {
-        java.net.URL imgUrl = Main.class.getResource("Info 1.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Info 1.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void question2() {
-        java.net.URL imgUrl = Main.class.getResource("Question 2.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Question 2.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void info2() {
-        java.net.URL imgUrl = Main.class.getResource("Info 2.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Info 2.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void question3() {
-        java.net.URL imgUrl = Main.class.getResource("Question 3.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Question 3.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void info3() {
-        java.net.URL imgUrl = Main.class.getResource("Info 3.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Info 3.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void question4() {
-        java.net.URL imgUrl = Main.class.getResource("Question 4.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Question 4.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void info4() {
-        java.net.URL imgUrl = Main.class.getResource("Info 4.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Info 4.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void question5() {
-        java.net.URL imgUrl = Main.class.getResource("Question 5.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Question 5.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void info5() {
-        java.net.URL imgUrl = Main.class.getResource("Info 5.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Info 5.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
     public void question6() {
-        java.net.URL imgUrl = Main.class.getResource("Question 6 (1).jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Question 6.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void info6() {
-        java.net.URL imgUrl = Main.class.getResource("Info 6.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Info 6.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
@@ -153,10 +129,8 @@ public class Level1 {
     }
 
     public void failed(){
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        bkg.setIcon(icon); // gets question image
-        bkg.setBounds(0, 0, 700, 500);
+        Image icon = new ImageIcon("Fail.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);

@@ -33,11 +33,8 @@ public class Main {
     }
 
     public void introduction() {
-
-        java.net.URL imgUrl = Main.class.getResource("Title Card.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); //Gets background image
-        bkg.setBounds(0,0,700,500);
+        Image icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -52,10 +49,8 @@ public class Main {
     }
 
     public void mainMenu() {
-        java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); //Gets background image
-        bkg.setBounds(0,0,700,500);
+        Image icon = new ImageIcon("Menu.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -76,22 +71,17 @@ public class Main {
         java.net.URL imgUrl = Main.class.getResource("Learn Instructions Page.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets flowers image
-        bkg.setBounds(-5,-5,700,500);
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
     }
 
     public void play() {
-        java.net.URL imgUrl = Main.class.getResource("Level 1 Start.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); // gets flowers image
-        bkg.setBounds(-5,-5,700,500);
+        Image icon = new ImageIcon("Level 1 Start.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        
-
     }
 
     public void goodbye() {
