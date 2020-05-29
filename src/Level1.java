@@ -24,7 +24,6 @@ public class Level1 {
     }
 
     public void question1() {
-        System.out.println("QUESTION 1");
         java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg = new JLabel(icon); // gets question image
@@ -32,7 +31,6 @@ public class Level1 {
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
-        System.out.println ("HELLOOOOOOOOOO");
     }
 
     public void info1() {
