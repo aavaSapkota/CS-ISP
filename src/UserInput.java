@@ -61,13 +61,13 @@ public class UserInput extends MouseAdapter implements KeyListener {
         int y = e.getY();
         System.out.println("x: " + x + " y: " + y);
         if (screen.getScreen() == 2) {
-            if (x >= 240 && x <= 460 && y >= 210 && y <= 240) {
+            if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
                 screen.setScreen(3);
-            } else if (x >= 220 && x <= 480 && y >= 270 && y <= 300) {
+            } else if (x >= 190 && x <= 500 && y >= 270 && y <= 300) {
                 screen.setScreen(4);
-            } else if (x >= 300 && x <= 420 && y >= 300 && y <= 350) {
+            } else if (x >= 190 && x <= 500 && y >= 320 && y <= 350) {
                 screen.setScreen(5);
-            } else if (x >= 300 && x <= 420 && y >= 360 && y <= 405) {
+            } else if (x >= 190 && x <= 500 && y >= 360 && y <= 390) {
                 screen.setScreen(6);
             }
         } else if (screen.getScreen() == 3) {
@@ -81,7 +81,7 @@ public class UserInput extends MouseAdapter implements KeyListener {
                 screen.setScreen(2);
             }
         } else if (screen.getScreen() == 5) {
-            if (x >= 190 && y >= 415 && x <= 510 && y <= 480) {
+            if (x >= 285 && y >= 435 && x <= 415 && y <= 465) {
                 screen.setScreen(7);
                 learn = new Level1(game, screen);
                 // System.out.println(learn);
@@ -90,44 +90,67 @@ public class UserInput extends MouseAdapter implements KeyListener {
             System.out.println("THIS IS WORKING");
             learn.question1();
             if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
-                screen.setScreen(9);
+                screen.setScreen(8);
                 correct.setCorrect(true);
-            }//else if()
+            }
+            else 
+            {
+                //fail screen
+            }
         } else if (screen.getScreen() == 8) {
+            screen.setScreen(9);
             learn.info1();
         } else if (screen.getScreen() == 9) {
             learn.question2();
             if (x >= 40 && y >= 330 && x <= 335 && y <= 490) {
-                screen.setScreen(11);
+                screen.setScreen(10);
                 correct.setCorrect(true);
             }
+            else {
+                //fail screen
+            }
         } else if (screen.getScreen() == 10) {
+            screen.setScreen(11);
             learn.info2();
         } else if (screen.getScreen() == 11) {
             learn.question3();
             if (x >= 360 && y >= 150 && x <= 660 && y <= 310) {
-                screen.setScreen(13);
+                screen.setScreen(12);
                 correct.setCorrect(true);
             }
+            else 
+            {
+                //fail screen
+            }
         } else if (screen.getScreen() == 12) {
+            screen.setScreen (13);
             learn.info3();
         } else if (screen.getScreen() == 13) {
             learn.question4();
             if (x >= 35 && y >= 150 && x <= 330 && y <= 310) {
-                screen.setScreen(15);
+                screen.setScreen(14);
                 correct.setCorrect(true);
             }
-
+            else 
+            {
+                //fail screen
+            }
         } else if (screen.getScreen() == 14) {
+            screen.setScreen(15);
             learn.info4();
         } else if (screen.getScreen() == 15) {
             learn.question5();
             if (x >= 35 && y >= 150 && x <= 330 && y <= 310) {
-                screen.setScreen(17);
+                screen.setScreen(16);
                 correct.setCorrect(true);
+            }
+            else 
+            {
+                //fail screen
             }
             // break;
         } else if (screen.getScreen() == 16) {
+            screen.setScreen(17);
             learn.info5();
         } else if (screen.getScreen() == 17) {
             learn.question6();
@@ -135,11 +158,6 @@ public class UserInput extends MouseAdapter implements KeyListener {
                 screen.setScreen(17);
                 correct.setCorrect(true);
             }
-        }
-
-        if(correct.getCorrect()==false){
-            screen.setScreen(18);
-            // learn.failed(); 
         }
     }
 }

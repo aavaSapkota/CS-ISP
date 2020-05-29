@@ -33,24 +33,23 @@ public class Main {
     }
 
     public void introduction() {
-
-        JLabel title = new JLabel(
-                "<html><div style='text-align: center; margin-top: 50px'> PHOENIX GAMES </div></html>");
-        mainScreen.add(title);
-        mainScreen.getContentPane().setBackground(Color.gray);
+        Image icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        mainScreen.add(bkg);
+        mainScreen.setVisible(true);
         input = new UserInput(mainScreen, screen);
         
         try{
             Thread.sleep(2000);
         }catch(Exception e){}
 
-        title.setVisible(false);
         screen.setScreen(screen.getScreen()+1);
 
     }
 
     public void mainMenu() {
-        java.net.URL imgUrl = Main.class.getResource("Menu-bkg (2).jpg");
+        java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); //Gets background image
         bkg.setBounds(0,0,705,510);
@@ -74,17 +73,14 @@ public class Main {
         java.net.URL imgUrl = Main.class.getResource("Learn Instructions Page.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); // gets flowers image
-        bkg.setBounds(-5,-5,700,500);
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
     }
 
     public void play() {
-        java.net.URL imgUrl = Main.class.getResource("Level 1-1 (1).jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); // gets flowers image
-        bkg.setBounds(-5,-5,700,500);
+        Image icon = new ImageIcon("Level 1 Start.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
