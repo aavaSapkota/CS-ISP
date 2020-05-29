@@ -129,8 +129,3 @@ public class Main {
         mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
     }
 }
-
-
-
-
-

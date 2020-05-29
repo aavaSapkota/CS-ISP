@@ -88,24 +88,38 @@ public class UserInput extends MouseAdapter implements KeyListener {
         } else if (screen.getScreen() == 7) {
             System.out.println("THIS IS WORKING");
             learn.question1();
-            if(x>=360&&y>=150&&x<=660&&y<=290){
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
                 screen.setScreen(9);
             }
-        }else if (screen.getScreen() == 8) {
+        } else if (screen.getScreen() == 8) {
             learn.info1();
-        }else if (screen.getScreen() == 9) {
+        } else if (screen.getScreen() == 9) {
             learn.question2();
-        }else if (screen.getScreen() == 10) {
+            if (x >= 100 && y >= 310 && x <= 320 && y <= 450) {
+                screen.setScreen(11);
+                correct.setCorrect(true);
+            }
+
+        } else if (screen.getScreen() == 10) {
             learn.info2();
-        }else if (screen.getScreen() == 11) {
+        } else if (screen.getScreen() == 11) {
             learn.question3();
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
+                screen.setScreen(13);
+                correct.setCorrect(true);
+            }
         } else if (screen.getScreen() == 12) {
             learn.info3();
         } else if (screen.getScreen() == 13) {
             learn.question4();
-        }else if (screen.getScreen() == 14) {
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
+                screen.setScreen(15);
+                correct.setCorrect(true);
+            }
+
+        } else if (screen.getScreen() == 14) {
             learn.info4();
-        }else if (screen.getScreen() == 15){
+        } else if (screen.getScreen() == 15) {
             learn.end();
             // break;
         }
