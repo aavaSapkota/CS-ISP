@@ -34,7 +34,7 @@ public class Level1 {
     }
 
     public void info1() {
-        java.net.URL imgUrl = Main.class.getResource("Level 1-1 (1).jpg");
+        java.net.URL imgUrl = Main.class.getResource("Info 1.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);
@@ -54,7 +54,7 @@ public class Level1 {
     }
 
     public void info2() {
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Info 2.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);
@@ -74,7 +74,7 @@ public class Level1 {
     }
 
     public void info3() {
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Info 3.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);
@@ -94,7 +94,7 @@ public class Level1 {
     }
 
     public void info4() {
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Info 4.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);
@@ -114,7 +114,7 @@ public class Level1 {
     }
 
     public void info5() {
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Info 5.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);
@@ -133,7 +133,7 @@ public class Level1 {
     }
 
     public void info6() {
-        java.net.URL imgUrl = Main.class.getResource("Question 1.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Info 6.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);
