@@ -29,6 +29,7 @@ public class UserInput extends MouseAdapter implements KeyListener {
     public UserInput(JFrame game, Vars screen) {
         this.game = game;
         this.screen = screen;
+        correct = new Vars(true, "correct");
         game.addKeyListener(this);
         game.addMouseListener(this);
     }
@@ -91,7 +92,7 @@ public class UserInput extends MouseAdapter implements KeyListener {
             if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
                 screen.setScreen(9);
                 correct.setCorrect(true);
-            }
+            }//else if()
         } else if (screen.getScreen() == 8) {
             learn.info1();
         } else if (screen.getScreen() == 9) {
@@ -135,29 +136,10 @@ public class UserInput extends MouseAdapter implements KeyListener {
                 correct.setCorrect(true);
             }
         }
-    }
-    public void paintComponent (Graphics g)
-    {
-        System.out.println ("Graphics g is working");
-        if (screen.getScreen ()== 7 && correct.getCorrect() == true)
-        {
-            g.setColor (Color.GREEN);
-            g.drawRect(30, 40, 150, 50);
-        }
-        if (screen.getScreen ()== 9 && correct.getCorrect() == true)
-        {
-            g.setColor (Color.GREEN);
-            g.drawRect(30, 40, 150, 50);
-        }
-        if (screen.getScreen ()== 11 && correct.getCorrect() == true)
-        {
-            g.setColor (Color.GREEN);
-            g.drawRect(30, 40, 150, 50);
-        }
-        if (screen.getScreen ()== 13 && correct.getCorrect() == true)
-        {
-            g.setColor (Color.GREEN);
-            g.drawRect(30, 40, 150, 50);
+
+        if(correct.getCorrect()==false){
+            screen.setScreen(18);
+            // learn.failed(); 
         }
     }
 }

@@ -53,7 +53,7 @@ public class Main {
         java.net.URL imgUrl = Main.class.getResource("Menu-bkg (2).jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         JLabel bkg = new JLabel(icon); //Gets background image
-        bkg.setBounds(0,0,700,500);
+        bkg.setBounds(0,0,705,510);
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -88,8 +88,6 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        
-
     }
 
     public void goodbye() {
