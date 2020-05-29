@@ -125,7 +125,7 @@ public class Level1 {
         game.setVisible(true);
     }
     public void question6() {
-        java.net.URL imgUrl = Main.class.getResource("Question 6.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Question 6 (1).jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
         bkg.setIcon(icon); // gets question image
         bkg.setBounds(0, 0, 700, 500);

@@ -85,7 +85,7 @@ public class UserInput extends MouseAdapter implements KeyListener {
                 learn = new Level1(game, screen);
                 // System.out.println(learn);
             }
-        } else if (screen.getScreen() == 7) {
+        } else if (screen.getScreen() == 7) { // question 1
             System.out.println("THIS IS WORKING");
             learn.question1();
             if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
@@ -95,16 +95,15 @@ public class UserInput extends MouseAdapter implements KeyListener {
             learn.info1();
         } else if (screen.getScreen() == 9) {
             learn.question2();
-            if (x >= 100 && y >= 310 && x <= 320 && y <= 450) {
+            if (x >= 40 && y >= 330 && x <= 335 && y <= 490) {
                 screen.setScreen(11);
                 correct.setCorrect(true);
             }
-
         } else if (screen.getScreen() == 10) {
             learn.info2();
         } else if (screen.getScreen() == 11) {
             learn.question3();
-            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 310) {
                 screen.setScreen(13);
                 correct.setCorrect(true);
             }
@@ -112,7 +111,7 @@ public class UserInput extends MouseAdapter implements KeyListener {
             learn.info3();
         } else if (screen.getScreen() == 13) {
             learn.question4();
-            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
+            if (x >= 35 && y >= 150 && x <= 330 && y <= 310) {
                 screen.setScreen(15);
                 correct.setCorrect(true);
             }
@@ -120,8 +119,20 @@ public class UserInput extends MouseAdapter implements KeyListener {
         } else if (screen.getScreen() == 14) {
             learn.info4();
         } else if (screen.getScreen() == 15) {
-            learn.end();
+            learn.question5();
+            if (x >= 35 && y >= 150 && x <= 330 && y <= 310) {
+                screen.setScreen(17);
+                correct.setCorrect(true);
+            }
             // break;
+        } else if (screen.getScreen() == 16) {
+            learn.info5();
+        } else if (screen.getScreen() == 17) {
+            learn.question6();
+            if (x >= 40 && y >= 330 && x <= 335 && y <= 490) {
+                screen.setScreen(17);
+                correct.setCorrect(true);
+            }
         }
     }
 }
