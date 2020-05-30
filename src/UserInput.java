@@ -93,9 +93,10 @@ public class UserInput extends MouseAdapter implements KeyListener {
                 screen.setScreen(8);
                 correct.setCorrect(true);
             }
-            else 
+            else if((x>=50&&y>=145&&x<=355&&y<295)||(x>=50&&y>=310&&x<=355&&y<=460)||(x>=360&&y>=315&&x<=660&&y<=460))
             {
-                //fail screen
+                learn.failed();
+                correct.setCorrect(false);
             }
         } else if (screen.getScreen() == 8) {
             screen.setScreen(9);
@@ -106,47 +107,51 @@ public class UserInput extends MouseAdapter implements KeyListener {
                 screen.setScreen(10);
                 correct.setCorrect(true);
             }
-            else {
-                //fail screen
+            else if( (x >= 360 && y >= 150 && x <= 660 && y <= 290)||(x>=50&&y>=310&&x<=355&&y<=460)||(x>=360&&y>=315&&x<=660&&y<=460)){
+                learn.failed();
+                correct.setCorrect(false);
             }
         } else if (screen.getScreen() == 10) {
             screen.setScreen(11);
             learn.info2();
         } else if (screen.getScreen() == 11) {
             learn.question3();
-            if (x >= 360 && y >= 150 && x <= 660 && y <= 310) {
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
                 screen.setScreen(12);
                 correct.setCorrect(true);
             }
-            else 
+            else if((x>=50&&y>=145&&x<=355&&y<295)||(x>=50&&y>=310&&x<=355&&y<=460)||(x>=360&&y>=315&&x<=660&&y<=460))
             {
-                //fail screen
+                learn.failed();
+                correct.setCorrect(false);
             }
         } else if (screen.getScreen() == 12) {
             screen.setScreen (13);
             learn.info3();
         } else if (screen.getScreen() == 13) {
             learn.question4();
-            if (x >= 35 && y >= 150 && x <= 330 && y <= 310) {
+            if (x>=50&&y>=145&&x<=355&&y<295) {
                 screen.setScreen(14);
                 correct.setCorrect(true);
             }
-            else 
+            else if((x >= 360 && y >= 150 && x <= 660 && y <= 290)||(x>=50&&y>=310&&x<=355&&y<=460)||(x>=360&&y>=315&&x<=660&&y<=460))
             {
-                //fail screen
+                learn.failed();
+                correct.setCorrect(false);
             }
         } else if (screen.getScreen() == 14) {
             screen.setScreen(15);
             learn.info4();
         } else if (screen.getScreen() == 15) {
             learn.question5();
-            if (x >= 35 && y >= 150 && x <= 330 && y <= 310) {
+            if (x>=50&&y>=145&&x<=355&&y<295) {
                 screen.setScreen(16);
                 correct.setCorrect(true);
             }
-            else 
+            else if((x >= 360 && y >= 150 && x <= 660 && y <= 290)||(x>=50&&y>=310&&x<=355&&y<=460)||(x>=360&&y>=315&&x<=660&&y<=460))
             {
-                //fail screen
+                learn.failed();
+                correct.setCorrect(false);
             }
             // break;
         } else if (screen.getScreen() == 16) {
@@ -154,10 +159,19 @@ public class UserInput extends MouseAdapter implements KeyListener {
             learn.info5();
         } else if (screen.getScreen() == 17) {
             learn.question6();
-            if (x >= 40 && y >= 330 && x <= 335 && y <= 490) {
-                screen.setScreen(17);
+            if (x>=50&&y>=145&&x<=355&&y<295) {
+                screen.setScreen(18);
                 correct.setCorrect(true);
             }
+            else if((x >= 360 && y >= 150 && x <= 660 && y <= 290)||(x>=50&&y>=310&&x<=355&&y<=460)||(x>=360&&y>=315&&x<=660&&y<=460))
+            {
+                learn.failed();
+                correct.setCorrect(false);
+            }
+            // break;
+        } else if (screen.getScreen() == 18) {
+            screen.setScreen(18);
+            learn.info5();
         }
     }
 }

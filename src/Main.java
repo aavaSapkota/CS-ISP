@@ -27,7 +27,7 @@ public class Main {
     public Main() {
         screen = new Vars(1);
         mainScreen.setLayout(new FlowLayout());
-        mainScreen.setSize(700, 500);
+        mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -60,9 +60,9 @@ public class Main {
     }
 
     public void highscores() {
-        java.net.URL imgUrl = Main.class.getResource("highscores-screen (2).jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); // gets flowers image
+        java.net.URL imgUrl = Main.class.getResource("Highscores.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setBounds(0,0,700,500);
         bkg.setVisible(true);
         mainScreen.add(bkg);
@@ -71,8 +71,8 @@ public class Main {
 
     public void learn() {
         java.net.URL imgUrl = Main.class.getResource("Learn Instructions Page.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); // gets flowers image
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
