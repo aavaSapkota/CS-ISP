@@ -27,6 +27,7 @@ public class UserInput extends MouseAdapter implements KeyListener {
     Level2 play;
     int incorrect;
     int goBack;
+    int counter = 0;
 
     public UserInput(JFrame game, Vars screen) {
         this.game = game;
@@ -55,149 +56,136 @@ public class UserInput extends MouseAdapter implements KeyListener {
         int x = e.getX();
         int y = e.getY();
         System.out.println("x: " + x + " y: " + y);
-        if (incorrect < 2) {
-            
-            if (screen.getScreen() == 2) {
-                if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
-                    screen.setScreen(3);
-                } else if (x >= 190 && x <= 500 && y >= 270 && y <= 300) {
-                    screen.setScreen(4);
-                } else if (x >= 190 && x <= 500 && y >= 320 && y <= 350) {
-                    screen.setScreen(5);
-                } else if (x >= 190 && x <= 500 && y >= 360 && y <= 390) {
-                    screen.setScreen(6);
-                }
-            } else if (screen.getScreen() == 3) {
-                if (x >= 153 && x <= 343 && y >= 435 && y <= 486) {
-                    screen.setScreen(2);
-                } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
-                    clearHighscores.setStatus(true);
-                }
-            } else if (screen.getScreen() == 4) {
-                if (x >= 240 && x <= 450 && y >= 426 && y <= 470) {
-                    screen.setScreen(2);
-                }
-            } else if (screen.getScreen() == 5) {
-                if (x >= 285 && y >= 435 && x <= 415 && y <= 465) {
-                    screen.setScreen(7);
-                    learn = new Level1(game, screen);
-                    // System.out.println(learn);
-                } // -------------------------------------------------------------GAME SCREENS
-                  // START ( LEVEL ONE )
-            } else if (screen.getScreen() == 7) { // question 1
-                learn.question1();
-                if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
-                    screen.setScreen(8);
-                    correct.setCorrect(true);
-                    incorrect=0; 
-                } else if ((x >= 50 && y >= 145 && x <= 355 && y < 295) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
-                        || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {
-                    correct.setCorrect(false);
-                    screen.setScreen(20);
-                    goBack = 7;
-                }
-            } else if (screen.getScreen() == 8) {
-                learn.info1();
-                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
-                    screen.setScreen(9);
-                }
-            } else if (screen.getScreen() == 9) {
-                learn.question2();
-                if (x >= 40 && y >= 330 && x <= 335 && y <= 490) {
-                    screen.setScreen(10);
-                    correct.setCorrect(true);
-                    incorrect=0;
-                } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
-                        || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
-                        || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {
-                    goBack = 9;
-                    correct.setCorrect(false);
-                    screen.setScreen(20);
-                }
-            } else if (screen.getScreen() == 10) {
-                learn.info2();
-                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
-                    screen.setScreen(11);
-                }
-            } else if (screen.getScreen() == 11) {
-                learn.question3();
-                if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {
-                    screen.setScreen(12);
-                    correct.setCorrect(true);
-                    incorrect=0;
-                } else if ((x >= 50 && y >= 145 && x <= 355 && y < 295) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
-                        || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {
-                    goBack = 11;
-                    correct.setCorrect(false);
-                    screen.setScreen(20);
-                }
-            } else if (screen.getScreen() == 12) {
-                learn.info3();
-                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
-                    screen.setScreen(13);
-                }
-            } else if (screen.getScreen() == 13) {
-                learn.question4();
-                if (x >= 50 && y >= 145 && x <= 355 && y < 295) {
-                    screen.setScreen(14);
-                    correct.setCorrect(true);
-                    incorrect=0;
-                } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
-                        || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
-                        || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {
-                    goBack = 13;
-                    correct.setCorrect(false);
-                    screen.setScreen(20);
-                }
-            } else if (screen.getScreen() == 14) {
-                learn.info4();
-                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
-                    screen.setScreen(15);
-                }
-            } else if (screen.getScreen() == 15) {
-                learn.question5();
-                if (x >= 50 && y >= 145 && x <= 355 && y < 295) {
-                    screen.setScreen(16);
-                    correct.setCorrect(true);
-                    incorrect=0;
-                } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
-                        || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
-                        || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {
-                    correct.setCorrect(false);
-                    goBack = 15;
-                    screen.setScreen(20);
-                }
-            } else if (screen.getScreen() == 16) {
-                learn.info5();
-                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
-                    screen.setScreen(17);
-                }
-            } else if (screen.getScreen() == 17) {
-                learn.question6();
 
-                if (x >= 50 && y >= 310 && x <= 355 && y <= 460) {
-                    screen.setScreen(18);
-                    correct.setCorrect(true);
-                    incorrect=0;
-                } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
-                        || (x >= 50 && y >= 145 && x <= 355 && y < 295)
-                        || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {
-                    correct.setCorrect(false);
-                    goBack = 17;
-                    screen.setScreen(20);
-                }
-            } else if (screen.getScreen() == 18) {
-                learn.info6();
-                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
-                    screen.setScreen(19);
-                }
-            }else if (screen.getScreen()==20) {
-                learn.failed();
-                incorrect++;
-                screen.setScreen(goBack);
-            }
-        } else {
-            learn.failed();
+
+        if(incorrect==1){
+            screen.setScreen(20);
+        }else if(incorrect>=2){
+            screen.setScreen(21);
         }
+        if (screen.getScreen() == 2) {
+            if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
+                screen.setScreen(3);
+            } else if (x >= 190 && x <= 500 && y >= 270 && y <= 300) {
+                screen.setScreen(4);
+            } else if (x >= 190 && x <= 500 && y >= 320 && y <= 350) {
+                screen.setScreen(5);
+            } else if (x >= 190 && x <= 500 && y >= 360 && y <= 390) {
+                screen.setScreen(6);
+            }
+        } else if (screen.getScreen() == 3) {
+            if (x >= 153 && x <= 343 && y >= 435 && y <= 486) {
+                screen.setScreen(2);
+            } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
+                clearHighscores.setStatus(true);
+            }
+        } else if (screen.getScreen() == 4) {
+            if (x >= 240 && x <= 450 && y >= 426 && y <= 470) {
+                screen.setScreen(2);
+            }
+        } else if (screen.getScreen() == 5) {
+            if (x >= 285 && y >= 435 && x <= 415 && y <= 465) {
+                screen.setScreen(7);
+                // System.out.println(learn);
+            } // -------------------------------------------------------------GAME SCREENS
+              // START ( LEVEL ONE )
+        } else if (screen.getScreen() == 7) { // question 1
+            System.out.println("Heyyyy");
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) { //correct answer
+                screen.setScreen(8);
+                incorrect = 0;
+            } else if (((x >= 50 && y >= 145 && x <= 355 && y < 295) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                    || (x >= 360 && y >= 315 && x <= 660 && y <= 460))) { //incorrect answer
+                goBack = 7;
+                incorrect++;
+                System.out.println("FAILED1: x: " + x + " y: " + y);
+            }
+        } else if (screen.getScreen() == 8) {//info 1 screen
+            if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                screen.setScreen(9);
+            }
+        } else if (screen.getScreen() == 9) {//question 2
+            if (x >= 40 && y >= 330 && x <= 335 && y <= 490) { //correct answer
+                screen.setScreen(10);
+                incorrect = 0;
+            } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                    || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {//incorrect answer
+                goBack = 9;
+                incorrect++;
+            }
+        } else if (screen.getScreen() == 10) {//info 2 screen
+            if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                screen.setScreen(11);
+            }
+        } else if (screen.getScreen() == 11) {//question 3
+            if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {//correct
+                screen.setScreen(12);
+                incorrect = 0;
+            } else if ((x >= 50 && y >= 145 && x <= 355 && y < 295) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                    || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) { //incorrect
+                goBack = 11;
+                incorrect++;
+            }
+        } else if (screen.getScreen() == 12) {//info 3 screen
+            if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                screen.setScreen(13);
+            }
+        } else if (screen.getScreen() == 13) {//question 4
+            if (x >= 50 && y >= 145 && x <= 355 && y < 295) { //correct
+                screen.setScreen(14);
+                incorrect = 0;
+            } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                    || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {//incorrect
+                goBack = 13;
+                incorrect++;
+            }
+        } else if (screen.getScreen() == 14) {//info 4 screen
+            if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                screen.setScreen(15);
+            }
+        } else if (screen.getScreen() == 15) {//question 5
+            if (x >= 50 && y >= 145 && x <= 355 && y < 295) {//correct
+                screen.setScreen(16);
+                incorrect = 0;
+            } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                    || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {//incorrect
+                goBack = 15;
+                incorrect++;
+            }
+        } else if (screen.getScreen() == 16) {//info 5 screen
+            if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                screen.setScreen(17);
+            }
+        } else if (screen.getScreen() == 17) {//question 6
+            if (x >= 50 && y >= 310 && x <= 355 && y <= 460) {//correct
+                incorrect = 0;
+            } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290) || (x >= 50 && y >= 145 && x <= 355 && y < 295)
+                    || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {//incorrect
+                goBack = 17;
+                incorrect++;
+            }
+        } else if (screen.getScreen() == 18) {//info 6 screen
+            if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                screen.setScreen(19);
+            }
+        } else if (screen.getScreen() == 19) { //passed screen
+            if (x >= 120 && y >= 325 && x <= 250 && y <= 355) { //go to main menu
+                screen.setScreen(2);
+            } else if (x >= 475 && y >= 330 && x <= 605 && y <= 355) {//go to next level
+                screen.setScreen(22);
+            }
+        } else if (screen.getScreen() == 20) {// incorrect page
+            System.out.println("FAILED: x: " + x + " y: " + y);
+            screen.setScreen(goBack);
+        } else if (screen.getScreen() == 21) {// failed page 
+            if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
+                screen.setScreen(7);
+                incorrect = 0;
+            } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
+                screen.setScreen(2);
+                incorrect = 0;
+            }
+        }
+        System.out.println("incorrects: "+incorrect);
     }
 }

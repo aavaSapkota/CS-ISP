@@ -122,6 +122,17 @@ public class Level1 {
     }
 
     public void failed(){
+        java.net.URL imgUrl = Main.class.getResource("Failed.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+        
+        
+    }
+
+    public void incorrect(){
         java.net.URL imgUrl = Main.class.getResource("Fail.jpg");
         Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
@@ -129,6 +140,15 @@ public class Level1 {
         game.add(bkg);
         game.setVisible(true);
         
+    }
+
+    public void passed(){
+        java.net.URL imgUrl = Main.class.getResource("Passed 1.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
         
     }
 }

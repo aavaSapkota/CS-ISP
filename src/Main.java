@@ -22,6 +22,7 @@ public class Main {
     static Vars screen;
     static UserInput input;
     static JFrame mainScreen = new JFrame("Game Title");
+    static Level1 learn; 
 
 
     public Main() {
@@ -30,6 +31,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        learn = new Level1(mainScreen, screen);
     }
 
     public void introduction() {
@@ -114,6 +116,36 @@ public class Main {
             } else if (screen.getScreen() == 6) {
                 m.goodbye();
                 break;
+            } else if (screen.getScreen() == 7) { // question 1
+                learn.question1();
+            } else if (screen.getScreen() == 8) {//info 1 screen
+                learn.info1();
+            } else if (screen.getScreen() == 9) {//question 2
+                learn.question2();
+            } else if (screen.getScreen() == 10) {//info 2 screen
+                learn.info2();
+            } else if (screen.getScreen() == 11) {//question 3
+                learn.question3();
+            } else if (screen.getScreen() == 12) {//info 3 screen
+                learn.info3();
+            } else if (screen.getScreen() == 13) {//question 4
+                learn.question4();
+            } else if (screen.getScreen() == 14) {//info 4 screen
+                learn.info4();
+            } else if (screen.getScreen() == 15) {//question 5
+                learn.question5();
+            } else if (screen.getScreen() == 16) {//info 5 screen
+                learn.info5();
+            } else if (screen.getScreen() == 17) {//question 6
+                learn.question6();
+            } else if (screen.getScreen() == 18) {//info 6 screen
+                learn.info6();
+            } else if (screen.getScreen() == 19) { //passed screen
+                learn.passed();
+            } else if (screen.getScreen() == 20) {// incorrect page
+                learn.incorrect();
+            } else if (screen.getScreen() == 21) {// failed page 
+                learn.failed();
             }
             
             // System.out.println(screen.getScreen());
