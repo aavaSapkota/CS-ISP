@@ -1,3 +1,4 @@
+
 /**
  * Creators: Aava Sapkota and Sarah Zhao
  * Class: ICS4UO-1
@@ -40,7 +41,7 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        input = new UserInput(mainScreen, screen);
+        input = new UserInput(mainScreen, screen, learn);
         
         try{
             Thread.sleep(2000);
@@ -81,7 +82,7 @@ public class Main {
     }
 
     public void play() {
-        Image icon = new ImageIcon("Level 1 Start.jpg").getImage().getScaledInstance(700, 500, 100);
+        Image icon = new ImageIcon("Level 1 Start (1).jpg").getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);

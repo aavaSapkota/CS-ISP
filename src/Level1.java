@@ -104,7 +104,6 @@ public class Level1 {
         game.setVisible(true);
     }
     public void question6() {
-        System.out.println("Ang, ur age is showing");
         java.net.URL imgUrl = Main.class.getResource("Question 6 (1).jpg");
         Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
@@ -133,7 +132,7 @@ public class Level1 {
     }
 
     public void incorrect(){
-        java.net.URL imgUrl = Main.class.getResource("Fail.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Incorrect.jpg");
         Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);

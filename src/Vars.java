@@ -1,17 +1,16 @@
 
 public class Vars {
     private int screen;
-    private boolean win; 
-    private boolean correct; 
+    private boolean skip; 
     public Vars(int s){
         screen=s; 
     }  
     public Vars(boolean w){
-        win=w; 
+        skip=w; 
     }
 
     public Vars(boolean w, String type){
-        correct = w; 
+        skip = w; 
     }
     
     public int getScreen(){
@@ -22,19 +21,12 @@ public class Vars {
         screen=s; 
     }
 
-    public boolean getWin(){
-        return win; 
+    public boolean getSkip(){
+        return skip; 
     }
 
-    public void setWin(boolean w){
-        win = w; 
+    public void setSkip(boolean w){
+        skip = w; 
     }
 
-    public boolean getCorrect(){
-        return win; 
-    }
-
-    public void setCorrect(boolean w){
-        win = w; 
-    }
 }
