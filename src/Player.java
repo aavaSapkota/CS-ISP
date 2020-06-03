@@ -3,11 +3,11 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
-public class Dude {
+public class Player {
     int x, dx, y, dy, ny2;
     Image still;
 
-    public Dude() {
+    public Player() {
         java.net.URL imgUrl = Main.class.getResource("Owner.png");
         ImageIcon i = new ImageIcon(imgUrl);
         still = i.getImage().getScaledInstance(100, 100, 100);

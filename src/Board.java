@@ -4,12 +4,12 @@ import javax.swing.*;
 
 //source: https://www.youtube.com/watch?v=hzsPwDr8ibE
 public class Board extends JPanel implements ActionListener {
-    Dude p;
+    Player p;
     public Image img;
     Timer time;
 
     public Board() {
-        p = new Dude();
+        p = new Player();
         addKeyListener(new AL());
         setFocusable(true);
         java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
