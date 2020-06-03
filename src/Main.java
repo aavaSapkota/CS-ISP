@@ -23,39 +23,41 @@ public class Main {
     static Vars screen;
     static UserInput input;
     static JFrame mainScreen = new JFrame("Game Title");
-    static Level1 learn; 
-
+    static Level1 learn;
+    static Level2 play; 
 
     public Main() {
-        screen = new Vars(1);
-        mainScreen.setLayout(new FlowLayout());
+        mainScreen.setTitle("2-D Test Game");
+        mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
-        mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainScreen.setLocationRelativeTo(null);
+        screen = new Vars(1);
         learn = new Level1(mainScreen, screen);
     }
 
     public void introduction() {
         Image icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
         input = new UserInput(mainScreen, screen, learn);
-        
-        try{
-            Thread.sleep(2000);
-        }catch(Exception e){}
 
-        screen.setScreen(screen.getScreen()+1);
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+
+        screen.setScreen(screen.getScreen() + 1);
 
     }
 
     public void mainMenu() {
         java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
         ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); //Gets background image
-        bkg.setBounds(0,0,705,510);
+        JLabel bkg = new JLabel(icon); // Gets background image
+        bkg.setBounds(0, 0, 705, 510);
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -66,7 +68,7 @@ public class Main {
         java.net.URL imgUrl = Main.class.getResource("Highscores.jpg");
         Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
-        bkg.setBounds(0,0,700,500);
+        bkg.setBounds(0, 0, 700, 500);
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -81,16 +83,20 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
-    public void play() {
+    public void level1() {
         Image icon = new ImageIcon("Level 1 Start (1).jpg").getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
     }
 
+    public void level2(){
+        
+    }
+
     public void goodbye() {
-        screen.setScreen(screen.getScreen()+1);
+        screen.setScreen(screen.getScreen() + 1);
     }
 
     public void credits() {
@@ -113,43 +119,44 @@ public class Main {
             } else if (screen.getScreen() == 4) {
                 m.learn();
             } else if (screen.getScreen() == 5) {
-                m.play();
+                m.level1();
             } else if (screen.getScreen() == 6) {
                 m.goodbye();
                 break;
             } else if (screen.getScreen() == 7) { // question 1
                 learn.question1();
-            } else if (screen.getScreen() == 8) {//info 1 screen
+            } else if (screen.getScreen() == 8) {// info 1 screen
                 learn.info1();
-            } else if (screen.getScreen() == 9) {//question 2
+            } else if (screen.getScreen() == 9) {// question 2
                 learn.question2();
-            } else if (screen.getScreen() == 10) {//info 2 screen
+            } else if (screen.getScreen() == 10) {// info 2 screen
                 learn.info2();
-            } else if (screen.getScreen() == 11) {//question 3
+            } else if (screen.getScreen() == 11) {// question 3
                 learn.question3();
-            } else if (screen.getScreen() == 12) {//info 3 screen
+            } else if (screen.getScreen() == 12) {// info 3 screen
                 learn.info3();
-            } else if (screen.getScreen() == 13) {//question 4
+            } else if (screen.getScreen() == 13) {// question 4
                 learn.question4();
-            } else if (screen.getScreen() == 14) {//info 4 screen
+            } else if (screen.getScreen() == 14) {// info 4 screen
                 learn.info4();
-            } else if (screen.getScreen() == 15) {//question 5
+            } else if (screen.getScreen() == 15) {// question 5
                 learn.question5();
-            } else if (screen.getScreen() == 16) {//info 5 screen
+            } else if (screen.getScreen() == 16) {// info 5 screen
                 learn.info5();
-            } else if (screen.getScreen() == 17) {//question 6
+            } else if (screen.getScreen() == 17) {// question 6
                 learn.question6();
-            } else if (screen.getScreen() == 18) {//info 6 screen
+            } else if (screen.getScreen() == 18) {// info 6 screen
                 learn.info6();
-            } else if (screen.getScreen() == 19) { //passed screen
+            } else if (screen.getScreen() == 19) { // passed screen
                 learn.passed();
             } else if (screen.getScreen() == 20) {// incorrect page
                 learn.incorrect();
-            } else if (screen.getScreen() == 21) {// failed page 
+            } else if (screen.getScreen() == 21) {// failed page
                 learn.failed();
-            }
-            
-            // System.out.println(screen.getScreen());
+            }  else if (screen.getScreen() == 22) {// failed page
+                m.level2();
+            } 
+
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
