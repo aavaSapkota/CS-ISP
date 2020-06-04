@@ -32,7 +32,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(1);
+        screen = new Vars(22);
         learn = new Level1(mainScreen, screen);
     }
 

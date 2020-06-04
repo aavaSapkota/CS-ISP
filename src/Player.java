@@ -4,26 +4,37 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Player {
-    int x, dx, y, dy, ny2;
+    int x, dx, y, dy, nx2, pos, ePos;
     Image still;
+    String fileName;
 
-    public Player() {
-        java.net.URL imgUrl = Main.class.getResource("Owner.png");
+    public Player(String f) {
+        fileName = f; 
+        java.net.URL imgUrl = Main.class.getResource(fileName);
         ImageIcon i = new ImageIcon(imgUrl);
         still = i.getImage().getScaledInstance(100, 100, 100);
-        x = 75;
-        y = 10;
-        ny2 = 500;
+        x = 175;
+        pos = 175; 
+        y = 300;
+        nx2 = 2000;
     }
 
     public void move() {
-        x += dx;
-        ny2 += dy;
-
+        pos +=dx; 
+        nx2 += dx;
+        y += dy;
+        if(y<250)
+            y=y-dy+1;
+        else if(y>400)
+            y=y-dy-1;
     }
 
     public int getX() {
         return x;
+    }
+
+    public int getImageX(){
+        return 2000-nx2;
     }
 
     public int getY() {
@@ -32,6 +43,16 @@ public class Player {
 
     public Image getImage() {
         return still;
+    }
+
+    public int getPos(){
+        return pos; 
+    }
+
+    public void setImage(String i){
+        java.net.URL imgUrl = Main.class.getResource(i);
+        ImageIcon ic = new ImageIcon(imgUrl);
+        still = ic.getImage().getScaledInstance(100, 100, 100);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -46,7 +67,7 @@ public class Player {
             dy = -1;
 
         if (key == KeyEvent.VK_DOWN)
-            dy = 1;
+            dy= 1;
     }
 
     public void keyReleased(KeyEvent e) {

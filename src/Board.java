@@ -5,11 +5,13 @@ import javax.swing.*;
 //source: https://www.youtube.com/watch?v=hzsPwDr8ibE
 public class Board extends JPanel implements ActionListener {
     Player p;
+    Infected inf; 
     public Image img;
     Timer time;
 
     public Board() {
-        p = new Player();
+        p = new Player("Owner.png");
+        inf = new Infected(350, p, 200);
         addKeyListener(new AL());
         setFocusable(true);
         java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
@@ -21,20 +23,23 @@ public class Board extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         p.move();
+        inf.move();
         repaint();
+
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(img, 0, 475-p.ny2, null);
-        g.drawImage(p.getImage(), p.getX(), 175, null);
+        g.drawImage(img, p.getImageX(), 0, null);
+        g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+        g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+        System.out.println("inf x: "+inf.getX()+" p x: "+p.getPos());
+
     }
 
     private class AL extends KeyAdapter {
         public void keyReleased(KeyEvent e) {
-            System.out.println("My dude, i'm ded");
-            System.out.println(p.getY());
             p.keyReleased(e);
         }
 

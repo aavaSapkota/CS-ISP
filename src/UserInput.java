@@ -28,11 +28,13 @@ public class UserInput {
     int goBack;
     Vars skip;
     int counter;
-
+ 
 
     Player p;
-    public Image img;
+    Infected inf; 
+    public Image bkg;
     Timer time;
+    int [] timeline = {400, 900, 1000};
 
     public UserInput(JFrame game, Vars screen, Level1 learn) {
         this.game = game;
@@ -43,12 +45,14 @@ public class UserInput {
         game.addMouseListener(new ML());
         incorrect = 0;
 
-        p = new Player();
+        p = new Player("Owner.png");
+        
         game.addKeyListener(new AL());
         game.setFocusable(true);
-        java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Park [NEW].jpg");
         ImageIcon i = new ImageIcon(imgUrl);
-        img = i.getImage().getScaledInstance(700, 500, 100);
+        bkg = i.getImage().getScaledInstance(2000, 500, 100);
+
         
 
     }
@@ -219,15 +223,6 @@ public class UserInput {
             } else if(screen.getScreen()==22){
                 game.add(new Board());
                 game.setVisible(true);
-
-                // EventQueue.invokeLater(new Runnable(){
-                
-                //     @Override
-                //     public void run() {
-                //         game.add(new Board());
-                //         game.setVisible(true);
-                //     }
-                // });
             }
     
             if (!skip.getSkip())
@@ -240,27 +235,38 @@ public class UserInput {
 
     }
 
+    //source: https://www.youtube.com/watch?v=hzsPwDr8ibE
     private class Board extends JPanel implements ActionListener {
-        // Player p;
-        // public Image img;
-        // Timer time;
     
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
+            inf = new Infected(300, p, 350);
+
         }
     
         public void actionPerformed(ActionEvent e) {
-            p.move();
+            if(p.getY()>inf.getY()){
+                inf.move(); 
+                p.move();
+            }else {
+                p.move();
+                inf.move();
+            }
+            
+            if(inf.getY()<0){
+                inf = new Infected(200, p, 20);
+            }
             repaint();
         }
     
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
     
-            g.drawImage(img, 0, 475-p.ny2, null);
-            g.drawImage(p.getImage(), p.getX(), 175, null);
+            g.drawImage(bkg, p.getImageX(), 0, null);
+            g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+            g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
         }
       
     }
