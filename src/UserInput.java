@@ -33,8 +33,10 @@ public class UserInput {
     public Image bkg;
     Timer time;
     int[] timeline = { 400, 900, 1000 };
-    boolean run; 
-    int timing = 1; 
+    boolean run;
+    int timing = 1;
+
+    int exposure; 
 
     public UserInput(JFrame game, Vars screen, Level1 learn) {
         this.game = game;
@@ -50,6 +52,7 @@ public class UserInput {
         java.net.URL imgUrl = Main.class.getResource("Park [NEW].jpg");
         ImageIcon i = new ImageIcon(imgUrl);
         bkg = i.getImage().getScaledInstance(2000, 500, 100);
+        exposure = 0; 
 
     }
     // source:
@@ -61,7 +64,7 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("x: "+e.getX()+" y: "+ e.getY());
+            System.out.println("x: " + e.getX() + " y: " + e.getY());
             if (screen.getScreen() == 2) {
                 if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
                     screen.setScreen(3);
@@ -219,23 +222,29 @@ public class UserInput {
             } else if (screen.getScreen() == 22) {
                 if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
                     screen.setScreen(23);
-                } 
-            }else if(screen.getScreen() == 23){
-                if(x >=100&&y>=200&&x<=340&&y<=430){
+                }
+            } else if (screen.getScreen() == 23) {
+                if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
                     p = new Player("Belle [left].png");
-                }else if(x>=380&&y>=200&&x<=630&&y<=430){
-                    p = new Player("Barry [left].png");
+                } else if (x >= 380 && y >= 200 && x <= 630 && y <= 430) {
+                    p = new Player("Barry [right].png");
                 }
                 System.out.println(p.getImg());
                 screen.setScreen(24);
-            }else if(screen.getScreen()==24){
-                if(x>=250&&y>=250&&x<=700&&y<=500){
-                    // screen.setScreen(25);
+            } else if (screen.getScreen() == 24) {
+                if (x >= 250 && y >= 250 && x <= 700 && y <= 500) {
+                    screen.setScreen(25);
                 }
-            }else if(screen.getScreen()==25){
-                
+            } else if (screen.getScreen() == 25) {
+
                 game.add(new Board());
                 game.setVisible(true);
+                if (exposure>2){
+                    screen.setScreen(26);
+                }
+                
+            } else if(screen.getScreen() == 26){
+                System.out.println("SUCCESS");
             }
 
             if (!skip.getSkip())
@@ -260,29 +269,44 @@ public class UserInput {
         }
 
         public void actionPerformed(ActionEvent e) {
-                p.move();
-                inf.move();
-                repaint();
+            p.move();
+            inf.move();
+            repaint();
 
-            if (inf.getX() < -50) {
-                inf = new Infected(250+((int)(Math.random()*150)+1), p, 1000*timing);
+            if(intersect()){
+                exposure++;
+            } 
+
+            if (inf.getX() < -100) {
+                inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 1000 * timing);
                 timing++;
             }
-            
+
+            if(exposure>500){
+                screen.setScreen(26);
+                time.stop();
+            }
+            System.out.println("Exposure: "+exposure);
+
         }
 
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
             g.drawImage(bkg, p.getImageX(), 0, null);
-            if(inf.getY()<p.getY()){
+            if (inf.getY() < p.getY()) {
                 g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-            }else{
+            } else {
                 g.drawImage(p.getImage(), p.getX(), p.getY(), null);
                 g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
             }
 
+        }
+
+        private boolean intersect(){
+            return (p.getX()+100>=inf.getX()&&((p.getY()>=inf.getY()+20&&p.getY()<=inf.getY()+100)||(p.getY()+100>=inf.getY()+20&&p.getY()+100<=inf.getY()+100)));
+                
         }
 
     }

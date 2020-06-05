@@ -12,7 +12,7 @@ public class Player {
         fileName = f; 
         java.net.URL imgUrl = Main.class.getResource(fileName);
         ImageIcon i = new ImageIcon(imgUrl);
-        still = i.getImage().getScaledInstance(170, 100, 100);
+        still = i.getImage().getScaledInstance(150, 100, 100);
         System.out.println("size: "+still.getWidth(null));
         x = 175;
         pos = 175; 
