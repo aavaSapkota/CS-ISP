@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Infected {
-    int x, y, dy, dx;
+    int x, y, dy, dx, cx, cy;
     Image still;
     Player p; 
     int start;
@@ -16,7 +16,7 @@ public class Infected {
         startB= false; 
         java.net.URL imgUrl = Main.class.getResource("Infected [left].png");
         ImageIcon i = new ImageIcon(imgUrl);
-        still = i.getImage().getScaledInstance(100, 100, 100);
+        still = i.getImage().getScaledInstance(130, 100, 100);
         x = 730;
         y = yL;
     }

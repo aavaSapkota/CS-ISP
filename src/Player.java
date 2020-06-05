@@ -12,7 +12,8 @@ public class Player {
         fileName = f; 
         java.net.URL imgUrl = Main.class.getResource(fileName);
         ImageIcon i = new ImageIcon(imgUrl);
-        still = i.getImage().getScaledInstance(100, 100, 100);
+        still = i.getImage().getScaledInstance(170, 100, 100);
+        System.out.println("size: "+still.getWidth(null));
         x = 175;
         pos = 175; 
         y = 300;
@@ -20,7 +21,7 @@ public class Player {
     }
 
     public void move() {
-        pos +=dx; 
+        pos += dx; 
         nx2 += dx;
         y += dy;
         if(y<250)
@@ -49,10 +50,14 @@ public class Player {
         return pos; 
     }
 
+    public String getImg(){
+        return fileName;
+    }
+
     public void setImage(String i){
         java.net.URL imgUrl = Main.class.getResource(i);
         ImageIcon ic = new ImageIcon(imgUrl);
-        still = ic.getImage().getScaledInstance(100, 100, 100);
+        still = ic.getImage().getScaledInstance(180, 100, 100);
     }
 
     public void keyPressed(KeyEvent e) {

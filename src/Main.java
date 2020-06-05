@@ -24,16 +24,16 @@ public class Main {
     static UserInput input;
     static JFrame mainScreen = new JFrame("Game Title");
     static Level1 learn;
-    static Level2 play; 
+    static Level2 play;
 
     public Main() {
-        mainScreen.setTitle("2-D Test Game");
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(22);
+        screen = new Vars(1);
         learn = new Level1(mainScreen, screen);
+        play = new Level2(mainScreen, screen);
     }
 
     public void introduction() {
@@ -91,8 +91,13 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
-    public void level2(){
-        
+    public void level2() {
+        java.net.URL imgUrl = Main.class.getResource("Level 2 Start.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
+        bkg.setVisible(true);
+        mainScreen.add(bkg);
+        mainScreen.setVisible(true);
     }
 
     public void goodbye() {
@@ -153,10 +158,14 @@ public class Main {
                 learn.incorrect();
             } else if (screen.getScreen() == 21) {// failed page
                 learn.failed();
-            }  else if (screen.getScreen() == 22) {// failed page
+            } else if (screen.getScreen() == 22) {// Level 2 start page
                 m.level2();
-            } 
-
+            } else if (screen.getScreen() == 23) { // character select
+                play.charSelect();
+            } else if (screen.getScreen() == 24) { // PPE selection page
+                play.PPEOptions();
+            }
+            // System.out.println("screen: "+screen.getScreen());
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe

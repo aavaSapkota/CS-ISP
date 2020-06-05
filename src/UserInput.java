@@ -23,50 +23,45 @@ public class UserInput {
     Vars screen;
     Clear clearHighscores;
     Level1 learn;
-    Level2 play;
     int incorrect;
     int goBack;
     Vars skip;
     int counter;
- 
 
     Player p;
-    Infected inf; 
+    Infected inf;
     public Image bkg;
     Timer time;
-    int [] timeline = {400, 900, 1000};
+    int[] timeline = { 400, 900, 1000 };
+    boolean run; 
+    int timing = 1; 
 
     public UserInput(JFrame game, Vars screen, Level1 learn) {
         this.game = game;
         this.screen = screen;
         this.learn = learn;
-        this.play = play;
+        run = false;
         skip = new Vars(false);
         game.addMouseListener(new ML());
         incorrect = 0;
 
-        p = new Player("Owner.png");
-        
         game.addKeyListener(new AL());
         game.setFocusable(true);
         java.net.URL imgUrl = Main.class.getResource("Park [NEW].jpg");
         ImageIcon i = new ImageIcon(imgUrl);
         bkg = i.getImage().getScaledInstance(2000, 500, 100);
 
-        
-
     }
     // source:
     // https://www.youtube.com/watch?v=PbmQrkwR9Ko&list=PLr6-GrHUlVf9SIx5cDhoEMknias5Xyv67&index=44
 
-
     // https://www.youtube.com/watch?v=bTaJKm43KGs
-    private class ML extends MouseAdapter{
+    private class ML extends MouseAdapter {
         public void mouseClicked(MouseEvent e) {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-    
+            System.out.println("x: "+e.getX()+" y: "+ e.getY());
             if (screen.getScreen() == 2) {
                 if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
                     screen.setScreen(3);
@@ -137,7 +132,8 @@ public class UserInput {
                         screen.setScreen(12);
                         incorrect = 0;
                         skip.setSkip(true);
-                    } else if ((x >= 50 && y >= 145 && x <= 355 && y < 295) || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                    } else if ((x >= 50 && y >= 145 && x <= 355 && y < 295)
+                            || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
                             || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) { // incorrect
                         goBack = 11;
                         incorrect++;
@@ -220,11 +216,28 @@ public class UserInput {
                     screen.setScreen(2);
                     incorrect = 0;
                 }
-            } else if(screen.getScreen()==22){
+            } else if (screen.getScreen() == 22) {
+                if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
+                    screen.setScreen(23);
+                } 
+            }else if(screen.getScreen() == 23){
+                if(x >=100&&y>=200&&x<=340&&y<=430){
+                    p = new Player("Belle [left].png");
+                }else if(x>=380&&y>=200&&x<=630&&y<=430){
+                    p = new Player("Barry [left].png");
+                }
+                System.out.println(p.getImg());
+                screen.setScreen(24);
+            }else if(screen.getScreen()==24){
+                if(x>=250&&y>=250&&x<=700&&y<=500){
+                    // screen.setScreen(25);
+                }
+            }else if(screen.getScreen()==25){
+                
                 game.add(new Board());
                 game.setVisible(true);
             }
-    
+
             if (!skip.getSkip())
                 if (incorrect == 1) {
                     screen.setScreen(20);
@@ -235,9 +248,9 @@ public class UserInput {
 
     }
 
-    //source: https://www.youtube.com/watch?v=hzsPwDr8ibE
+    // source: https://www.youtube.com/watch?v=hzsPwDr8ibE
     private class Board extends JPanel implements ActionListener {
-    
+
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
@@ -245,30 +258,33 @@ public class UserInput {
             inf = new Infected(300, p, 350);
 
         }
-    
+
         public void actionPerformed(ActionEvent e) {
-            if(p.getY()>inf.getY()){
-                inf.move(); 
-                p.move();
-            }else {
                 p.move();
                 inf.move();
+                repaint();
+
+            if (inf.getX() < -50) {
+                inf = new Infected(250+((int)(Math.random()*150)+1), p, 1000*timing);
+                timing++;
             }
             
-            if(inf.getY()<0){
-                inf = new Infected(200, p, 20);
-            }
-            repaint();
         }
-    
+
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-    
+
             g.drawImage(bkg, p.getImageX(), 0, null);
-            g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-            g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+            if(inf.getY()<p.getY()){
+                g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+            }else{
+                g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+            }
+
         }
-      
+
     }
 
     private class AL extends KeyAdapter {

@@ -10,16 +10,28 @@ import java.awt.Graphics;
 
 public class Level2 {
 
-    JFrame frame;
+    JFrame game;
     Vars screen;
 
-    public Level2(JFrame frame) {
-        this.frame = frame;
-        frame.add(new Board());
-        frame.setVisible(true);
+    public Level2(JFrame game, Vars screen) {
+        this.game = game;
+        this.screen = screen; 
     }
 
-    // public static void main(String[] args) {
-    //     new Level2(frame);
-    // }
+
+    public void charSelect(){
+        Image icon = new ImageIcon("Character Select.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
+    public void PPEOptions() {
+        Image icon = new ImageIcon("PPE Select.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
 }
