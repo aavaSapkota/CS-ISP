@@ -25,13 +25,14 @@ public class Main {
     static JFrame mainScreen = new JFrame("Game Title");
     static Level1 learn;
     static Level2 play;
+    static int running = 0; 
 
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(1);
+        screen = new Vars(22);
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
     }
@@ -42,7 +43,7 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        input = new UserInput(mainScreen, screen, learn);
+        input = new UserInput(mainScreen, screen, learn, play);
 
         try {
             Thread.sleep(2000);
@@ -164,8 +165,11 @@ public class Main {
                 play.charSelect();
             } else if (screen.getScreen() == 24) { // PPE selection page
                 play.PPEOptions();
+            } else if(screen.getScreen() == 26){
+                play.failed();
             }
-            // System.out.println("screen: "+screen.getScreen());
+            running=screen.getScreen(); 
+            System.out.print("");
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe

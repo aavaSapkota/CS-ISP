@@ -1,23 +1,28 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
-
+import java.util.*;
 import javax.swing.ImageIcon;
 
 public class Player {
     int x, dx, y, dy, nx2, pos, ePos;
     Image still;
     String fileName;
+    HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
 
     public Player(String f) {
         fileName = f; 
         java.net.URL imgUrl = Main.class.getResource(fileName);
-        ImageIcon i = new ImageIcon(imgUrl);
-        still = i.getImage().getScaledInstance(150, 100, 100);
+        ImageIcon img = new ImageIcon(imgUrl);
+        still = img.getImage().getScaledInstance(150, 100, 100);
         System.out.println("size: "+still.getWidth(null));
         x = 175;
         pos = 175; 
         y = 300;
         nx2 = 2000;
+        ppe.put("gloves", false);
+        ppe.put("mask", false);
+        ppe.put("goggles", false); 
+        ppe.put("hand-sanitizer", false);
     }
 
     public void move() {

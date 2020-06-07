@@ -127,8 +127,6 @@ public class Level1 {
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
-        
-        
     }
 
     public void incorrect(){
@@ -138,7 +136,6 @@ public class Level1 {
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
-        
     }
 
     public void passed(){
@@ -148,6 +145,5 @@ public class Level1 {
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
-        
     }
 }

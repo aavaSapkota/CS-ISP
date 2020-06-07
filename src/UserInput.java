@@ -36,12 +36,15 @@ public class UserInput {
     boolean run;
     int timing = 1;
 
-    int exposure; 
+    int exposure;
+    Board g;
+    Level2 play;
 
-    public UserInput(JFrame game, Vars screen, Level1 learn) {
+    public UserInput(JFrame game, Vars screen, Level1 learn, Level2 play){
         this.game = game;
         this.screen = screen;
         this.learn = learn;
+        this.play = play; 
         run = false;
         skip = new Vars(false);
         game.addMouseListener(new ML());
@@ -52,7 +55,7 @@ public class UserInput {
         java.net.URL imgUrl = Main.class.getResource("Park [NEW].jpg");
         ImageIcon i = new ImageIcon(imgUrl);
         bkg = i.getImage().getScaledInstance(2000, 500, 100);
-        exposure = 0; 
+        exposure = 0;
 
     }
     // source:
@@ -232,19 +235,36 @@ public class UserInput {
                 System.out.println(p.getImg());
                 screen.setScreen(24);
             } else if (screen.getScreen() == 24) {
-                if (x >= 250 && y >= 250 && x <= 700 && y <= 500) {
+                if(x>=125&&y>=185&&x<=370&&y<=300){
+                    p.ppe.replace("gloves", true);
+                }else if(x>=395&&y>=185&&x<=635&&y<=305){
+                    p.ppe.replace("mask",true); 
+                }else if(x>=125&&y>=325&&x<=370&&y<=445){
+                    p.ppe.replace("goggles",true);
+                }else if(x>=395&&y>=325&&x<=635&&y<=445){
+                    p.ppe.replace("hand-sanitizer",true);
+                }
+                if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
                     screen.setScreen(25);
                 }
             } else if (screen.getScreen() == 25) {
-
-                game.add(new Board());
+                g = new Board();
+                game.add(g);
+                g.setVisible(true);
                 game.setVisible(true);
-                if (exposure>2){
+                if (exposure < 0){
                     screen.setScreen(26);
+                    game.remove(g);
+                } 
+
+            } else if (screen.getScreen() == 26) {
+                if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
+                    screen.setScreen(25);
+                } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
+                    screen.setScreen(2);
+                    System.out.println("screen: "+screen.getScreen());
                 }
-                
-            } else if(screen.getScreen() == 26){
-                System.out.println("SUCCESS");
+
             }
 
             if (!skip.getSkip())
@@ -269,44 +289,48 @@ public class UserInput {
         }
 
         public void actionPerformed(ActionEvent e) {
-            p.move();
-            inf.move();
-            repaint();
+            if (exposure < 50) {
+                p.move();
+                inf.move();
+                repaint();
 
-            if(intersect()){
-                exposure++;
-            } 
+                if (intersect()) {
+                    exposure++;
+                }
 
-            if (inf.getX() < -100) {
-                inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 1000 * timing);
-                timing++;
-            }
+                if (inf.getX() < -100) {
+                    inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 1000 * timing);
+                    timing++;
+                }
 
-            if(exposure>500){
+            } else {
                 screen.setScreen(26);
                 time.stop();
             }
-            System.out.println("Exposure: "+exposure);
 
         }
 
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            g.drawImage(bkg, p.getImageX(), 0, null);
-            if (inf.getY() < p.getY()) {
-                g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
-                g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-            } else {
-                g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
-            }
+            if (exposure < 50) {
+                g.drawImage(bkg, p.getImageX(), 0, null);
+                if (inf.getY() < p.getY()) {
+                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                    g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                } else {
+                    g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                }
+            } 
 
         }
 
-        private boolean intersect(){
-            return (p.getX()+100>=inf.getX()&&((p.getY()>=inf.getY()+20&&p.getY()<=inf.getY()+100)||(p.getY()+100>=inf.getY()+20&&p.getY()+100<=inf.getY()+100)));
-                
+        private boolean intersect() {
+            return (p.getX() + 100 >= inf.getX() && p.getX() + 100 < inf.getX() + 100
+                    && ((p.getY() >= inf.getY() + 20 && p.getY() <= inf.getY() + 100)
+                            || (p.getY() + 100 >= inf.getY() + 20 && p.getY() + 100 <= inf.getY() + 100)));
+
         }
 
     }
@@ -320,4 +344,6 @@ public class UserInput {
             p.keyPressed(e);
         }
     }
+
+    
 }
