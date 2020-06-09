@@ -39,6 +39,7 @@ public class UserInput {
     int exposure;
     Board g;
     Level2 play;
+    int extraLife; 
 
     public UserInput(JFrame game, Vars screen, Level1 learn, Level2 play){
         this.game = game;
@@ -52,10 +53,11 @@ public class UserInput {
 
         game.addKeyListener(new AL());
         game.setFocusable(true);
-        java.net.URL imgUrl = Main.class.getResource("Park [NEW].jpg");
+        java.net.URL imgUrl = Main.class.getResource("LEVEL TWO FINAL SCROLLING.jpg");
         ImageIcon i = new ImageIcon(imgUrl);
-        bkg = i.getImage().getScaledInstance(2000, 500, 100);
+        bkg = i.getImage().getScaledInstance(6000, 500, 100);
         exposure = 0;
+        extraLife =0;
 
     }
     // source:
@@ -227,22 +229,31 @@ public class UserInput {
                     screen.setScreen(23);
                 }
             } else if (screen.getScreen() == 23) {
+                p = null;
                 if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
                     p = new Player("Belle [left].png");
+                    System.out.println("ITS A GIRL");
+                    screen.setScreen(24);
                 } else if (x >= 380 && y >= 200 && x <= 630 && y <= 430) {
                     p = new Player("Barry [right].png");
+                    System.out.println("its a boi");
+                    screen.setScreen(24);
                 }
-                System.out.println(p.getImg());
-                screen.setScreen(24);
+                extraLife=0;
+                
             } else if (screen.getScreen() == 24) {
-                if(x>=125&&y>=185&&x<=370&&y<=300){
+                if(x>=125&&y>=185&&x<=370&&y<=300&&p.ppe.get("gloves")==false){
                     p.ppe.replace("gloves", true);
-                }else if(x>=395&&y>=185&&x<=635&&y<=305){
+                    extraLife++;
+                }else if(x>=395&&y>=185&&x<=635&&y<=305&&p.ppe.get("mask")==false){
                     p.ppe.replace("mask",true); 
-                }else if(x>=125&&y>=325&&x<=370&&y<=445){
+                    extraLife++;
+                }else if(x>=125&&y>=325&&x<=370&&y<=445&&p.ppe.get("goggles")==false){
                     p.ppe.replace("goggles",true);
-                }else if(x>=395&&y>=325&&x<=635&&y<=445){
+                    extraLife++;
+                }else if(x>=395&&y>=325&&x<=635&&y<=445&&p.ppe.get("hand-sanitizer")==false){
                     p.ppe.replace("hand-sanitizer",true);
+                    extraLife++;
                 }
                 if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
                     screen.setScreen(25);
@@ -252,8 +263,7 @@ public class UserInput {
                 game.add(g);
                 g.setVisible(true);
                 game.setVisible(true);
-                if (exposure < 0){
-                    screen.setScreen(26);
+                if (!run){
                     game.remove(g);
                 } 
 
@@ -262,7 +272,7 @@ public class UserInput {
                     screen.setScreen(25);
                 } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
                     screen.setScreen(2);
-                    System.out.println("screen: "+screen.getScreen());
+                    
                 }
 
             }
@@ -273,6 +283,8 @@ public class UserInput {
                 } else if (incorrect == 2) {
                     screen.setScreen(21);
                 }
+
+            System.out.println("Screen: "+screen);
         }
 
     }
@@ -280,22 +292,31 @@ public class UserInput {
     // source: https://www.youtube.com/watch?v=hzsPwDr8ibE
     private class Board extends JPanel implements ActionListener {
 
+        Image life; 
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
             inf = new Infected(300, p, 350);
-
+            run=true; 
+            life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
         }
 
         public void actionPerformed(ActionEvent e) {
-            if (exposure < 50) {
+            if (run) {
+                if(3+extraLife<=0){
+                    run=false; 
+                }
+
                 p.move();
                 inf.move();
                 repaint();
 
                 if (intersect()) {
                     exposure++;
+                    p.decrementPoints();
+                    if(exposure%100==0)
+                        extraLife--;
                 }
 
                 if (inf.getX() < -100) {
@@ -305,6 +326,7 @@ public class UserInput {
 
             } else {
                 screen.setScreen(26);
+                exposure=0;
                 time.stop();
             }
 
@@ -313,8 +335,14 @@ public class UserInput {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            if (exposure < 50) {
+            if (run) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
+
+                for(int i=0; i<extraLife+3; i++){
+                    g.drawImage(life, 680-(25*i), 10, null);
+                }
+                g.drawString(p.getPoints()+"",500, 100);
+
                 if (inf.getY() < p.getY()) {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
@@ -322,9 +350,16 @@ public class UserInput {
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
-            } 
+
+            } else {
+                g.setColor(Color.cyan);
+                g.fillRect(0, 0, 700, 500);
+                g.setColor(Color.black);
+                g.drawString("Click any where to continue",200,200);
+            }
 
         }
+
 
         private boolean intersect() {
             return (p.getX() + 100 >= inf.getX() && p.getX() + 100 < inf.getX() + 100
@@ -345,5 +380,4 @@ public class UserInput {
         }
     }
 
-    
 }

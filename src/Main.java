@@ -168,7 +168,7 @@ public class Main {
             } else if(screen.getScreen() == 26){
                 play.failed();
             }
-            running=screen.getScreen(); 
+            // running=screen.getScreen(); 
             System.out.print("");
         }
         // source:
