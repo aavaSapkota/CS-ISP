@@ -169,7 +169,6 @@ public class Main {
                 play.failed();
             }
             // running=screen.getScreen(); 
-            System.out.print("");
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe

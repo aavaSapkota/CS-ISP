@@ -11,7 +11,8 @@ public class Player {
     HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
 
     String name; 
-    int points; 
+    int pointsL2; 
+    int pointsL1; 
 
 
     public Player(String f) {
@@ -34,7 +35,7 @@ public class Player {
         pos += dx; 
         
         if(pos%100==0){
-            points++;
+            pointsL2++;
         }
             
 
@@ -53,12 +54,20 @@ public class Player {
             y=y-dy-1;
     }
 
-    public int getPoints(){
-        return points; 
+    public int getPointsL2(){
+        return pointsL2; 
     }
 
     public void decrementPoints(){
-        points-=2; 
+        pointsL2-=10; 
+    }
+
+    public int getPointsL1(){
+        return pointsL1;
+    }
+
+    public void addPointsL1(){
+        pointsL1+=10;
     }
 
     public int getX() {
