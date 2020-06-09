@@ -32,7 +32,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(22);
+        screen = new Vars(22); //set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
     }
@@ -165,7 +165,7 @@ public class Main {
                 play.charSelect();
             } else if (screen.getScreen() == 24) { // PPE selection page
                 play.PPEOptions();
-            } else if(screen.getScreen() == 26){
+            } else if(screen.getScreen() == 26){ //failed screen
                 play.failed();
             }
             // running=screen.getScreen(); 

@@ -32,13 +32,15 @@ public class Player {
     }
 
     public void move() {
+        //incremments position relitive to background
         pos += dx; 
         
+        //increments player points
         if(pos%100==0){
             pointsL2++;
         }
             
-
+        //add 
         if(nx2<=7285&&nx2>=2000){
             nx2 += dx;
         }else if(nx2<2000){

@@ -234,11 +234,11 @@ public class UserInput {
                     screen.setScreen(2);
                     incorrect = 0;
                 }
-            } else if (screen.getScreen() == 22) {
+            } else if (screen.getScreen() == 22) {//Instructions for Level 2
                 if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
                     screen.setScreen(23);
                 }
-            } else if (screen.getScreen() == 23) {
+            } else if (screen.getScreen() == 23) { //Character Selection
                 if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
                     p.setImage("Belle [left].png");
                     screen.setScreen(24);
@@ -248,7 +248,7 @@ public class UserInput {
                 }
                 extraLife=0;
                 
-            } else if (screen.getScreen() == 24) {
+            } else if (screen.getScreen() == 24) { //PPE Selection
                 if(x>=125&&y>=185&&x<=370&&y<=300&&p.ppe.get("gloves")==false){
                     p.ppe.replace("gloves", true);
                     extraLife++;
@@ -265,21 +265,21 @@ public class UserInput {
                 if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
                     screen.setScreen(25);
                 }
-            } else if (screen.getScreen() == 25) {
-                g = new Board();
-                game.add(g);
+            } else if (screen.getScreen() == 25) { //Game Screen
+                g = new Board();//Make new instance of Board
+                game.add(g); //add to JFrame
                 g.setVisible(true);
                 game.setVisible(true);
-                if (run==false){
-                    game.remove(g);
-                    screen.setScreen(26);
+                if (run==false){ //check run
+                    game.remove(g); //remove the board panel from the jframe ... idk if this works
+                    screen.setScreen(26); //set screen to fail screen
                 } 
 
-            } else if (screen.getScreen() == 26) {
+            } else if (screen.getScreen() == 26) { //fail screen
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
-                    screen.setScreen(25);
+                    screen.setScreen(25);//set back to play screen
                 } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
-                    screen.setScreen(2);
+                    screen.setScreen(2);//set back to main menu screen
                 }
 
             }
@@ -304,33 +304,33 @@ public class UserInput {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
-            inf = new Infected(300, p, 350);
+            inf = new Infected(1700, p, 350);
             run=true; 
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
         }
 
         public void actionPerformed(ActionEvent e) {
             if (run) {
-                if(3+extraLife<=0){
+                if(3+extraLife<=0){ //check if there is enough health to continue. 
                     run=false; 
                 }
 
-                p.move();
-                inf.move();
+                p.move(); //moves player
+                inf.move(); //moves infected player
                 repaint();
 
-                if (intersect()) {
-                    exposure++;
+                if (intersect()) {//check if player and infected player collide
+                    exposure++; //increase exposure
                     
                     if(exposure%100==0){
-                        extraLife--;
-                        p.decrementPoints();
+                        extraLife--; //decrease health
+                        p.decrementPoints(); //decreace points
                     }
                         
                 }
 
-                if (inf.getX() < -100) {
-                    inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 1000 * timing);
+                if (inf.getX() < -100) { //timing for new infected players
+                    inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 174+1000 * timing);
                     timing++;
                 }
 
@@ -338,7 +338,7 @@ public class UserInput {
 
             } else {
                 exposure=0;
-                time.stop();
+                time.stop(); //stop timer
                 
             }
 
@@ -364,11 +364,34 @@ public class UserInput {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
 
-                if(p.getPos()>=1740){
+                if(p.getPos()<=300&&p.getPos()<700){
                     g.setColor(Color.white);
-                    g.fillRect(200,200,200,200);
+                    g.fillRect(170-p.getPos()+300,85,200,50);
+                    g.setColor(Color.black);
+                    g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                    g.drawString("Use the arrow keys to move",180-p.getPos()+300,100);
+                    g.drawString("around your neighboor hood.",180-p.getPos()+300,115);
+                }
+
+                if(p.getPos()>=600&&p.getPos()<=800){
                     g.setColor(Color.white);
-                    g.drawString("Hello, I'm Sal, this is my small business.\n My bussiness has really suffered because of the \npandemic... would you like to help support me?",200,200);
+                    g.fillRect(470,40,150,20);
+                    g.fillRect(450-(20*extraLife),5,150,20);
+                    g.setColor(Color.black);
+                    g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                    g.drawString("Here are your points -->",470,55);
+                    g.drawString("Here is your health -->",450-(20*extraLife),20);
+                }
+
+                if(p.getPos()>=1710&&p.getPos()<=3000){
+                    g.setColor(Color.white);
+                    g.fillRect(150-p.getPos()+1740,85,170,70);
+                    g.setColor(Color.black);
+                    g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                    g.drawString("Despite the Quarentine,",180-p.getPos()+1710,100);
+                    g.drawString("people are still comming",180-p.getPos()+1710,115);
+                    g.drawString("outside... Stay clear of ",180-p.getPos()+1710,130);
+                    g.drawString("of all the people!",180-p.getPos()+1710,145);
                 }
 
             } else {
