@@ -20,7 +20,7 @@ public class Level2 {
 
 
     public void charSelect(){
-        Image icon = new ImageIcon("Character Select.jpg").getImage().getScaledInstance(700, 500, 100);
+        Image icon = new ImageIcon("Character Select (1).jpg").getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
         bkg.setVisible(true);
         game.add(bkg);

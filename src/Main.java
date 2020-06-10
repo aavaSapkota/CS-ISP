@@ -26,20 +26,22 @@ public class Main {
     static Level1 learn;
     static Level2 play;
     static int running = 0; 
+    Image icon;
+    JLabel bkg;
 
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(22); //set up starting screen
+        screen = new Vars(1); //set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
     }
 
     public void introduction() {
-        Image icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
+        icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -56,8 +58,8 @@ public class Main {
 
     public void mainMenu() {
         java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
-        ImageIcon icon = new ImageIcon(imgUrl);
-        JLabel bkg = new JLabel(icon); // Gets background image
+        icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setBounds(0, 0, 705, 510);
         bkg.setVisible(true);
         mainScreen.add(bkg);
@@ -67,8 +69,8 @@ public class Main {
 
     public void highscores() {
         java.net.URL imgUrl = Main.class.getResource("Highscores.jpg");
-        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
+        icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setBounds(0, 0, 700, 500);
         bkg.setVisible(true);
         mainScreen.add(bkg);
@@ -77,16 +79,16 @@ public class Main {
 
     public void learn() {
         java.net.URL imgUrl = Main.class.getResource("Learn Instructions Page.jpg");
-        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
+        icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
     }
 
     public void level1() {
-        Image icon = new ImageIcon("Level 1 Start (1).jpg").getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
+        icon = new ImageIcon("Level 1 Start (1).jpg").getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -94,8 +96,8 @@ public class Main {
 
     public void level2() {
         java.net.URL imgUrl = Main.class.getResource("Level 2 Start.jpg");
-        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
+         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+         bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -165,10 +167,14 @@ public class Main {
                 play.charSelect();
             } else if (screen.getScreen() == 24) { // PPE selection page
                 play.PPEOptions();
-            } else if(screen.getScreen() == 26){ //failed screen
+            } else if(input.screen.getScreen() == 26){ //failed screen
                 play.failed();
+            }else if(input.screen.getScreen() == 27){ //failed screen
+                play.passed();
             }
             // running=screen.getScreen(); 
+            System.out.print("");
+            
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
