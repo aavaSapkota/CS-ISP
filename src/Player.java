@@ -9,12 +9,21 @@ public class Player {
     String fileName;
     String type;
     HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
+    HashMap<String, ArrayList<Image>> ppeItems = new HashMap<String, ArrayList<Image>>();
     Image[] viewsBelle = { (new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Belle [front].png"))).getImage() };
-    Image[] viewsBerry = { (new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage(),
+    Image[] viewsBarry = { (new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage() };
+    
+    ArrayList<Image> mask  = new ArrayList<Image>();
+    ArrayList<Image> goggles  = new ArrayList<Image>();
+           
+    String [] handSani = {};
+    String [] gloves = {};
+
+    int view = 0; 
 
     String name;
     int pointsL2;
@@ -25,7 +34,7 @@ public class Player {
     public Player(String f) {
         fileName = f;
         java.net.URL imgUrl = Main.class.getResource(fileName);
-        player = (new ImageIcon(imgUrl)).getImage().getScaledInstance(130, 100, 100);
+        player = (new ImageIcon(imgUrl)).getImage().getScaledInstance(180, 100, 100);
         x = 175;
         pos = 175;
         y = 300;
@@ -34,6 +43,14 @@ public class Player {
         ppe.put("mask", false);
         ppe.put("goggles", false);
         ppe.put("hand-sanitizer", false);
+
+        // mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY LEFT (1).png"))).getImage().getScaledInstance(190, 40, 100));
+        // ppeItems.put("mask", mask);
+
+        // goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOOGLES LEFT.png"))).getImage());
+        // goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOOGLES RIGHT.png"))).getImage());
+        // goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOOGLES FRONT.png"))).getImage());
+        // ppeItems.put("goggles", goggles);
     }
 
     public void move() {
@@ -55,6 +72,16 @@ public class Player {
         else if (y > 400)
             y = y - dy - 1;
     }
+
+    public Image getPpeItem(String key){
+        return ppeItems.get(key).get(view);
+    }
+
+    public boolean ppeI (String key){
+        return ppe.get(key);
+    }
+
+    
 
     public void setCharacter(String n) {
         character = n;
@@ -106,6 +133,10 @@ public class Player {
         player = ic.getImage().getScaledInstance(180, 100, 100);
     }
 
+    public void setImage(Image i){
+        player = i.getScaledInstance(180, 100, 100); 
+    }
+
     public boolean isMoving() {
         return move;
     }
@@ -120,19 +151,19 @@ public class Player {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
-
+            view = 0; 
             if(character.equals("belle")){
-                setImage("Belle [right].png");
+                setImage(viewsBelle[0]);
             }else if(character.equals("barry")){
-                setImage("Barry [right].png"); 
+                setImage(viewsBarry[0]);
             }
         } else if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
-
+            // view = 1; 
             if(character.equals("belle")){
-                setImage("Belle [left].png");
+                setImage(viewsBelle[1]);
             }else if(character.equals("barry")){
-                setImage("Barry [left].png"); 
+                setImage(viewsBarry[1]);
             }
         } else if (key == KeyEvent.VK_UP) {
             dy = -1;

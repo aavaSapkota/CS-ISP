@@ -90,9 +90,10 @@ public class UserInput {
                 }
             } else if (screen.getScreen() == 3) {
                 if (x >= 153 && x <= 343 && y >= 435 && y <= 486) {
-                    screen.setScreen(2);
-                } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
                     clearHighscores.setStatus(true);
+                    
+                } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
+                    screen.setScreen(2);
                 }
             } else if (screen.getScreen() == 4) {
                 if (x >= 240 && x <= 450 && y >= 426 && y <= 470) {
@@ -324,7 +325,7 @@ public class UserInput {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
-            inf = new Infected(1700, p, 350);
+            inf = new Infected(1700+pC, p, 350);
             run = true;
             counter = 0;
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
@@ -338,7 +339,6 @@ public class UserInput {
                     run = false;
                 }
 
-                System.out.println("pos: "+p.getPos());
                 p.move(); // moves player
                 inf.move(); // moves infected player
                 repaint();
@@ -356,7 +356,7 @@ public class UserInput {
                         p.decrementPoints(); // decreace points
                     }
                 }
-                if (inf.getX() < -100 && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC+200)
+                if (inf.getX() < -100 && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
                         && (p.getPos() < 4775 + pC +200|| p.getPos() > 5005 + pC+200)) { // timing for new infected players
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);
                     timing++;
@@ -380,7 +380,7 @@ public class UserInput {
 
             if (run) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
-
+                
                 for (int i = 0; i < extraLife + 3; i++) {
                     g.drawImage(life, 680 - (25 * i), 10, null);
                 }
@@ -494,7 +494,7 @@ public class UserInput {
 
                     }
                 }
-
+                
                 if (inf.getY() < p.getY()) {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
@@ -502,6 +502,14 @@ public class UserInput {
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
+                
+                // if(p.ppeI("mask")){
+                //     g.drawImage(p.getPpeItem("mask"), p.getX()+5, p.getY()+50, null);
+                // }
+                // if(p.ppeI("goggles")){
+                //     g.drawImage(p.getPpeItem("goggles"), p.getX()+5, p.getY()+50, null);
+                // }
+                
 
             } else {
                 g.setColor(Color.cyan);
