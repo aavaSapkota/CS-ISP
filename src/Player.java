@@ -10,20 +10,18 @@ public class Player {
     String type;
     HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
     HashMap<String, ArrayList<Image>> ppeItems = new HashMap<String, ArrayList<Image>>();
-    Image[] viewsBelle = { (new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage(),
+    Image[] viewsBelle = { (new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage(),
+            (new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Belle [front].png"))).getImage() };
     Image[] viewsBarry = { (new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage() };
-    
-    ArrayList<Image> mask  = new ArrayList<Image>();
-    ArrayList<Image> goggles  = new ArrayList<Image>();
-           
-    String [] handSani = {};
-    String [] gloves = {};
 
-    int view = 0; 
+    ArrayList<Image> mask = new ArrayList<Image>();
+    ArrayList<Image> goggles = new ArrayList<Image>();
+    ArrayList<Image> handSani = new ArrayList<Image>();
+
+    int view = 0;
 
     String name;
     int pointsL2;
@@ -44,13 +42,32 @@ public class Player {
         ppe.put("goggles", false);
         ppe.put("hand-sanitizer", false);
 
-        // mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY LEFT (1).png"))).getImage().getScaledInstance(190, 40, 100));
-        // ppeItems.put("mask", mask);
+        mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY LEFT (1).png"))).getImage()
+                .getScaledInstance(170, 80, 100));
+        mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY RIGHT (1).png"))).getImage()
+                .getScaledInstance(170, 80, 100));
+        mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BELLE RIGHT.png"))).getImage()
+                .getScaledInstance(170, 80, 100));
+        mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BELLE LEFT.png"))).getImage()
+                .getScaledInstance(170, 80, 100));
 
-        // goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOOGLES LEFT.png"))).getImage());
-        // goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOOGLES RIGHT.png"))).getImage());
-        // goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOOGLES FRONT.png"))).getImage());
-        // ppeItems.put("goggles", goggles);
+        ppeItems.put("mask", mask);
+
+        goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOGGLES RIGHT.png"))).getImage()
+                .getScaledInstance(150, 80, 100));
+        goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BARRY - GOGGLES LEFT.png"))).getImage()
+                .getScaledInstance(150, 80, 100));
+        goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BELLE - GOGGLES RIGHT.png"))).getImage()
+                .getScaledInstance(80, 50, 100));
+        goggles.add((new ImageIcon(getClass().getClassLoader().getResource("BELLE - GOGGLES LEFT.png"))).getImage()
+                .getScaledInstance(80, 50, 100));
+        ppeItems.put("goggles", goggles);
+
+        handSani.add((new ImageIcon(getClass().getClassLoader().getResource("SANITIZER RIGHT.png"))).getImage()
+                .getScaledInstance(150, 80, 100));
+        handSani.add((new ImageIcon(getClass().getClassLoader().getResource("SANITIZER LEFT.png"))).getImage()
+                .getScaledInstance(150, 80, 100));
+        ppeItems.put("hand-sanitizer", handSani);
     }
 
     public void move() {
@@ -62,7 +79,7 @@ public class Player {
             nx2 += dx;
         } else if (nx2 < 2000) {
             nx2++;
-        } else if (nx2 >9285) {
+        } else if (nx2 > 9285) {
             nx2--;
         }
 
@@ -73,18 +90,23 @@ public class Player {
             y = y - dy - 1;
     }
 
-    public Image getPpeItem(String key){
+    public Image getPpeItem(String key, String c) {
+        if(!key.equals("hand-sanitizer")&&c.equals("belle")){
+            return ppeItems.get(key).get(view+2);
+        }
         return ppeItems.get(key).get(view);
     }
 
-    public boolean ppeI (String key){
+    public boolean ppeI(String key) {
         return ppe.get(key);
     }
 
-    
-
     public void setCharacter(String n) {
         character = n;
+    }
+
+    public String getCharacter(){
+        return character;
     }
 
     public int getPointsL2() {
@@ -133,8 +155,8 @@ public class Player {
         player = ic.getImage().getScaledInstance(180, 100, 100);
     }
 
-    public void setImage(Image i){
-        player = i.getScaledInstance(180, 100, 100); 
+    public void setImage(Image i) {
+        player = i.getScaledInstance(180, 100, 100);
     }
 
     public boolean isMoving() {
@@ -151,18 +173,18 @@ public class Player {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
-            view = 0; 
-            if(character.equals("belle")){
+            view = 1;
+            if (character.equals("belle")) {
                 setImage(viewsBelle[0]);
-            }else if(character.equals("barry")){
+            } else if (character.equals("barry")) {
                 setImage(viewsBarry[0]);
             }
         } else if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
-            // view = 1; 
-            if(character.equals("belle")){
+            view = 0;
+            if (character.equals("belle")) {
                 setImage(viewsBelle[1]);
-            }else if(character.equals("barry")){
+            } else if (character.equals("barry")) {
                 setImage(viewsBarry[1]);
             }
         } else if (key == KeyEvent.VK_UP) {

@@ -34,7 +34,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(22); //set up starting screen
+        screen = new Vars(28); //set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
     }
@@ -155,21 +155,33 @@ public class Main {
                 learn.question6();
             } else if (screen.getScreen() == 18) {// info 6 screen
                 learn.info6();
-            } else if (screen.getScreen() == 19) { // passed screen
+            } else if (screen.getScreen() == 19) {// question 7
+                learn.question7();
+            } else if (screen.getScreen() == 20) {// info 7 screen
+                learn.info7();
+            } else if (screen.getScreen() == 21) {// question 8
+                learn.question8();
+            } else if (screen.getScreen() == 22) {// info 8 screen
+                learn.info8();
+            } else if (screen.getScreen() == 23) {// question 9
+                learn.question9();
+            } else if (screen.getScreen() == 24) {// info 9 screen
+                learn.info9();
+            } else if (screen.getScreen() == 25) { // passed screen
                 learn.passed();
-            } else if (screen.getScreen() == 20) {// incorrect page
+            } else if (screen.getScreen() == 26) {// incorrect page
                 learn.incorrect();
-            } else if (screen.getScreen() == 21) {// failed page
+            } else if (screen.getScreen() == 27) {// failed page
                 learn.failed();
-            } else if (screen.getScreen() == 22) {// Level 2 start page
+            } else if (screen.getScreen() == 28) {// Level 2 start page
                 m.level2();
-            } else if (screen.getScreen() == 23) { // character select
+            } else if (screen.getScreen() == 29) { // character select
                 play.charSelect();
-            } else if (screen.getScreen() == 24) { // PPE selection page
+            } else if (screen.getScreen() == 30) { // PPE selection page
                 play.PPEOptions();
-            } else if(input.screen.getScreen() == 26){ //failed screen
+            } else if(input.screen.getScreen() == 32){ //failed screen
                 play.failed();
-            }else if(input.screen.getScreen() == 27){ //failed screen
+            }else if(input.screen.getScreen() == 33){ //passed screen
                 play.passed();
             }
             // running=screen.getScreen(); 

@@ -91,7 +91,7 @@ public class UserInput {
             } else if (screen.getScreen() == 3) {
                 if (x >= 153 && x <= 343 && y >= 435 && y <= 486) {
                     clearHighscores.setStatus(true);
-                    
+
                 } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
                     screen.setScreen(2);
                 }
@@ -220,18 +220,75 @@ public class UserInput {
                 if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
                     screen.setScreen(19);
                 }
-            } else if (screen.getScreen() == 19) { // passed screen
+            } else if (screen.getScreen() == 19) {// question 7
+                counter++;
+                if (counter % 2 == 0)
+                    if (x >= 360 && y >= 315 && x <= 660 && y <= 460) {// correct
+                        incorrect = 0;
+                        screen.setScreen(20);
+                        p.addPointsL1();
+                        skip.setSkip(true);
+                    } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
+                            || (x >= 50 && y >= 145 && x <= 355 && y < 295)
+                            || (x >= 50 && y >= 310 && x <= 355 && y <= 460)) {// incorrect
+                        goBack = 17;
+                        incorrect++;
+                        skip.setSkip(false);
+                    }
+            } else if (screen.getScreen() == 20) {// info 7 screen
+                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                    screen.setScreen(21);
+                }
+            } else if (screen.getScreen() == 21) {// question 8
+                counter++;
+                if (counter % 2 == 0)
+                    if (x >= 50 && y >= 310 && x <= 355 && y <= 460) {// correct
+                        incorrect = 0;
+                        screen.setScreen(22);
+                        p.addPointsL1();
+                        skip.setSkip(true);
+                    } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
+                            || (x >= 50 && y >= 145 && x <= 355 && y < 295)
+                            || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {// incorrect
+                        goBack = 17;
+                        incorrect++;
+                        skip.setSkip(false);
+                    }
+            } else if (screen.getScreen() == 22) {// info 8 screen
+                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                    screen.setScreen(23);
+                }
+            } else if (screen.getScreen() == 23) {// question 9
+                counter++;
+                if (counter % 2 == 0)
+                    if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {// correct
+                        incorrect = 0;
+                        screen.setScreen(24);
+                        p.addPointsL1();
+                        skip.setSkip(true);
+                    } else if ((x >= 50 && y >= 310 && x <= 355 && y <= 460)
+                            || (x >= 50 && y >= 145 && x <= 355 && y < 295)
+                            || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {// incorrect
+                        goBack = 17;
+                        incorrect++;
+                        skip.setSkip(false);
+                    }
+            } else if (screen.getScreen() == 24) {// info 9 screen
+                if (x >= 530 && y >= 460 && x <= 675 && y <= 490) {
+                    screen.setScreen(25);
+                }
+            }  else if (screen.getScreen() == 25) { // passed screen
                 if (x >= 120 && y >= 325 && x <= 250 && y <= 355) { // go to main menu
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 330 && x <= 605 && y <= 355) {// go to next level
-                    screen.setScreen(22);
+                    screen.setScreen(28);
                 }
-            } else if (screen.getScreen() == 20) {// incorrect page
+            } else if (screen.getScreen() == 26) {// incorrect page
                 if (x >= 300 && y >= 340 && x <= 430 && y <= 365) {
                     screen.setScreen(goBack);
                     skip.setSkip(true);
                 }
-            } else if (screen.getScreen() == 21) {// failed page
+            } else if (screen.getScreen() == 27) {// failed page
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
                     screen.setScreen(7);
                     incorrect = 0;
@@ -239,11 +296,11 @@ public class UserInput {
                     screen.setScreen(2);
                     incorrect = 0;
                 }
-            } else if (screen.getScreen() == 22) {// Instructions for Level 2
+            } else if (screen.getScreen() == 28) {// Instructions for Level 2
                 if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
-                    screen.setScreen(23);
+                    screen.setScreen(29);
                 }
-            } else if (screen.getScreen() == 23) { // Character Selection
+            } else if (screen.getScreen() == 29) { // Character Selection
 
                 if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
                     p.setImage("Belle [left].png");
@@ -256,11 +313,11 @@ public class UserInput {
                 }
 
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
-                    screen.setScreen(24);
+                    screen.setScreen(30);
                 }
                 extraLife = 0;
 
-            } else if (screen.getScreen() == 24) { // PPE Selection
+            } else if (screen.getScreen() == 30) { // PPE Selection
                 counter++;
 
                 if (x >= 125 && y >= 185 && x <= 370 && y <= 300 && p.ppe.get("gloves") == false) {
@@ -276,28 +333,25 @@ public class UserInput {
                     p.ppe.replace("hand-sanitizer", true);
                     extraLife++;
                 }
-                if (counter % 2 == 0) 
+                if (counter % 2 == 0)
                     if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
-                        screen.setScreen(25);
+                        screen.setScreen(31);
                     }
-            } else if (screen.getScreen() == 25) { // Game Screen
+            } else if (screen.getScreen() == 31) { // Game Screen
                 g = new Board();// Make new instance of Board
                 game.add(g); // add to JFrame
                 g.setVisible(true);
                 game.setVisible(true);
-                if (run == false) {
-
-                }
-            } else if (screen.getScreen() == 26) { // fail screen
+            } else if (screen.getScreen() == 32) { // fail screen
                 g.setVisible(false);
                 game.getContentPane().remove(g);
                 play.failed();
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
-                    screen.setScreen(25);// set back to play screen
+                    screen.setScreen(33);// set back to play screen
                 } else {
                     screen.setScreen(2);
                 }
-            }else if(screen.getScreen() == 27){
+            } else if (screen.getScreen() == 33) {
                 if (x >= 120 && y >= 325 && x <= 250 && y <= 355) { // go to main menu
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 330 && x <= 605 && y <= 355) {// go to next level
@@ -325,7 +379,7 @@ public class UserInput {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
-            inf = new Infected(1700+pC, p, 350);
+            inf = new Infected(1700 + pC, p, 350);
             run = true;
             counter = 0;
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
@@ -335,7 +389,7 @@ public class UserInput {
 
         public void actionPerformed(ActionEvent e) {
             if (run) {
-                if (3 + extraLife <= 0||p.getPos() >= 7600) { // check if there is enough health to continue.
+                if (3 + extraLife <= 0 || p.getPos() >= 7600) { // check if there is enough health to continue.
                     run = false;
                 }
 
@@ -345,7 +399,7 @@ public class UserInput {
 
                 if (p.getY() <= 250 && p.getPos() >= 3875 + pC && p.getPos() <= 3935 + pC) {
                     tasks[0] = true;
-                } else if (p.getY() <= 250 && p.getPos() >= 4875 + pC+200 && p.getPos() <= 5005 + pC+200) {
+                } else if (p.getY() <= 250 && p.getPos() >= 4875 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
                     tasks[1] = true;
                 }
 
@@ -357,7 +411,8 @@ public class UserInput {
                     }
                 }
                 if (inf.getX() < -100 && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
-                        && (p.getPos() < 4775 + pC +200|| p.getPos() > 5005 + pC+200)) { // timing for new infected players
+                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)) { // timing for new infected
+                                                                                             // players
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);
                     timing++;
                 }
@@ -365,10 +420,10 @@ public class UserInput {
             } else if (run == false && counter == 0) {
                 exposure = 0;
                 time.stop(); // stop timer
-                if(3 + extraLife <= 0)
-                    screen.setScreen(26);
-                else 
-                    screen.setScreen(27);
+                if (3 + extraLife <= 0)
+                    screen.setScreen(32);
+                else
+                    screen.setScreen(33);
                 counter++;
 
             }
@@ -380,7 +435,7 @@ public class UserInput {
 
             if (run) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
-                
+
                 for (int i = 0; i < extraLife + 3; i++) {
                     g.drawImage(life, 680 - (25 * i), 10, null);
                 }
@@ -450,26 +505,26 @@ public class UserInput {
 
                     }
 
-                } else if (p.getPos() >= 4775 + pC+200 && p.getPos() <= 5005 + pC+200) {
-                    g.drawImage(nurse, 150 - p.getPos() + 4875 + pC +200, 280, null);
+                } else if (p.getPos() >= 4775 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
+                    g.drawImage(nurse, 150 - p.getPos() + 4875 + pC + 200, 280, null);
                     if (tasks[1]) {
                         p.addPointsL2(100);
                         g.setColor(Color.white);
-                        g.fillRoundRect(270 - p.getPos() + 4875 + pC+200, 190, 100, 50, 10, 10);
+                        g.fillRoundRect(270 - p.getPos() + 4875 + pC + 200, 190, 100, 50, 10, 10);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                        g.drawString("Thank you so much! Please ", 275 - p.getPos() + 4875 + pC+102000, 205);
-                        g.drawString("stay safe! ", 275 - p.getPos() + 4875 + pC+200, 220);
+                        g.drawString("Thank you so much! Please ", 275 - p.getPos() + 4875 + pC + 102000, 205);
+                        g.drawString("stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
                     } else {
                         g.setColor(Color.white);
-                        g.fillRoundRect(170 - p.getPos() + 4875 + pC+200, 190, 150, 85, 10, 10);
+                        g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                        g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC+200, 205);
-                        g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC+200, 220);
-                        g.drawString("durring this time. However many ", 175 - p.getPos() + 4875 + pC+200, 235);
-                        g.drawString("don't recieve the support they need, ", 175 - p.getPos() + 4875 + pC+200, 250);
-                        g.drawString("and have been ignored in the past. ", 175 - p.getPos() + 4875 + pC+200, 265);
+                        g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);
+                        g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC + 200, 220);
+                        g.drawString("durring this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
+                        g.drawString("don't recieve the support they need, ", 175 - p.getPos() + 4875 + pC + 200, 250);
+                        g.drawString("and have been ignored in the past. ", 175 - p.getPos() + 4875 + pC + 200, 265);
 
                         g.setColor(Color.white);
                         g.fillRect(0, 470, 730, 40);
@@ -478,38 +533,149 @@ public class UserInput {
                         g.drawString("Task: Support Frontline workers", 200, 495);
 
                         g.setColor(new Color(50, 100, 50));
-                        g.fillRect(315 - p.getPos() + 4875 + pC+200, 300, 70, 40);
+                        g.fillRect(315 - p.getPos() + 4875 + pC + 200, 300, 70, 40);
 
                         g.setColor(Color.white);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Donations", 315 - p.getPos() + 4875 + pC+200, 315);
+                        g.drawString("Donations", 315 - p.getPos() + 4875 + pC + 200, 315);
 
                         g.setColor(Color.blue);
-                        int[] x = { 410 - p.getPos() + 4875 + pC +200- 50, 385 - p.getPos() + 4875 + pC+200 - 50,
-                                400 - p.getPos() + 4875 + pC+200 - 50, 400 - p.getPos() + 4875 + pC +200- 50,
-                                420 - p.getPos() + 4875 + pC+200 - 50, 420 - p.getPos() + 4875 + pC+200 - 50,
-                                435 - p.getPos() + 4875 + pC+200 - 50 };
+                        int[] x = { 410 - p.getPos() + 4875 + pC + 200 - 50, 385 - p.getPos() + 4875 + pC + 200 - 50,
+                                400 - p.getPos() + 4875 + pC + 200 - 50, 400 - p.getPos() + 4875 + pC + 200 - 50,
+                                420 - p.getPos() + 4875 + pC + 200 - 50, 420 - p.getPos() + 4875 + pC + 200 - 50,
+                                435 - p.getPos() + 4875 + pC + 200 - 50 };
                         int[] y = { 245 + 50, 230 + 50, 230 + 50, 195 + 50, 195 + 50, 230 + 50, 230 + 50 };
                         g.fillPolygon(x, y, 7);
 
                     }
                 }
-                
+
                 if (inf.getY() < p.getY()) {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                    if (p.getCharacter().equals("barry")) {
+                        if (p.ppeI("mask")) {
+                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "barry"), p.getX() + 50, p.getY() + 50,
+                                        null);
+                            } else {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "barry"), p.getX() - 60, p.getY() + 50,
+                                        null);
+                            }
+
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.view == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                            }
+                        }
+                    } else {
+                        if (p.ppeI("mask")) {
+                            g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 70, p.getY() + 83, null);
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 30, p.getY() + 10, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() - 5, p.getY() + 10, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "belle"), p.getX() + 50, p.getY() + 50,
+                                        null);
+                            } else {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "belle"), p.getX() - 60, p.getY() + 50,
+                                        null);
+                            }
+
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.view == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                            }
+                        }
+
+                    }
+
                 } else {
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                    if (p.getCharacter().equals("barry")) {
+                        if (p.ppeI("mask")) {
+                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 43, null);
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "barry"), p.getX() + 50, p.getY() + 50,
+                                        null);
+                            } else {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "barry"), p.getX() - 60, p.getY() + 50,
+                                        null);
+                            }
+
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.view == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                            }
+                        }
+                    } else {
+                        if (p.ppeI("mask")) {
+                            g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 63, null);
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 30, p.getY() + 10, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() - 5, p.getY() + 10, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "belle"), p.getX() + 50, p.getY() + 50,
+                                        null);
+                            } else {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "belle"), p.getX() - 60, p.getY() + 50,
+                                        null);
+                            }
+
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.view == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                            }
+                        }
+
+                    }
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
-                
-                // if(p.ppeI("mask")){
-                //     g.drawImage(p.getPpeItem("mask"), p.getX()+5, p.getY()+50, null);
-                // }
-                // if(p.ppeI("goggles")){
-                //     g.drawImage(p.getPpeItem("goggles"), p.getX()+5, p.getY()+50, null);
-                // }
-                
+
+                System.out.println("views: "+p.view);
 
             } else {
                 g.setColor(Color.cyan);

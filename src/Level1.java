@@ -120,6 +120,59 @@ public class Level1 {
         game.setVisible(true);
     }
 
+    public void question7() {
+        java.net.URL imgUrl = Main.class.getResource("Question 7.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
+    public void info7() {
+        Image icon = new ImageIcon("Info 7.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
+
+    public void question8() {
+        java.net.URL imgUrl = Main.class.getResource("Question 8.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
+    public void info8() {
+        Image icon = new ImageIcon("Info 8.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
+
+    public void question9() {
+        java.net.URL imgUrl = Main.class.getResource("Question 9.jpg");
+        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
+    public void info9() {
+        Image icon = new ImageIcon("Info 9.jpg").getImage().getScaledInstance(700, 500, 100);
+        JLabel bkg = new JLabel(new ImageIcon (icon)); //Gets background image
+        bkg.setVisible(true);
+        game.add(bkg);
+        game.setVisible(true);
+    }
+
     public void failed(){
         java.net.URL imgUrl = Main.class.getResource("Failed.jpg");
         Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
