@@ -468,10 +468,10 @@ public class UserInput {
                     g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
                     g.setColor(Color.black);
                     g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                    g.drawString("Despite the Quarentine,", 180 - p.getPos() + 1710, 100);
-                    g.drawString("people are still comming", 180 - p.getPos() + 1710, 115);
-                    g.drawString("outside... Stay clear of ", 180 - p.getPos() + 1710, 130);
-                    g.drawString("of all the people!", 180 - p.getPos() + 1710, 145);
+                    g.drawString("Despite the Quarantine,", 180 - p.getPos() + 1710, 100);
+                    g.drawString("people are still going", 180 - p.getPos() + 1710, 115);
+                    g.drawString("outside... stay clear of ", 180 - p.getPos() + 1710, 130);
+                    g.drawString("of all the infected!", 180 - p.getPos() + 1710, 145);
                 } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) {
 
                     g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
@@ -496,7 +496,7 @@ public class UserInput {
                         g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205);
                         g.drawString("small business. We're really ", 275 - p.getPos() + 3710 + pC, 220);
                         g.drawString("having a hard time with this ", 275 - p.getPos() + 3710 + pC, 235);
-                        g.drawString("pandemic; There's just not ", 275 - p.getPos() + 3710 + pC, 250);
+                        g.drawString("pandemic; there's just not ", 275 - p.getPos() + 3710 + pC, 250);
                         g.drawString("enough customers coming!", 275 - p.getPos() + 3710 + pC, 265);
 
                         g.setColor(Color.white);
@@ -537,8 +537,8 @@ public class UserInput {
                         g.setFont(new Font("Calibri", Font.PLAIN, 10));
                         g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);
                         g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC + 200, 220);
-                        g.drawString("durring this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
-                        g.drawString("don't recieve the support they need, ", 175 - p.getPos() + 4875 + pC + 200, 250);
+                        g.drawString("during this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
+                        g.drawString("don't receive the support they need, ", 175 - p.getPos() + 4875 + pC + 200, 250);
                         g.drawString("and have been ignored in the past. ", 175 - p.getPos() + 4875 + pC + 200, 265);
 
                         g.setColor(Color.white);
