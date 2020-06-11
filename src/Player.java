@@ -10,11 +10,11 @@ public class Player {
     String type;
     HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
     HashMap<String, ArrayList<Image>> ppeItems = new HashMap<String, ArrayList<Image>>();
-    Image[] viewsBelle = { (new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage(),
+    Image[] viewsBelle = { (new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage(),
+            (new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Belle [front].png"))).getImage() };
-    Image[] viewsBarry = { (new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage(),
+    Image[] viewsBarry = { (new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage(),
+            (new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage(),
             (new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage() };
 
     ArrayList<Image> mask = new ArrayList<Image>();
@@ -47,9 +47,9 @@ public class Player {
         mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY RIGHT (1).png"))).getImage()
                 .getScaledInstance(170, 80, 100));
         mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BELLE RIGHT.png"))).getImage()
-                .getScaledInstance(170, 80, 100));
+                .getScaledInstance(100, 80, 100));
         mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BELLE LEFT.png"))).getImage()
-                .getScaledInstance(170, 80, 100));
+                .getScaledInstance(100, 80, 100));
 
         ppeItems.put("mask", mask);
 
@@ -167,6 +167,18 @@ public class Player {
         pointsL2 += p;
     }
 
+    public Image getBelleImage(int v){
+        return viewsBelle[v];
+    }
+
+    public Image getBarryImage(int v){
+        return viewsBarry[v];
+    }
+
+    public int getView(){
+        return view;
+    }
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         move = true;
@@ -174,31 +186,26 @@ public class Player {
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
             view = 1;
-            if (character.equals("belle")) {
-                setImage(viewsBelle[0]);
-            } else if (character.equals("barry")) {
-                setImage(viewsBarry[0]);
-            }
         } else if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
             view = 0;
-            if (character.equals("belle")) {
-                setImage(viewsBelle[1]);
-            } else if (character.equals("barry")) {
-                setImage(viewsBarry[1]);
-            }
         } else if (key == KeyEvent.VK_UP) {
             dy = -1;
-
         } else if (key == KeyEvent.VK_DOWN) {
             dy = 1;
 
         }
 
-        // increments points
-        if (pos % 20 == 0) {
-            pointsL2++;
+        if (character.equals("belle")) {
+            setImage(viewsBelle[view]);
+        } else if (character.equals("barry")) {
+            setImage(viewsBarry[view]);
         }
+
+        // increments points
+        // if (pos % 20 == 0) {
+            pointsL2++;
+        // }
 
     }
 
