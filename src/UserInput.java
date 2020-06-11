@@ -374,14 +374,18 @@ public class UserInput {
 
         Image life, ownwer, nurse;
         int counter;
+        int t; 
+        int pointTime; 
 
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
-            inf = new Infected(1700 + pC, p, 350);
+            inf = new Infected(2700 + pC, p, 350);
             run = true;
             counter = 0;
+            pointTime = 0;
+            t = 0; 
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
@@ -392,6 +396,8 @@ public class UserInput {
                 if (3 + extraLife <= 0 || p.getPos() >= 7600) { // check if there is enough health to continue.
                     run = false;
                 }
+                t++;
+                if(t%50==0) p.addPointsL2(10);
 
                 p.move(); // moves player
                 inf.move(); // moves infected player
@@ -470,7 +476,10 @@ public class UserInput {
 
                     g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
                     if (tasks[0]) {
-                        p.addPointsL2(100);
+                        if(pointTime==0){
+                            p.addPointsL2(100);
+                        }
+                        pointTime++;
                         g.setColor(Color.white);
                         g.fillRoundRect(270 - p.getPos() + 3710 + pC, 215, 130, 50, 10, 10);
                         g.setColor(Color.black);
@@ -479,6 +488,7 @@ public class UserInput {
                         g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
                         g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
                     } else {
+                        pointTime=0;
                         g.setColor(Color.white);
                         g.fillRoundRect(270 - p.getPos() + 3710 + pC, 200, 130, 85, 10, 10);
                         g.setColor(Color.black);
@@ -508,14 +518,19 @@ public class UserInput {
                 } else if (p.getPos() >= 4775 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
                     g.drawImage(nurse, 150 - p.getPos() + 4875 + pC + 200, 280, null);
                     if (tasks[1]) {
-                        p.addPointsL2(100);
+                        if(pointTime==0){
+                            p.addPointsL2(100);
+                        }
+                        pointTime++;
                         g.setColor(Color.white);
                         g.fillRoundRect(270 - p.getPos() + 4875 + pC + 200, 190, 100, 50, 10, 10);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 10));
                         g.drawString("Thank you so much! Please ", 275 - p.getPos() + 4875 + pC + 102000, 205);
                         g.drawString("stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
+                        
                     } else {
+                        pointTime=0;
                         g.setColor(Color.white);
                         g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
                         g.setColor(Color.black);
@@ -620,7 +635,7 @@ public class UserInput {
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
                     if (p.getCharacter().equals("barry")) {
                         if (p.ppeI("mask")) {
-                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 43, null);
+                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
                         }
                         if (p.ppeI("goggles")) {
                             if (p.getView() == 1) {
@@ -682,8 +697,6 @@ public class UserInput {
                     }
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
-
-                // System.out.println("This motherfucker");
 
             } else {
                 g.setColor(Color.cyan);

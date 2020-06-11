@@ -10,16 +10,12 @@ public class Player {
     String type;
     HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
     HashMap<String, ArrayList<Image>> ppeItems = new HashMap<String, ArrayList<Image>>();
-    Image[] viewsBelle = { (new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Belle [front].png"))).getImage() };
-    Image[] viewsBarry = { (new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage(),
-            (new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage() };
 
     ArrayList<Image> mask = new ArrayList<Image>();
     ArrayList<Image> goggles = new ArrayList<Image>();
     ArrayList<Image> handSani = new ArrayList<Image>();
+    ArrayList<Image> viewsBelle = new ArrayList<Image>();
+    ArrayList<Image> viewsBarry = new ArrayList<Image>();
 
     int view = 0;
 
@@ -68,6 +64,21 @@ public class Player {
         handSani.add((new ImageIcon(getClass().getClassLoader().getResource("SANITIZER LEFT.png"))).getImage()
                 .getScaledInstance(150, 80, 100));
         ppeItems.put("hand-sanitizer", handSani);
+
+        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage()
+                .getScaledInstance(180, 100, 100));
+        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage()
+                .getScaledInstance(180, 100, 100));
+        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Belle [front].png"))).getImage()
+                .getScaledInstance(180, 100, 100));
+
+        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage()
+                .getScaledInstance(180, 100, 100));
+        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage()
+                .getScaledInstance(180, 100, 100));
+        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage()
+                .getScaledInstance(180, 100, 100));
+
     }
 
     public void move() {
@@ -91,8 +102,8 @@ public class Player {
     }
 
     public Image getPpeItem(String key, String c) {
-        if(!key.equals("hand-sanitizer")&&c.equals("belle")){
-            return ppeItems.get(key).get(view+2);
+        if (!key.equals("hand-sanitizer") && c.equals("belle")) {
+            return ppeItems.get(key).get(view + 2);
         }
         return ppeItems.get(key).get(view);
     }
@@ -105,7 +116,7 @@ public class Player {
         character = n;
     }
 
-    public String getCharacter(){
+    public String getCharacter() {
         return character;
     }
 
@@ -114,7 +125,7 @@ public class Player {
     }
 
     public void decrementPoints() {
-        pointsL2 -= 10;
+        pointsL2 -= 50;
     }
 
     public int getPointsL1() {
@@ -138,7 +149,10 @@ public class Player {
     }
 
     public Image getImage() {
-        return player;
+        if (character.equals("barry")) {
+            return viewsBarry.get(view);
+        }
+        return viewsBelle.get(view);
     }
 
     public int getPos() {
@@ -167,15 +181,7 @@ public class Player {
         pointsL2 += p;
     }
 
-    public Image getBelleImage(int v){
-        return viewsBelle[v];
-    }
-
-    public Image getBarryImage(int v){
-        return viewsBarry[v];
-    }
-
-    public int getView(){
+    public int getView() {
         return view;
     }
 
@@ -186,26 +192,19 @@ public class Player {
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
             view = 1;
-        } else if (key == KeyEvent.VK_RIGHT) {
+
+        }
+        if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
             view = 0;
-        } else if (key == KeyEvent.VK_UP) {
+        }
+        if (key == KeyEvent.VK_UP) {
             dy = -1;
-        } else if (key == KeyEvent.VK_DOWN) {
+        }
+        if (key == KeyEvent.VK_DOWN) {
             dy = 1;
 
         }
-
-        if (character.equals("belle")) {
-            setImage(viewsBelle[view]);
-        } else if (character.equals("barry")) {
-            setImage(viewsBarry[view]);
-        }
-
-        // increments points
-        // if (pos % 20 == 0) {
-            pointsL2++;
-        // }
 
     }
 
