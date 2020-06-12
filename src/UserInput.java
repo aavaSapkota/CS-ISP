@@ -397,6 +397,7 @@ public class UserInput {
 
         public void actionPerformed(ActionEvent e) {
             if (run) {
+                System.out.println ("HELLOOOOOOO");
                 if (3 + extraLife <= 0 || p.getPos() >= 7600) { // check if there is enough health to continue.
                     run = false;
                 }

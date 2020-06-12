@@ -34,7 +34,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(28); //set up starting screen
+        screen = new Vars(1); //set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
     }
@@ -78,7 +78,7 @@ public class Main {
     }
 
     public void learn() {
-        java.net.URL imgUrl = Main.class.getResource("Instructions.jpg");
+        java.net.URL imgUrl = Main.class.getResource("Instruction.jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
