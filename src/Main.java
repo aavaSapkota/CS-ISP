@@ -34,7 +34,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(1); //set up starting screen
+        screen = new Vars(28); //set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
     }

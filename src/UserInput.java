@@ -235,7 +235,7 @@ public class UserInput {
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
                             || (x >= 50 && y >= 310 && x <= 355 && y <= 460)) {// incorrect
-                        goBack = 17;
+                        goBack = 19;
                         incorrect++;
                         skip.setSkip(false);
                     }
@@ -254,7 +254,7 @@ public class UserInput {
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
                             || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {// incorrect
-                        goBack = 17;
+                        goBack = 21;
                         incorrect++;
                         skip.setSkip(false);
                     }
@@ -273,7 +273,7 @@ public class UserInput {
                     } else if ((x >= 50 && y >= 310 && x <= 355 && y <= 460)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
                             || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {// incorrect
-                        goBack = 17;
+                        goBack = 23;
                         incorrect++;
                         skip.setSkip(false);
                     }
@@ -348,7 +348,7 @@ public class UserInput {
                 game.setVisible(true);
             } else if (screen.getScreen() == 32) { // fail screen
                 g.setVisible(false);
-                game.getContentPane().remove(g);
+                // game.getContentPane().remove(g);
                 play.failed();
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
                     screen.setScreen(33);// set back to play screen
@@ -356,18 +356,18 @@ public class UserInput {
                     screen.setScreen(2);
                 }
             } else if (screen.getScreen() == 33) {
-                if (x >= 120 && y >= 325 && x <= 250 && y <= 355) { // go to main menu
+                if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
-                } else if (x >= 475 && y >= 330 && x <= 605 && y <= 355) {// Play again. 
-                    screen.setScreen(2);
+                } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again. 
+                    screen.setScreen(28);
                 }
             }
 
             if (!skip.getSkip())
                 if (incorrect == 1) {
-                    screen.setScreen(27);
-                } else if (incorrect == 2) {
                     screen.setScreen(26);
+                } else if (incorrect == 2) {
+                    screen.setScreen(27);
                 }
         }
 
@@ -397,7 +397,6 @@ public class UserInput {
 
         public void actionPerformed(ActionEvent e) {
             if (run) {
-                System.out.println ("HELLOOOOOOO");
                 if (3 + extraLife <= 0 || p.getPos() >= 7600) { // check if there is enough health to continue.
                     run = false;
                 }
@@ -449,11 +448,10 @@ public class UserInput {
 
 
                 g.setColor(new Color(201,242,195));
-                g.fillRect(10, 10, 150, 70);
+                g.fillRect(10, 10, 80, 70);
                 g.setColor(new Color(234, 251, 232));
                 g.fillRoundRect(15, 40, 30, 30, 7, 7);
                 g.fillRoundRect(50, 40, 30, 30, 7, 7);
-                g.fillRoundRect(85, 40, 30, 30, 7, 7);
                 g.setColor(Color.black);
                 g.setFont(new Font("Calibri", Font.PLAIN, 10));
                 g.drawString("Equiped with: ", 15, 30); 
@@ -684,20 +682,18 @@ public class UserInput {
 
                     }
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
-
-                    if(tasks[0]){
-                        g.drawImage((new ImageIcon(getClass().getClassLoader().getResource("Takeout.png"))).getImage().getScaledInstance(20, 20, 100),55,40,null);
-                    }
                 }
 
+                if(tasks[0]){
+                    g.drawImage(p.getTask(1),50,40,null);
+                }
             } else {
+                
                 g.setColor(Color.cyan);
                 g.fillRect(0, 0, 700, 500);
                 g.setColor(Color.black);
                 g.drawString("Click any where to continue", 200, 200);
             }
-
-
         }
 
         private boolean intersect() {
