@@ -10,6 +10,7 @@ public class Player {
     String type;
     HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
     HashMap<String, ArrayList<Image>> ppeItems = new HashMap<String, ArrayList<Image>>();
+    HashMap<String, Integer> scores = new HashMap<String, Integer>();
 
     ArrayList<Image> mask = new ArrayList<Image>();
     ArrayList<Image> goggles = new ArrayList<Image>();
@@ -191,6 +192,25 @@ public class Player {
 
     public int getView() {
         return view;
+    }
+
+    public void highscores() {
+        if (scores.size() < 11) {
+            for (String s : scores.keySet()) {
+                if (scores.get(s) < getTotalPoints()) {
+                    scores.remove(s, scores.get(s));
+                    scores.put(name, getTotalPoints());
+                    break;
+                }
+            }
+        }
+        for (String i : scores.keySet()) {
+            System.out.println("key: " + i + "value: " + scores.get(i));
+        }
+    }
+
+    public void clearScores() {
+        scores.clear();
     }
 
     public void keyPressed(KeyEvent e) {
