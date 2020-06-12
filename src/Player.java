@@ -82,7 +82,7 @@ public class Player {
     }
 
     public void move() {
-        // incremments position relitive to background
+        // increments position relative to background
         pos += dx;
 
         // add
@@ -205,7 +205,6 @@ public class Player {
             dy = 1;
 
         }
-
     }
 
     public void keyReleased(KeyEvent e) {
