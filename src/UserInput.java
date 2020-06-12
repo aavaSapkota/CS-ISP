@@ -365,9 +365,9 @@ public class UserInput {
 
             if (!skip.getSkip())
                 if (incorrect == 1) {
-                    screen.setScreen(20);
+                    screen.setScreen(27);
                 } else if (incorrect == 2) {
-                    screen.setScreen(21);
+                    screen.setScreen(26);
                 }
         }
 
