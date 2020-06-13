@@ -45,7 +45,8 @@ public class UserInput {
     boolean[] tasks = { false, false };
     boolean proceed = false;
 
-    int nameCounter; 
+    int nameCounter;
+    boolean charSelect; 
 
     final int pC = 700;
 
@@ -66,10 +67,11 @@ public class UserInput {
         bkg = i.getImage().getScaledInstance(8000, 500, java.awt.Image.SCALE_SMOOTH);
         exposure = 0;
         extraLife = 0;
-        p = new Player("Belle [left].png");
+
         pause = true;
 
-        nameCounter=0;
+        nameCounter = 0;
+        charSelect = false; 
 
     }
     // source:
@@ -81,8 +83,10 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("x: " + e.getX() + " y: " + e.getY());
+            System.out.println("screen: "+screen.getScreen());
             if (screen.getScreen() == 2) {
+                charSelect = false; 
+                nameCounter=0;
                 if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
                     screen.setScreen(3);
                 } else if (x >= 190 && x <= 500 && y >= 270 && y <= 300) {
@@ -116,7 +120,6 @@ public class UserInput {
                     if (x >= 370 && y >= 150 && x <= 660 && y <= 290) { // correct answer
                         screen.setScreen(8);
                         incorrect = 0;
-                        p.addPointsL1();
                         skip.setSkip(true);
                     } else if (((x >= 50 && y >= 145 && x <= 355 && y < 295)
                             || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
@@ -136,7 +139,6 @@ public class UserInput {
                         screen.setScreen(10);
                         incorrect = 0;
                         skip.setSkip(true);
-                        p.addPointsL1();
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
                             || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {// incorrect answer
@@ -155,7 +157,7 @@ public class UserInput {
                         screen.setScreen(12);
                         incorrect = 0;
                         skip.setSkip(true);
-                        p.addPointsL1();
+
                     } else if ((x >= 50 && y >= 145 && x <= 355 && y < 295)
                             || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
                             || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) { // incorrect
@@ -174,7 +176,6 @@ public class UserInput {
                         screen.setScreen(14);
                         incorrect = 0;
                         skip.setSkip(true);
-                        p.addPointsL1();
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
                             || (x >= 360 && y >= 315 && x <= 660 && y <= 460)) {// incorrect
@@ -192,7 +193,6 @@ public class UserInput {
                     if (x >= 50 && y >= 145 && x <= 355 && y < 295) {// correct
                         screen.setScreen(16);
                         incorrect = 0;
-                        p.addPointsL1();
                         skip.setSkip(true);
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 310 && x <= 355 && y <= 460)
@@ -211,7 +211,6 @@ public class UserInput {
                     if (x >= 50 && y >= 310 && x <= 355 && y <= 460) {// correct
                         incorrect = 0;
                         screen.setScreen(18);
-                        p.addPointsL1();
                         skip.setSkip(true);
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
@@ -230,7 +229,6 @@ public class UserInput {
                     if (x >= 360 && y >= 315 && x <= 660 && y <= 460) {// correct
                         incorrect = 0;
                         screen.setScreen(20);
-                        p.addPointsL1();
                         skip.setSkip(true);
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
@@ -249,7 +247,6 @@ public class UserInput {
                     if (x >= 50 && y >= 310 && x <= 355 && y <= 460) {// correct
                         incorrect = 0;
                         screen.setScreen(22);
-                        p.addPointsL1();
                         skip.setSkip(true);
                     } else if ((x >= 360 && y >= 150 && x <= 660 && y <= 290)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
@@ -268,7 +265,6 @@ public class UserInput {
                     if (x >= 360 && y >= 150 && x <= 660 && y <= 290) {// correct
                         incorrect = 0;
                         screen.setScreen(24);
-                        p.addPointsL1();
                         skip.setSkip(true);
                     } else if ((x >= 50 && y >= 310 && x <= 355 && y <= 460)
                             || (x >= 50 && y >= 145 && x <= 355 && y < 295)
@@ -305,16 +301,25 @@ public class UserInput {
                     screen.setScreen(29);
                 }
             } else if (screen.getScreen() == 29) { // Character Selection
-                if(nameCounter==0)
+                if(!charSelect){
+                    p = new Player("jumbo");
+                    charSelect=true; 
+                }
+                play.setPlayer(p);
+                if (nameCounter == 0)
                     p.setName(JOptionPane.showInputDialog("What's your name?"));
                 nameCounter++;
-                if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
-                    p.setCharacter("belle");
-                    proceed = true;
-                } else if (x >= 380 && y >= 200 && x <= 630 && y <= 430) {
-                    p.setCharacter("barry");
-                    proceed = true;
-                }
+                counter++;
+                if (counter % 2 == 0)
+                    if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
+                        p.setCharacter("belle");
+                        proceed = true;
+                    } else if (x >= 380 && y >= 200 && x <= 630 && y <= 430) {
+                        p.setCharacter("barry");
+                        proceed = true;
+                    }
+                System.out.println(charSelect);
+                System.out.println(p.getCharacter());
 
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
                     screen.setScreen(30);
@@ -348,19 +353,23 @@ public class UserInput {
                 game.setVisible(true);
             } else if (screen.getScreen() == 32) { // fail screen
                 g.setVisible(false);
-                // game.getContentPane().remove(g);
+                game.getContentPane().remove(g);
                 play.failed();
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
-                    screen.setScreen(33);// set back to play screen
+                    screen.setScreen(28);// set back to play screen
+                    charSelect = false; 
                 } else {
                     screen.setScreen(2);
                 }
             } else if (screen.getScreen() == 33) {
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
-                } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again. 
+                } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
                     screen.setScreen(28);
+                    charSelect = false; 
+                    nameCounter=0;
                 }
+                p.highscores();
             }
 
             if (!skip.getSkip())
@@ -378,8 +387,8 @@ public class UserInput {
 
         Image life, ownwer, nurse;
         int counter;
-        int t; 
-        int pointTime; 
+        int t;
+        int pointTime;
 
         public Board() {
             addKeyListener(new AL());
@@ -389,7 +398,8 @@ public class UserInput {
             run = true;
             counter = 0;
             pointTime = 0;
-            t = 0; 
+            timing =0; 
+            t = 0;
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
@@ -401,7 +411,8 @@ public class UserInput {
                     run = false;
                 }
                 t++;
-                if(t%50==0) p.addPointsL2(10);
+                if (t % 50 == 0)
+                    p.addPointsL2(10);
 
                 p.move(); // moves player
                 inf.move(); // moves infected player
@@ -420,7 +431,7 @@ public class UserInput {
                         p.decrementPoints(); // decreace points
                     }
                 }
-                if (inf.getX() < -100 && (p.getPos()>2000)&&(p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
+                if (inf.getX() < -100 && (p.getPos() > 2000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
                         && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)) { // timing for new infected
                                                                                              // players
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);
@@ -446,15 +457,14 @@ public class UserInput {
             if (run) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
 
-
-                g.setColor(new Color(201,242,195));
+                g.setColor(new Color(201, 242, 195));
                 g.fillRect(10, 10, 80, 70);
                 g.setColor(new Color(234, 251, 232));
                 g.fillRoundRect(15, 40, 30, 30, 7, 7);
                 g.fillRoundRect(50, 40, 30, 30, 7, 7);
                 g.setColor(Color.black);
                 g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                g.drawString("Equiped with: ", 15, 30); 
+                g.drawString("Equiped with: ", 15, 30);
                 for (int i = 0; i < extraLife + 3; i++) {
                     g.drawImage(life, 680 - (25 * i), 10, null);
                 }
@@ -489,7 +499,7 @@ public class UserInput {
 
                     g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
                     if (tasks[0]) {
-                        if(pointTime==0){
+                        if (pointTime == 0) {
                             p.addPointsL2(100);
                         }
                         pointTime++;
@@ -501,7 +511,7 @@ public class UserInput {
                         g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
                         g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
                     } else {
-                        pointTime=0;
+                        pointTime = 0;
                         g.setColor(Color.white);
                         g.fillRoundRect(270 - p.getPos() + 3710 + pC, 190, 130, 85, 10, 10);
                         g.setColor(Color.black);
@@ -531,7 +541,7 @@ public class UserInput {
                 } else if (p.getPos() >= 4775 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
                     g.drawImage(nurse, 150 - p.getPos() + 4875 + pC + 200, 280, null);
                     if (tasks[1]) {
-                        if(pointTime==0){
+                        if (pointTime == 0) {
                             p.addPointsL2(100);
                         }
                         pointTime++;
@@ -541,9 +551,9 @@ public class UserInput {
                         g.setFont(new Font("Calibri", Font.PLAIN, 10));
                         g.drawString("Thank you so much! Please ", 275 - p.getPos() + 4875 + pC + 102000, 205);
                         g.drawString("stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
-                        
+
                     } else {
-                        pointTime=0;
+                        pointTime = 0;
                         g.setColor(Color.white);
                         g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
                         g.setColor(Color.black);
@@ -592,7 +602,7 @@ public class UserInput {
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
                         }
                         if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"),20 , 40, null);
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
                         }
                         if (p.ppeI("gloves")) {
                             g.setColor(Color.blue);
@@ -603,7 +613,7 @@ public class UserInput {
                             }
                         }
                     } else {
-                        
+
                         if (p.ppeI("mask")) {
                             if (p.getView() == 1)
                                 g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
@@ -618,7 +628,7 @@ public class UserInput {
                                 g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
                         }
                         if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"),20 , 40, null);
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
                         }
                         if (p.ppeI("gloves")) {
                             g.setColor(Color.blue);
@@ -643,7 +653,7 @@ public class UserInput {
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
                         }
                         if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"),20 , 40, null);
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
                         }
                         if (p.ppeI("gloves")) {
                             g.setColor(Color.blue);
@@ -668,7 +678,7 @@ public class UserInput {
                                 g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
                         }
                         if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"),20 , 40, null);
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
 
                         }
                         if (p.ppeI("gloves")) {
@@ -684,11 +694,11 @@ public class UserInput {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
 
-                if(tasks[0]){
-                    g.drawImage(p.getTask(1),50,40,null);
+                if (tasks[0]) {
+                    g.drawImage(p.getTask(1), 50, 40, null);
                 }
             } else {
-                
+
                 g.setColor(Color.cyan);
                 g.fillRect(0, 0, 700, 500);
                 g.setColor(Color.black);
@@ -697,8 +707,8 @@ public class UserInput {
         }
 
         private boolean intersect() {
-            return (p.getX() + 100 >= inf.getX()-5 && p.getX() + 100 < inf.getX() + 100
-                    && ((p.getY() >= inf.getY() -5 && p.getY() <= inf.getY() + 100)
+            return (p.getX() + 100 >= inf.getX() - 5 && p.getX() + 100 < inf.getX() + 100
+                    && ((p.getY() >= inf.getY() - 5 && p.getY() <= inf.getY() + 100)
                             || (p.getY() + 100 >= inf.getY() + 20 && p.getY() + 100 <= inf.getY() + 100)));
 
         }

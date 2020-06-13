@@ -39,6 +39,16 @@ public class Main {
         play = new Level2(mainScreen, screen);
     }
 
+    public void splashScreen(){
+        Splashscreen a = new Splashscreen(mainScreen);
+        a.start();
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+        a.end();
+    }
+
     public void introduction() {
         icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -46,12 +56,6 @@ public class Main {
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
         input = new UserInput(mainScreen, screen, learn, play);
-
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-        }
-
         screen.setScreen(screen.getScreen() + 1);
 
     }
@@ -118,6 +122,7 @@ public class Main {
      */
     public static void main(String args[]) {
         Main m = new Main();
+        m.splashScreen();
         m.introduction();
         while (true) {
             if (screen.getScreen() == 2) {
@@ -183,8 +188,7 @@ public class Main {
                 play.failed();
             }else if(input.screen.getScreen() == 33){ //passed screen
                 play.passed();
-            }
-            // running=screen.getScreen(); 
+            } 
             System.out.print("");
             
         }

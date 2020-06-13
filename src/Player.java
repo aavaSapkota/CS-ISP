@@ -6,32 +6,41 @@ import javax.swing.ImageIcon;
 public class Player {
     int x, dx, y, dy, nx2, pos, ePos;
     String player;
-    String fileName;
-    String type;
-    HashMap<String, Boolean> ppe = new HashMap<String, Boolean>();
-    HashMap<String, ArrayList<Image>> ppeItems = new HashMap<String, ArrayList<Image>>();
-    HashMap<String, Integer> scores = new HashMap<String, Integer>();
+    HashMap<String, Boolean> ppe ;
+    HashMap<String, ArrayList<Image>> ppeItems;
+    static HashMap<String, Integer> scores = new HashMap<String, Integer>();
 
-    ArrayList<Image> mask = new ArrayList<Image>();
-    ArrayList<Image> goggles = new ArrayList<Image>();
-    ArrayList<Image> handSani = new ArrayList<Image>();
-    ArrayList<Image> viewsBelle = new ArrayList<Image>();
-    ArrayList<Image> viewsBarry = new ArrayList<Image>();
+    ArrayList<Image> mask;
+    ArrayList<Image> goggles;
+    ArrayList<Image> handSani;
+    ArrayList<Image> viewsBelle ;
+    ArrayList<Image> viewsBarry;
 
-    int view = 0;
+    int view;
 
     String name;
     int pointsL2;
-    int pointsL1;
     boolean move;
     String character;
 
-    public Player(String f) {
-        fileName = f;
+    public Player(String c) {
+        character = c;
         x = 175;
         pos = 175;
         y = 300;
         nx2 = 2000;
+        pointsL2 = 0;
+        view = 0;
+        move = false;
+
+        ppe = new HashMap<String, Boolean>();
+        ppeItems = new HashMap<String, ArrayList<Image>>();
+
+        mask = new ArrayList<Image>();
+        goggles = new ArrayList<Image>();
+        handSani = new ArrayList<Image>();
+        viewsBelle = new ArrayList<Image>();
+        viewsBarry = new ArrayList<Image>();
         ppe.put("gloves", false);
         ppe.put("mask", false);
         ppe.put("goggles", false);
@@ -77,6 +86,8 @@ public class Player {
                 .getScaledInstance(180, 100, 100));
         viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
+
+        scores.put(name, 0);
 
     }
 
@@ -135,15 +146,7 @@ public class Player {
     }
 
     public void decrementPoints() {
-        pointsL2 -= 50;
-    }
-
-    public int getPointsL1() {
-        return pointsL1;
-    }
-
-    public void addPointsL1() {
-        pointsL1 += 10;
+        pointsL2 -= 100;
     }
 
     public int getX() {
@@ -165,21 +168,16 @@ public class Player {
         return viewsBelle.get(view);
     }
 
-
-    public Image getTask(int t){
+    public Image getTask(int t) {
         return handSani.get(t);
     }
-    
-    public int getTotalPoints(){
-        return pointsL1+pointsL2;
+
+    public int getTotalPoints() {
+        return 90 + pointsL2;
     }
 
     public int getPos() {
         return pos;
-    }
-
-    public String getImg() {
-        return fileName;
     }
 
     public boolean isMoving() {
@@ -192,6 +190,10 @@ public class Player {
 
     public int getView() {
         return view;
+    }
+
+    public static void addScore() {
+
     }
 
     public void highscores() {
@@ -220,7 +222,6 @@ public class Player {
         if (key == KeyEvent.VK_LEFT) {
             dx = -1;
             view = 1;
-
         }
         if (key == KeyEvent.VK_RIGHT) {
             dx = 1;
@@ -231,7 +232,6 @@ public class Player {
         }
         if (key == KeyEvent.VK_DOWN) {
             dy = 1;
-
         }
 
     }
