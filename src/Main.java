@@ -28,15 +28,17 @@ public class Main {
     static int running = 0; 
     Image icon;
     JLabel bkg;
+    static Player p; 
 
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(28); //set up starting screen
+        screen = new Vars(1); //set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
+        p = new Player("jumbo");
     }
 
     public void splashScreen(){
@@ -55,7 +57,7 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        input = new UserInput(mainScreen, screen, learn, play);
+        input = new UserInput(mainScreen, screen, learn, play, p);
         screen.setScreen(screen.getScreen() + 1);
 
     }

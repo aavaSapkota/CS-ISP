@@ -33,9 +33,7 @@ public class UserInput {
     Infected inf;
     public Image bkg;
     Timer time;
-    int[] timeline = { 400, 900, 1000 };
     boolean run;
-    int timing = 1;
 
     int exposure;
     Board g;
@@ -50,7 +48,7 @@ public class UserInput {
 
     final int pC = 700;
 
-    public UserInput(JFrame game, Vars screen, Level1 learn, Level2 play) {
+    public UserInput(JFrame game, Vars screen, Level1 learn, Level2 play, Player p) {
         this.game = game;
         this.screen = screen;
         this.learn = learn;
@@ -72,6 +70,10 @@ public class UserInput {
 
         nameCounter = 0;
         charSelect = false;
+
+        tasks[0]= false;
+        tasks[1]=false;
+        proceed = false;
 
     }
     // source:
@@ -366,9 +368,9 @@ public class UserInput {
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
                     screen.setScreen(28);
-                    charSelect = false;
-                    nameCounter = 0;
                 }
+                charSelect = false;
+                nameCounter = 0;
                 p.highscores();
             }
 
@@ -389,6 +391,7 @@ public class UserInput {
         int counter;
         int t;
         int pointTime;
+        int timing ;
 
         public Board() {
             addKeyListener(new AL());
@@ -456,22 +459,21 @@ public class UserInput {
 
             if (run) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
-                
 
-                    g.setColor(new Color(201, 242, 195));
-                    g.fillRect(10, 10, 80, 70);
-                    g.setColor(new Color(234, 251, 232));
-                    g.fillRoundRect(15, 40, 30, 30, 7, 7);
-                    g.fillRoundRect(50, 40, 30, 30, 7, 7);
-                    g.setColor(Color.black);
-                    g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                    g.drawString("Equiped with: ", 15, 30);
-                    for (int i = 0; i < extraLife + 3; i++) {
-                        g.drawImage(life, 680 - (25 * i), 10, null);
-                    }
-                    g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-                    g.drawString(p.getPointsL2() + "", 650, 50);
-                    if (p.getNx2() > 2000) {
+                g.setColor(new Color(201, 242, 195));
+                g.fillRect(10, 10, 80, 70);
+                g.setColor(new Color(234, 251, 232));
+                g.fillRoundRect(15, 40, 30, 30, 7, 7);
+                g.fillRoundRect(50, 40, 30, 30, 7, 7);
+                g.setColor(Color.black);
+                g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                g.drawString("Equiped with: ", 15, 30);
+                for (int i = 0; i < extraLife + 3; i++) {
+                    g.drawImage(life, 680 - (25 * i), 10, null);
+                }
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g.drawString(p.getPointsL2() + "", 650, 50);
+                if (p.getNx2() > 2000) {
                     if (p.getPos() <= 300 && p.getPos() < 700) {
                         g.setColor(Color.white);
                         g.fillRect(170 - p.getPos() + 300, 85, 200, 50);

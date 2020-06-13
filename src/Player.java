@@ -77,14 +77,10 @@ public class Player {
                 .getScaledInstance(180, 100, 100));
         viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Belle [right].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
-        viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Belle [front].png"))).getImage()
-                .getScaledInstance(180, 100, 100));
 
         viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [right].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
         viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage()
-                .getScaledInstance(180, 100, 100));
-        viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [front].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
 
         scores.put(name, 0);
