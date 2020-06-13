@@ -70,7 +70,7 @@ public class Player {
         handSani.add((new ImageIcon(getClass().getClassLoader().getResource("handSanitizer.png"))).getImage()
                 .getScaledInstance(15, 30, 100));
         handSani.add((new ImageIcon(getClass().getClassLoader().getResource("Takeout.png"))).getImage()
-                .getScaledInstance(15, 15, 100));
+                .getScaledInstance(20, 25, 100));
         ppeItems.put("hand-sanitizer", handSani);
 
         viewsBelle.add((new ImageIcon(getClass().getClassLoader().getResource("Belle [left].png"))).getImage()
@@ -135,6 +135,10 @@ public class Player {
 
     public void setCharacter(String n) {
         character = n;
+    }
+
+    public int getNx2(){
+        return nx2; 
     }
 
     public String getCharacter() {

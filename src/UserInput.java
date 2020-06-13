@@ -46,7 +46,7 @@ public class UserInput {
     boolean proceed = false;
 
     int nameCounter;
-    boolean charSelect; 
+    boolean charSelect;
 
     final int pC = 700;
 
@@ -71,7 +71,7 @@ public class UserInput {
         pause = true;
 
         nameCounter = 0;
-        charSelect = false; 
+        charSelect = false;
 
     }
     // source:
@@ -83,10 +83,10 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("screen: "+screen.getScreen());
+            System.out.println("screen: " + screen.getScreen());
             if (screen.getScreen() == 2) {
-                charSelect = false; 
-                nameCounter=0;
+                charSelect = false;
+                nameCounter = 0;
                 if (x >= 190 && x <= 500 && y >= 230 && y <= 260) {
                     screen.setScreen(3);
                 } else if (x >= 190 && x <= 500 && y >= 270 && y <= 300) {
@@ -301,9 +301,9 @@ public class UserInput {
                     screen.setScreen(29);
                 }
             } else if (screen.getScreen() == 29) { // Character Selection
-                if(!charSelect){
+                if (!charSelect) {
                     p = new Player("jumbo");
-                    charSelect=true; 
+                    charSelect = true;
                 }
                 play.setPlayer(p);
                 if (nameCounter == 0)
@@ -357,7 +357,7 @@ public class UserInput {
                 play.failed();
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
                     screen.setScreen(28);// set back to play screen
-                    charSelect = false; 
+                    charSelect = false;
                 } else {
                     screen.setScreen(2);
                 }
@@ -366,8 +366,8 @@ public class UserInput {
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
                     screen.setScreen(28);
-                    charSelect = false; 
-                    nameCounter=0;
+                    charSelect = false;
+                    nameCounter = 0;
                 }
                 p.highscores();
             }
@@ -398,7 +398,7 @@ public class UserInput {
             run = true;
             counter = 0;
             pointTime = 0;
-            timing =0; 
+            timing = 0;
             t = 0;
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
@@ -456,246 +456,250 @@ public class UserInput {
 
             if (run) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
+                
 
-                g.setColor(new Color(201, 242, 195));
-                g.fillRect(10, 10, 80, 70);
-                g.setColor(new Color(234, 251, 232));
-                g.fillRoundRect(15, 40, 30, 30, 7, 7);
-                g.fillRoundRect(50, 40, 30, 30, 7, 7);
-                g.setColor(Color.black);
-                g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                g.drawString("Equiped with: ", 15, 30);
-                for (int i = 0; i < extraLife + 3; i++) {
-                    g.drawImage(life, 680 - (25 * i), 10, null);
-                }
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-                g.drawString(p.getPointsL2() + "", 650, 50);
-
-                if (p.getPos() <= 300 && p.getPos() < 700) {
-                    g.setColor(Color.white);
-                    g.fillRect(170 - p.getPos() + 300, 85, 200, 50);
+                    g.setColor(new Color(201, 242, 195));
+                    g.fillRect(10, 10, 80, 70);
+                    g.setColor(new Color(234, 251, 232));
+                    g.fillRoundRect(15, 40, 30, 30, 7, 7);
+                    g.fillRoundRect(50, 40, 30, 30, 7, 7);
                     g.setColor(Color.black);
-                    g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                    g.drawString("Use the arrow keys to move", 180 - p.getPos() + 300, 100);
-                    g.drawString("around your neighboor hood.", 180 - p.getPos() + 300, 115);
-                } else if (p.getPos() >= 600 && p.getPos() <= 800) {
-                    g.setColor(Color.white);
-                    g.fillRect(470, 40, 150, 20);
-                    g.fillRect(450 - (20 * extraLife), 5, 150, 20);
-                    g.setColor(Color.black);
-                    g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                    g.drawString("Here are your points -->", 470, 55);
-                    g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);
-                } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
-                    g.setColor(Color.white);
-                    g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
-                    g.setColor(Color.black);
-                    g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                    g.drawString("Despite the Quarantine,", 180 - p.getPos() + 1710, 100);
-                    g.drawString("people are still going", 180 - p.getPos() + 1710, 115);
-                    g.drawString("outside... stay clear of ", 180 - p.getPos() + 1710, 130);
-                    g.drawString("of all the infected people!", 180 - p.getPos() + 1710, 145);
-                } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) {
-
-                    g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
-                    if (tasks[0]) {
-                        if (pointTime == 0) {
-                            p.addPointsL2(100);
-                        }
-                        pointTime++;
-                        g.setColor(Color.white);
-                        g.fillRoundRect(270 - p.getPos() + 3710 + pC, 215, 130, 50, 10, 10);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                        g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225);
-                        g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
-                        g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
-                    } else {
-                        pointTime = 0;
-                        g.setColor(Color.white);
-                        g.fillRoundRect(270 - p.getPos() + 3710 + pC, 190, 130, 85, 10, 10);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                        g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205);
-                        g.drawString("small business. We're really ", 275 - p.getPos() + 3710 + pC, 220);
-                        g.drawString("having a hard time with this ", 275 - p.getPos() + 3710 + pC, 235);
-                        g.drawString("pandemic; there's just not ", 275 - p.getPos() + 3710 + pC, 250);
-                        g.drawString("enough customers coming!", 275 - p.getPos() + 3710 + pC, 265);
-
-                        g.setColor(Color.white);
-                        g.fillRect(0, 470, 730, 40);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                        g.drawString("Task: Support a small businesss", 200, 495);
-
-                        g.setColor(Color.red);
-                        int[] x = { 410 - p.getPos() + 3710 + pC + 20, 385 - p.getPos() + 3710 + pC + 20,
-                                400 - p.getPos() + 3710 + pC + 20, 400 - p.getPos() + 3710 + pC + 20,
-                                420 - p.getPos() + 3710 + pC + 20, 420 - p.getPos() + 3710 + pC + 20,
-                                435 - p.getPos() + 3710 + pC + 20 };
-                        int[] y = { 245 - 50, 230 - 50, 230 - 50, 195 - 50, 195 - 50, 230 - 50, 230 - 50 };
-                        g.fillPolygon(x, y, 7);
-
+                    g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                    g.drawString("Equiped with: ", 15, 30);
+                    for (int i = 0; i < extraLife + 3; i++) {
+                        g.drawImage(life, 680 - (25 * i), 10, null);
                     }
-
-                } else if (p.getPos() >= 4775 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
-                    g.drawImage(nurse, 150 - p.getPos() + 4875 + pC + 200, 280, null);
-                    if (tasks[1]) {
-                        if (pointTime == 0) {
-                            p.addPointsL2(100);
-                        }
-                        pointTime++;
+                    g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                    g.drawString(p.getPointsL2() + "", 650, 50);
+                    if (p.getNx2() > 2000) {
+                    if (p.getPos() <= 300 && p.getPos() < 700) {
                         g.setColor(Color.white);
-                        g.fillRoundRect(270 - p.getPos() + 4875 + pC + 200, 190, 100, 50, 10, 10);
+                        g.fillRect(170 - p.getPos() + 300, 85, 200, 50);
                         g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                        g.drawString("Thank you so much! Please ", 275 - p.getPos() + 4875 + pC + 102000, 205);
-                        g.drawString("stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
-
-                    } else {
-                        pointTime = 0;
-                        g.setColor(Color.white);
-                        g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                        g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);
-                        g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC + 200, 220);
-                        g.drawString("during this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
-                        g.drawString("don't receive the support they need, ", 175 - p.getPos() + 4875 + pC + 200, 250);
-                        g.drawString("and have been ignored in the past. ", 175 - p.getPos() + 4875 + pC + 200, 265);
-
-                        g.setColor(Color.white);
-                        g.fillRect(0, 470, 730, 40);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                        g.drawString("Task: Support Frontline workers", 200, 495);
-
-                        g.setColor(new Color(50, 100, 50));
-                        g.fillRect(315 - p.getPos() + 4875 + pC + 200, 300, 70, 40);
-
-                        g.setColor(Color.white);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Donations", 315 - p.getPos() + 4875 + pC + 200, 315);
+                        g.drawString("Use the arrow keys to move", 180 - p.getPos() + 300, 100);
+                        g.drawString("around your neighboor hood.", 180 - p.getPos() + 300, 115);
+                    } else if (p.getPos() >= 600 && p.getPos() <= 800) {
+                        g.setColor(Color.white);
+                        g.fillRect(470, 40, 150, 20);
+                        g.fillRect(450 - (20 * extraLife), 5, 150, 20);
+                        g.setColor(Color.black);
+                        g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                        g.drawString("Here are your points -->", 470, 55);
+                        g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);
+                    } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
+                        g.setColor(Color.white);
+                        g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
+                        g.setColor(Color.black);
+                        g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                        g.drawString("Despite the Quarantine,", 180 - p.getPos() + 1710, 100);
+                        g.drawString("people are still going", 180 - p.getPos() + 1710, 115);
+                        g.drawString("outside... stay clear of ", 180 - p.getPos() + 1710, 130);
+                        g.drawString("of all the infected people!", 180 - p.getPos() + 1710, 145);
+                    } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) {
 
-                        g.setColor(Color.blue);
-                        int[] x = { 410 - p.getPos() + 4875 + pC + 200 - 50, 385 - p.getPos() + 4875 + pC + 200 - 50,
-                                400 - p.getPos() + 4875 + pC + 200 - 50, 400 - p.getPos() + 4875 + pC + 200 - 50,
-                                420 - p.getPos() + 4875 + pC + 200 - 50, 420 - p.getPos() + 4875 + pC + 200 - 50,
-                                435 - p.getPos() + 4875 + pC + 200 - 50 };
-                        int[] y = { 245 + 50, 230 + 50, 230 + 50, 195 + 50, 195 + 50, 230 + 50, 230 + 50 };
-                        g.fillPolygon(x, y, 7);
+                        g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
+                        if (tasks[0]) {
+                            if (pointTime == 0) {
+                                p.addPointsL2(100);
+                            }
+                            pointTime++;
+                            g.setColor(Color.white);
+                            g.fillRoundRect(270 - p.getPos() + 3710 + pC, 215, 130, 50, 10, 10);
+                            g.setColor(Color.black);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225);
+                            g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
+                            g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
+                        } else {
+                            pointTime = 0;
+                            g.setColor(Color.white);
+                            g.fillRoundRect(270 - p.getPos() + 3710 + pC, 190, 130, 85, 10, 10);
+                            g.setColor(Color.black);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                            g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205);
+                            g.drawString("small business. We're really ", 275 - p.getPos() + 3710 + pC, 220);
+                            g.drawString("having a hard time with this ", 275 - p.getPos() + 3710 + pC, 235);
+                            g.drawString("pandemic; there's just not ", 275 - p.getPos() + 3710 + pC, 250);
+                            g.drawString("enough customers coming!", 275 - p.getPos() + 3710 + pC, 265);
 
-                    }
-                }
+                            g.setColor(Color.white);
+                            g.fillRect(0, 470, 730, 40);
+                            g.setColor(Color.black);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 25));
+                            g.drawString("Task: Support a small businesss", 200, 495);
 
-                if (inf.getY() < p.getY()) {
-                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
-                    g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                    if (p.getCharacter().equals("barry")) {
-                        if (p.ppeI("mask")) {
-                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
+                            g.setColor(Color.red);
+                            int[] x = { 410 - p.getPos() + 3710 + pC + 20, 385 - p.getPos() + 3710 + pC + 20,
+                                    400 - p.getPos() + 3710 + pC + 20, 400 - p.getPos() + 3710 + pC + 20,
+                                    420 - p.getPos() + 3710 + pC + 20, 420 - p.getPos() + 3710 + pC + 20,
+                                    435 - p.getPos() + 3710 + pC + 20 };
+                            int[] y = { 245 - 50, 230 - 50, 230 - 50, 195 - 50, 195 - 50, 230 - 50, 230 - 50 };
+                            g.fillPolygon(x, y, 7);
+
                         }
-                        if (p.ppeI("goggles")) {
-                            if (p.view == 1) {
-                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
-                            } else
-                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
-                        }
-                        if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-                        }
-                        if (p.ppeI("gloves")) {
+
+                    } else if (p.getPos() >= 4775 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
+                        g.drawImage(nurse, 150 - p.getPos() + 4875 + pC + 200, 280, null);
+                        if (tasks[1]) {
+                            if (pointTime == 0) {
+                                p.addPointsL2(100);
+                            }
+                            pointTime++;
+                            g.setColor(Color.white);
+                            g.fillRoundRect(270 - p.getPos() + 4875 + pC + 200, 190, 100, 50, 10, 10);
+                            g.setColor(Color.black);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                            g.drawString("Thank you so much! ", 275 - p.getPos() + 4875 + pC + 200, 205);
+                            g.drawString("Please stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
+
+                        } else {
+                            pointTime = 0;
+                            g.setColor(Color.white);
+                            g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
+                            g.setColor(Color.black);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                            g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);
+                            g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC + 200, 220);
+                            g.drawString("during this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
+                            g.drawString("don't receive the support they need, ", 175 - p.getPos() + 4875 + pC + 200,
+                                    250);
+                            g.drawString("and have been ignored in the past. ", 175 - p.getPos() + 4875 + pC + 200,
+                                    265);
+
+                            g.setColor(Color.white);
+                            g.fillRect(0, 470, 730, 40);
+                            g.setColor(Color.black);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 25));
+                            g.drawString("Task: Support Frontline workers", 200, 495);
+
+                            g.setColor(new Color(50, 100, 50));
+                            g.fillRect(315 - p.getPos() + 4875 + pC + 200, 300, 70, 40);
+
+                            g.setColor(Color.white);
+                            g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                            g.drawString("Donations", 315 - p.getPos() + 4875 + pC + 200, 315);
+
                             g.setColor(Color.blue);
-                            if (p.getView() == 1) {
-                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
-                            } else {
-                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                            int[] x = { 410 - p.getPos() + 4875 + pC + 200 - 50,
+                                    385 - p.getPos() + 4875 + pC + 200 - 50, 400 - p.getPos() + 4875 + pC + 200 - 50,
+                                    400 - p.getPos() + 4875 + pC + 200 - 50, 420 - p.getPos() + 4875 + pC + 200 - 50,
+                                    420 - p.getPos() + 4875 + pC + 200 - 50, 435 - p.getPos() + 4875 + pC + 200 - 50 };
+                            int[] y = { 245 + 50, 230 + 50, 230 + 50, 195 + 50, 195 + 50, 230 + 50, 230 + 50 };
+                            g.fillPolygon(x, y, 7);
+
+                        }
+                    }
+
+                    if (inf.getY() < p.getY()) {
+                        g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                        g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                        if (p.getCharacter().equals("barry")) {
+                            if (p.ppeI("mask")) {
+                                g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
+                            }
+                            if (p.ppeI("goggles")) {
+                                if (p.view == 1) {
+                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
+                                } else
+                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
+                            }
+                            if (p.ppeI("hand-sanitizer")) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+                            }
+                            if (p.ppeI("gloves")) {
+                                g.setColor(Color.blue);
+                                if (p.getView() == 1) {
+                                    g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                                } else {
+                                    g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                                }
+                            }
+                        } else {
+
+                            if (p.ppeI("mask")) {
+                                if (p.getView() == 1)
+                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
+                                else
+                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
+
+                            }
+                            if (p.ppeI("goggles")) {
+                                if (p.getView() == 1) {
+                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
+                                } else
+                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
+                            }
+                            if (p.ppeI("hand-sanitizer")) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+                            }
+                            if (p.ppeI("gloves")) {
+                                g.setColor(Color.blue);
+                                if (p.getView() == 1) {
+                                    g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
+                                } else {
+                                    g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
+                                }
                             }
                         }
+
                     } else {
-
-                        if (p.ppeI("mask")) {
-                            if (p.getView() == 1)
-                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
-                            else
-                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
-
-                        }
-                        if (p.ppeI("goggles")) {
-                            if (p.getView() == 1) {
-                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
-                            } else
-                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
-                        }
-                        if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-                        }
-                        if (p.ppeI("gloves")) {
-                            g.setColor(Color.blue);
-                            if (p.getView() == 1) {
-                                g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
-                            } else {
-                                g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
+                        g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                        if (p.getCharacter().equals("barry")) {
+                            if (p.ppeI("mask")) {
+                                g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
                             }
+                            if (p.ppeI("goggles")) {
+                                if (p.getView() == 1) {
+                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
+                                } else
+                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
+                            }
+                            if (p.ppeI("hand-sanitizer")) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+                            }
+                            if (p.ppeI("gloves")) {
+                                g.setColor(Color.blue);
+                                if (p.getView() == 1) {
+                                    g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                                } else {
+                                    g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                                }
+                            }
+                        } else {
+                            if (p.ppeI("mask")) {
+                                if (p.getView() == 1)
+                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
+                                else
+                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
+
+                            }
+                            if (p.ppeI("goggles")) {
+                                if (p.getView() == 1) {
+                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
+                                } else
+                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
+                            }
+                            if (p.ppeI("hand-sanitizer")) {
+                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+
+                            }
+                            if (p.ppeI("gloves")) {
+                                g.setColor(Color.blue);
+                                if (p.getView() == 1) {
+                                    g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
+                                } else {
+                                    g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
+                                }
+                            }
+
                         }
+                        g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     }
 
-                } else {
-                    g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                    if (p.getCharacter().equals("barry")) {
-                        if (p.ppeI("mask")) {
-                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
-                        }
-                        if (p.ppeI("goggles")) {
-                            if (p.getView() == 1) {
-                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
-                            } else
-                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
-                        }
-                        if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-                        }
-                        if (p.ppeI("gloves")) {
-                            g.setColor(Color.blue);
-                            if (p.getView() == 1) {
-                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
-                            } else {
-                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
-                            }
-                        }
-                    } else {
-                        if (p.ppeI("mask")) {
-                            if (p.getView() == 1)
-                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
-                            else
-                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
-
-                        }
-                        if (p.ppeI("goggles")) {
-                            if (p.getView() == 1) {
-                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
-                            } else
-                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
-                        }
-                        if (p.ppeI("hand-sanitizer")) {
-                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-
-                        }
-                        if (p.ppeI("gloves")) {
-                            g.setColor(Color.blue);
-                            if (p.getView() == 1) {
-                                g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
-                            } else {
-                                g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
-                            }
-                        }
-
+                    if (tasks[0]) {
+                        g.drawImage(p.getTask(1), 55, 40, null);
                     }
-                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
-                }
-
-                if (tasks[0]) {
-                    g.drawImage(p.getTask(1), 50, 40, null);
                 }
             } else {
 
