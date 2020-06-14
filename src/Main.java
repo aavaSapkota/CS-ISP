@@ -75,7 +75,7 @@ public class Main {
 
     public void highscores() {
         
-        String[][] scores = p.highscores();
+        String[][] scores = Player.getScores();
         java.net.URL imgUrl = Main.class.getResource("Highscores (1).jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)){
@@ -84,11 +84,11 @@ public class Main {
                 
                 for(int i=0; i<10; i++){
                     String spaces = "";
-                    int r = 30-(scores[i][0].length()+scores[i][1].length());
+                    int r = 80-(scores[i][0].length()+scores[i][1].length());
                     for(int j=0; j<=r; j++){
                         spaces+=" ";
                     }
-                    g.drawString(scores[i][0]+""+spaces+scores[i][1], 170, 190+20*i); 
+                    g.drawString(scores[i][0]+""+spaces+scores[i][1], 200, 190+20*i); 
                 }
 
                 

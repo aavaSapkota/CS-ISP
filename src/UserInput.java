@@ -22,7 +22,6 @@ public class UserInput {
     JFrame game;
     JFrame Sal = new JFrame();
     Vars screen;
-    Clear clearHighscores;
     Level1 learn;
     int incorrect;
     int goBack;
@@ -60,7 +59,6 @@ public class UserInput {
         game.addMouseListener(new ML());
         incorrect = 0;
 
-
         game.setFocusable(true);
         java.net.URL imgUrl = Main.class.getResource("Level2 background (1).jpg");
         ImageIcon i = new ImageIcon(imgUrl);
@@ -73,8 +71,8 @@ public class UserInput {
         nameCounter = 0;
         charSelect = false;
 
-        tasks[0]= false;
-        tasks[1]=false;
+        tasks[0] = false;
+        tasks[1] = false;
         proceed = false;
 
     }
@@ -102,7 +100,7 @@ public class UserInput {
                 }
             } else if (screen.getScreen() == 3) {
                 if (x >= 153 && x <= 343 && y >= 435 && y <= 486) {
-                    clearHighscores.setStatus(true);
+                    Player.clearScores();
 
                 } else if (x >= 400 && x <= 588 && y >= 435 && y <= 486) {
                     screen.setScreen(2);
@@ -323,7 +321,6 @@ public class UserInput {
                         proceed = true;
                     }
 
-
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
@@ -367,7 +364,7 @@ public class UserInput {
                     screen.setScreen(2);
                 }
             } else if (screen.getScreen() == 33) {
-                
+                Player.highscores(p);
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
@@ -375,7 +372,7 @@ public class UserInput {
                 }
                 charSelect = false;
                 nameCounter = 0;
-                
+
                 game.removeKeyListener(keyInput);
             }
 
@@ -396,7 +393,7 @@ public class UserInput {
         int counter;
         int t;
         int pointTime;
-        int timing ;
+        int timing;
 
         public Board() {
             addKeyListener(new AL());
@@ -598,116 +595,116 @@ public class UserInput {
                         }
                     }
                 }
-                    if (inf.getY() < p.getY()) {
-                        g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
-                        g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                        if (p.getCharacter().equals("barry")) {
-                            if (p.ppeI("mask")) {
-                                g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
-                            }
-                            if (p.ppeI("goggles")) {
-                                if (p.view == 1) {
-                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
-                                } else
-                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
-                            }
-                            if (p.ppeI("hand-sanitizer")) {
-                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-                            }
-                            if (p.ppeI("gloves")) {
-                                g.setColor(Color.blue);
-                                if (p.getView() == 1) {
-                                    g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
-                                } else {
-                                    g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
-                                }
-                            }
-                        } else {
-
-                            if (p.ppeI("mask")) {
-                                if (p.getView() == 1)
-                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
-                                else
-                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
-
-                            }
-                            if (p.ppeI("goggles")) {
-                                if (p.getView() == 1) {
-                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
-                                } else
-                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
-                            }
-                            if (p.ppeI("hand-sanitizer")) {
-                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-                            }
-                            if (p.ppeI("gloves")) {
-                                g.setColor(Color.blue);
-                                if (p.getView() == 1) {
-                                    g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
-                                } else {
-                                    g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
-                                }
+                if (inf.getY() < p.getY()) {
+                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                    g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                    if (p.getCharacter().equals("barry")) {
+                        if (p.ppeI("mask")) {
+                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.view == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.getView() == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
                             }
                         }
-
                     } else {
-                        g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                        if (p.getCharacter().equals("barry")) {
-                            if (p.ppeI("mask")) {
-                                g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
-                            }
-                            if (p.ppeI("goggles")) {
-                                if (p.getView() == 1) {
-                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
-                                } else
-                                    g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
-                            }
-                            if (p.ppeI("hand-sanitizer")) {
-                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-                            }
-                            if (p.ppeI("gloves")) {
-                                g.setColor(Color.blue);
-                                if (p.getView() == 1) {
-                                    g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
-                                } else {
-                                    g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
-                                }
-                            }
-                        } else {
-                            if (p.ppeI("mask")) {
-                                if (p.getView() == 1)
-                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
-                                else
-                                    g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
 
-                            }
-                            if (p.ppeI("goggles")) {
-                                if (p.getView() == 1) {
-                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
-                                } else
-                                    g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
-                            }
-                            if (p.ppeI("hand-sanitizer")) {
-                                g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
-
-                            }
-                            if (p.ppeI("gloves")) {
-                                g.setColor(Color.blue);
-                                if (p.getView() == 1) {
-                                    g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
-                                } else {
-                                    g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
-                                }
-                            }
+                        if (p.ppeI("mask")) {
+                            if (p.getView() == 1)
+                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
+                            else
+                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
 
                         }
-                        g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                        if (p.ppeI("goggles")) {
+                            if (p.getView() == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.getView() == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
+                            }
+                        }
                     }
 
-                    if (tasks[0]) {
-                        g.drawImage(p.getTask(1), 55, 40, null);
+                } else {
+                    g.drawImage(p.getImage(), p.getX(), p.getY(), null);
+                    if (p.getCharacter().equals("barry")) {
+                        if (p.ppeI("mask")) {
+                            g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.getView() == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.getView() == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
+                            }
+                        }
+                    } else {
+                        if (p.ppeI("mask")) {
+                            if (p.getView() == 1)
+                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
+                            else
+                                g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
+
+                        }
+                        if (p.ppeI("goggles")) {
+                            if (p.getView() == 1) {
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
+                            } else
+                                g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
+                        }
+                        if (p.ppeI("hand-sanitizer")) {
+                            g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
+
+                        }
+                        if (p.ppeI("gloves")) {
+                            g.setColor(Color.blue);
+                            if (p.getView() == 1) {
+                                g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
+                            } else {
+                                g.fillOval(p.getX() + 70, p.getY() + 80, 12, 12);
+                            }
+                        }
+
                     }
-                
+                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                }
+
+                if (tasks[0]) {
+                    g.drawImage(p.getTask(1), 55, 40, null);
+                }
+
             } else {
 
                 g.setColor(Color.cyan);
@@ -718,9 +715,10 @@ public class UserInput {
         }
 
         private boolean intersect() {
-            return (p.getX() + 100 >= inf.getX() - 5 && p.getX() + 100 < inf.getX() + 100
-                    && ((p.getY() >= inf.getY() - 5 && p.getY() <= inf.getY() + 100)
-                            || (p.getY() + 100 >= inf.getY() + 20 && p.getY() + 100 <= inf.getY() + 100)));
+            return (((p.getX() + 100 >= inf.getX() - 10 && p.getX() + 100 < inf.getX() + 100)
+                    || (p.getX() >= inf.getX() - 10 && p.getX() < inf.getX() + 100))
+                    && ((p.getY() >= inf.getY() - 10 && p.getY() <= inf.getY() + 100)
+                    || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 100)));
 
         }
 

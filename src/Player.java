@@ -8,7 +8,7 @@ public class Player {
     String player;
     HashMap<String, Boolean> ppe;
     HashMap<String, ArrayList<Image>> ppeItems;
-    String[][] scores = new String[11][2];
+    static String[][] scores = new String[11][2];
 
     ArrayList<Image> mask;
     ArrayList<Image> goggles;
@@ -83,9 +83,11 @@ public class Player {
         viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
 
+        name = "XXXX";
         for (int x = 0; x < scores.length; x++) {
             scores[x][0] = "XXXX";
             scores[x][1] = "0000";
+            System.out.println(scores[x][0]+"    "+scores[x][1]);
         }
 
     }
@@ -176,7 +178,7 @@ public class Player {
     }
 
     public int getTotalPoints() {
-        return 90 + pointsL2;
+        return pointsL2;
     }
 
     public int getPos() {
@@ -199,26 +201,37 @@ public class Player {
 
     }
 
-    public String[][] highscores() {
+    public static void highscores(Player p) {
+        int index =0; 
         for (int i = 0; i < 10; i++) {
-            if (Integer.parseInt(scores[i][1]) <= getTotalPoints()) {
+            if (Integer.parseInt(scores[i][1]) <= p.getTotalPoints()) {
                 for (int x = 9; x >= i; x--) {
                     scores[x + 1][0] = scores[x][0];
                     scores[x + 1][1] = scores[x][1];
                 }
-                scores[i][0] = name;
-                scores[i][1] = Integer.toString(getTotalPoints());
+                
+            }else {
+                index = i; 
+                break;
             }
         }
-
-        return scores;
+        scores[index][0] = p.getName();
+        scores[index][1] = Integer.toString(p.getTotalPoints());
     }
 
-    public void clearScores() {
+    public static String[][] getScores(){
+        return scores; 
+    }
+
+    public static void clearScores() {
         for (int i = 0; i < 10; i++) {
-            scores[i][0] = "N/A";
-            scores[i][1] = "0";
+            scores[i][0] = "XXXX";
+            scores[i][1] = "0000";
         }
+    }
+
+    public String getName(){
+        return name; 
     }
 
     public void keyPressed(KeyEvent e) {
