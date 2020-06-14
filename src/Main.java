@@ -29,6 +29,7 @@ public class Main {
     private JLabel bkg;
     private static Player p;
 
+    //main class constructor
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
@@ -40,6 +41,7 @@ public class Main {
         p = new Player("jumbo");
     }
 
+    //splashscreen animation
     public void splashScreen() {
         Splashscreen a = new Splashscreen(mainScreen);
         a.start();
@@ -50,6 +52,7 @@ public class Main {
         a.end();
     }
 
+    //title card graphic
     public void introduction() {
         icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -60,7 +63,8 @@ public class Main {
         screen.setScreen(screen.getScreen() + 1);
 
     }
-
+    
+    //main menu graphics
     public void mainMenu() {
         java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
@@ -69,9 +73,9 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-
     }
 
+    //highscores display
     public void highscores() {
         
         String[][] scores = Player.getScores();
@@ -98,6 +102,8 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
+    
+    //Instructions graphics
     public void learn() {
         java.net.URL imgUrl = Main.class.getResource("Instruction.jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
@@ -107,6 +113,7 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
+    //Level 1 start graphics
     public void level1() {
         icon = new ImageIcon("Level 1 Start (1).jpg").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -115,6 +122,7 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
+    //Level 2 start graphics
     public void level2() {
         java.net.URL imgUrl = Main.class.getResource("Level 2 Start.jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
@@ -124,10 +132,16 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
+    //exit graphic
     public void goodbye() {
-        screen.setScreen(screen.getScreen() + 1);
+        icon = new ImageIcon("Exit.jpg").getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // Gets background image
+        bkg.setVisible(true);
+        mainScreen.add(bkg);
+        mainScreen.setVisible(true);
     }
 
+    //end credits
     public void credits() {
         mainScreen.getContentPane().setBackground(Color.black);
     }

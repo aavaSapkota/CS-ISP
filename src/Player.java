@@ -4,26 +4,29 @@ import java.util.*;
 import javax.swing.ImageIcon;
 
 public class Player {
-    int x, dx, y, dy, nx2, pos, ePos;
-    String player;
-    HashMap<String, Boolean> ppe;
-    HashMap<String, ArrayList<Image>> ppeItems;
-    static String[][] scores = new String[11][2];
+    /*VARIABLE DECLARATIONS*/
+    int x, dx, y, dy, nx2, pos, ePos;             //positions 
+    String player;                                //player
+    HashMap<String, Boolean> ppe;                 //PPE select
+    HashMap<String, ArrayList<Image>> ppeItems;   //PPE images 
+    static String[][] scores = new String[11][2]; //highscores
 
-    ArrayList<Image> mask;
-    ArrayList<Image> goggles;
-    ArrayList<Image> handSani;
-    ArrayList<Image> viewsBelle;
-    ArrayList<Image> viewsBarry;
+    ArrayList<Image> mask;          //mask
+    ArrayList<Image> goggles;       //goggles
+    ArrayList<Image> handSani;      //hand sanitizer
+    ArrayList<Image> viewsBelle;    //Belle views (left, right. front)
+    ArrayList<Image> viewsBarry;    //Barry views (left, right. front)
 
-    int view;
+    int view;                       //view
 
-    String name;
-    int pointsL2;
-    boolean move;
-    String character;
+    String name;                    //username
+    int pointsL2;                   //Level two points
+    boolean move;                   //movement
+    String character;               //character 
 
+    //player constructor
     public Player(String c) {
+        //initializing variables
         character = c;
         x = 125;
         pos = 175;
@@ -35,7 +38,6 @@ public class Player {
 
         ppe = new HashMap<String, Boolean>();
         ppeItems = new HashMap<String, ArrayList<Image>>();
-
         mask = new ArrayList<Image>();
         goggles = new ArrayList<Image>();
         handSani = new ArrayList<Image>();
@@ -84,6 +86,7 @@ public class Player {
                 .getScaledInstance(180, 100, 100));
 
         name = "XXXX";
+        //ORIGINAL HIGHSCORES DEFAULT
         for (int x = 0; x < scores.length; x++) {
             scores[x][0] = "XXXX";
             scores[x][1] = "0000";
@@ -92,7 +95,7 @@ public class Player {
     }
 
     public void move() {
-        // incremments position relitive to background
+        // incremments position relative to background
         pos += dx;
 
         // add
@@ -111,6 +114,7 @@ public class Player {
             y = y - dy - 1;
     }
 
+    //getPPE item
     public Image getPpeItem(String key, String c) {
         if (!key.equals("hand-sanitizer")) {
             if (c.equals("belle"))
@@ -121,50 +125,62 @@ public class Player {
 
     }
 
+    //find PPE 
     public boolean ppeI(String key) {
         return ppe.get(key);
     }
 
+    //get username
     public String getString() {
         return name;
     }
 
+    //set username
     public void setName(String n) {
         name = n;
     }
 
+    //set character
     public void setCharacter(String n) {
         character = n;
     }
 
+    //AAVA
     public int getNx2() {
         return nx2;
     }
 
+    //get character
     public String getCharacter() {
         return character;
     }
 
+    //get Level 2 points
     public int getPointsL2() {
         return pointsL2;
     }
 
+    //deduct Level 2 points
     public void decrementPoints() {
         pointsL2 -= 100;
     }
 
+    //get x position
     public int getX() {
         return x;
     }
 
+    //AAVA
     public int getImageX() {
         return 2000 - nx2;
     }
 
+    //get y position
     public int getY() {
         return y;
     }
 
+    //get image
     public Image getImage() {
         if (character.equals("barry")) {
             return viewsBarry.get(view);
@@ -196,10 +212,7 @@ public class Player {
         return view;
     }
 
-    public static void addScore() {
-
-    }
-
+    //highscores code
     public static void highscores(Player p) {
         int index =0; 
         for (int i = 0; i < 10; i++) {
@@ -219,10 +232,12 @@ public class Player {
         scores[index][1] = Integer.toString(p.getTotalPoints());
     }
 
+    //get highscores
     public static String[][] getScores(){
         return scores; 
     }
 
+    //clear highscores 
     public static void clearScores() {
         for (int i = 0; i < 10; i++) {
             scores[i][0] = "XXXX";
@@ -234,6 +249,7 @@ public class Player {
         return name; 
     }
 
+    //movement based on arrow keys AAVA
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         move = true;
