@@ -19,40 +19,36 @@ import java.util.*;
 import java.awt.Graphics;
 
 public class UserInput {
-    JFrame game;
-    JFrame Sal = new JFrame();
-    Vars screen;
-    Level1 learn;
-    int incorrect;
-    int goBack;
-    Vars skip;
-    int counter;
+    private JFrame game;
+    private Vars screen;
+    private int incorrect;
+    private int goBack;
+    private Vars skip;
+    private int counter;
 
-    Player p;
-    Infected inf;
-    public Image bkg;
-    Timer time;
-    boolean run;
+    private Player p;
+    private Infected inf;
+    private  Image bkg;
+    private Timer time;
+    private boolean run;
 
-    int exposure;
-    Board g;
-    Level2 play;
-    int extraLife;
-    boolean pause;
-    boolean[] tasks = { false, false };
-    boolean proceed = false;
+    private int exposure;
+    private Board g;
+    private Level2 play;
+    private int extraLife;
+    private boolean[] tasks = { false, false };
+    private boolean proceed = false;
 
-    int nameCounter;
-    boolean charSelect;
+    private int nameCounter;
+    private boolean charSelect;
 
-    AL keyInput = new AL();
+    private AL keyInput = new AL();
 
-    final int pC = 700;
+    private final int pC = 700;
 
-    public UserInput(JFrame game, Vars screen, Level1 learn, Level2 play, Player p) {
+    public UserInput(JFrame game, Vars screen, Level2 play, Player p) {
         this.game = game;
         this.screen = screen;
-        this.learn = learn;
         this.play = play;
         run = false;
         skip = new Vars(false);
@@ -65,8 +61,6 @@ public class UserInput {
         bkg = i.getImage().getScaledInstance(8000, 500, java.awt.Image.SCALE_SMOOTH);
         exposure = 0;
         extraLife = 0;
-
-        pause = true;
 
         nameCounter = 0;
         charSelect = false;

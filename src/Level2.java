@@ -9,26 +9,26 @@ import javax.imageio.ImageIO;
 
 public class Level2 {
 
-    JFrame game;
-    Vars screen;
-    Player player; 
+    private JFrame game;
+    private Player player; 
+    private Image icon; 
+    private JLabel bkg;
 
-    public Level2(JFrame game, Vars screen) {
+    public Level2(JFrame game) {
         this.game = game;
-        this.screen = screen; 
     }
 
     public void charSelect() {
-        Image icon = new ImageIcon("Character Select (1).jpg").getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
+         icon = new ImageIcon("Character Select (1).jpg").getImage().getScaledInstance(700, 500, 100);
+         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
     }
 
     public void PPEOptions() {
-        Image icon = new ImageIcon("PPE Select (1).jpg").getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
+         icon = new ImageIcon("PPE Select (1).jpg").getImage().getScaledInstance(700, 500, 100);
+         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
@@ -36,8 +36,8 @@ public class Level2 {
 
     public void failed() {
         java.net.URL imgUrl = Main.class.getResource("Failed.jpg");
-        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)); // Gets background image
+         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
         game.setVisible(true);
@@ -46,8 +46,8 @@ public class Level2 {
     //source: https://stackoverflow.com/questions/36271536/jlabel-text-position
     public void passed() {
         java.net.URL imgUrl = Main.class.getResource("Passed 2.jpg");
-        Image icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon (icon)){
+         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+         bkg = new JLabel(new ImageIcon (icon)){
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setFont(new Font("Consolas", Font.PLAIN, 20));

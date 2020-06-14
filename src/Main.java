@@ -20,15 +20,14 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics;
 
 public class Main {
-    static Vars screen;
-    static UserInput input;
-    static JFrame mainScreen = new JFrame("Game Title");
-    static Level1 learn;
-    static Level2 play;
-    static int running = 0;
-    Image icon;
-    JLabel bkg;
-    static Player p;
+    private static Vars screen;
+    private static UserInput input;
+    private static JFrame mainScreen = new JFrame("Game Title");
+    private static Level1 learn;
+    private static Level2 play;
+    private Image icon;
+    private JLabel bkg;
+    private static Player p;
 
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,8 +35,8 @@ public class Main {
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
         screen = new Vars(28); // set up starting screen
-        learn = new Level1(mainScreen, screen);
-        play = new Level2(mainScreen, screen);
+        learn = new Level1(mainScreen);
+        play = new Level2(mainScreen);
         p = new Player("jumbo");
     }
 
@@ -57,7 +56,7 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        input = new UserInput(mainScreen, screen, learn, play, p);
+        input = new UserInput(mainScreen, screen, play, p);
         screen.setScreen(screen.getScreen() + 1);
 
     }
@@ -202,9 +201,9 @@ public class Main {
                 play.charSelect();
             } else if (screen.getScreen() == 30) { // PPE selection page
                 play.PPEOptions();
-            } else if (input.screen.getScreen() == 32) { // failed screen
+            } else if (screen.getScreen() == 32) { // failed screen
                 play.failed();
-            } else if (input.screen.getScreen() == 33) { // passed screen
+            } else if (screen.getScreen() == 33) { // passed screen
                 play.passed();
             }
             System.out.print("");
