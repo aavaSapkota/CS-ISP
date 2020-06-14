@@ -8,7 +8,7 @@ public class Player {
     String player;
     HashMap<String, Boolean> ppe ;
     HashMap<String, ArrayList<Image>> ppeItems;
-    static HashMap<String, Integer> scores = new HashMap<String, Integer>();
+    String [][] scores = new String [11][2];
 
     ArrayList<Image> mask;
     ArrayList<Image> goggles;
@@ -82,8 +82,6 @@ public class Player {
                 .getScaledInstance(180, 100, 100));
         viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
-
-        scores.put(name, 0);
 
     }
 
@@ -197,22 +195,25 @@ public class Player {
     }
 
     public void highscores() {
-        if (scores.size() < 11) {
-            for (String s : scores.keySet()) {
-                if (scores.get(s) < getTotalPoints()) {
-                    scores.remove(s, scores.get(s));
-                    scores.put(name, getTotalPoints());
-                    break;
+        for (int i = 0; i < 10; i++){
+            if (Integer.parseInt (scores[i][1]) <= getTotalPoints())
+            {
+                for (int x = 9; x >= i; x--)
+                {
+                    scores[x+1][0] = scores [x][0];
+                    scores[x+1][1] = scores [x][1];
                 }
+                scores [i][0] = name;
+                scores [i][1] = Integer.toString(getTotalPoints());
             }
-        }
-        for (String i : scores.keySet()) {
-            System.out.println("key: " + i + "value: " + scores.get(i));
         }
     }
 
     public void clearScores() {
-        scores.clear();
+        for (int i = 0; i < 10; i++){
+            scores [i][0] = "N/A";
+            scores [i][1] = "0";
+        }
     }
 
     public void keyPressed(KeyEvent e) {
