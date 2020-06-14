@@ -79,7 +79,6 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("x: "+x+" y: "+y);
             if (screen.getScreen() == 2) {
                 charSelect = false;
                 nameCounter = 0;
@@ -319,7 +318,6 @@ public class UserInput {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
                 }
-                System.out.println(p.getCharacter());
                 extraLife = 0;
 
             } else if (screen.getScreen() == 30) { // PPE Selection
@@ -348,7 +346,6 @@ public class UserInput {
                 g.setVisible(true);
                 game.setVisible(true);
             } else if (screen.getScreen() == 32) { // fail screen
-                System.out.println("bitch wtf");
                 game.removeKeyListener(keyInput);
                 g.setVisible(false);
                 game.getContentPane().remove(g);
@@ -429,8 +426,6 @@ public class UserInput {
                     tasks[1] = true;
                 }
 
-                System.out.println("pos: "+p.getPos());
-
                 if (intersect()) {// check if player and infected player collide
                     exposure++; // increase exposure
                     if (exposure % 100 == 0) {
@@ -494,7 +489,6 @@ public class UserInput {
                         g.drawString("Here are your points -->", 470, 55);
                         g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);
                     } else if (p.getPos() >= 1000 && p.getPos() <= 1200) {
-                        System.out.println("dude");
                         g.setColor(Color.white);
                         g.fillRect(220 - p.getPos() + 1000, 65, 200, 50);
                         g.setColor(Color.black);
