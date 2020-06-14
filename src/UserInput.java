@@ -592,7 +592,7 @@ public class UserInput {
 
                         }
                     }
-
+                }
                     if (inf.getY() < p.getY()) {
                         g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                         g.drawImage(p.getImage(), p.getX(), p.getY(), null);
@@ -702,7 +702,7 @@ public class UserInput {
                     if (tasks[0]) {
                         g.drawImage(p.getTask(1), 55, 40, null);
                     }
-                }
+                
             } else {
 
                 g.setColor(Color.cyan);

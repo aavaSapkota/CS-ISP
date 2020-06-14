@@ -76,8 +76,13 @@ public class Main {
     public void highscores() {
         java.net.URL imgUrl = Main.class.getResource("Highscores.jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
-        bkg.setBounds(0, 0, 700, 500);
+        JLabel bkg = new JLabel(new ImageIcon (icon)){
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setFont(new Font("Consolas", Font.PLAIN, 20));
+                g.drawString(p.getTotalPoints()+"", 320, 300); //these are x and y positions
+            }
+        }; //Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
