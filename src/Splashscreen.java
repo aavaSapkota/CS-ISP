@@ -10,6 +10,7 @@ public class Splashscreen extends JPanel
     public void start()
     {
         frame.setVisible(true);
+        //loop through to increase logo
          for (int i = 50; i < 300; i += 30) { 
             frame.getContentPane().setBackground(Color.BLACK);
             frame.getContentPane().removeAll();
