@@ -208,6 +208,7 @@ public class Player {
                 for (int x = 9; x >= i; x--) {
                     scores[x + 1][0] = scores[x][0];
                     scores[x + 1][1] = scores[x][1];
+                    break;
                 }
                 
             }else {
