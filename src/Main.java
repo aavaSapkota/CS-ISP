@@ -25,23 +25,23 @@ public class Main {
     static JFrame mainScreen = new JFrame("Game Title");
     static Level1 learn;
     static Level2 play;
-    static int running = 0; 
+    static int running = 0;
     Image icon;
     JLabel bkg;
-    static Player p; 
+    static Player p;
 
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(1); //set up starting screen
+        screen = new Vars(1); // set up starting screen
         learn = new Level1(mainScreen, screen);
         play = new Level2(mainScreen, screen);
         p = new Player("jumbo");
     }
 
-    public void splashScreen(){
+    public void splashScreen() {
         Splashscreen a = new Splashscreen(mainScreen);
         a.start();
         try {
@@ -74,13 +74,24 @@ public class Main {
     }
 
     public void highscores() {
-        java.net.URL imgUrl = Main.class.getResource("Highscores.jpg");
+        
+        String[][] scores = p.highscores();
+        java.net.URL imgUrl = Main.class.getResource("Highscores (1).jpg");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)){
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setFont(new Font("Consolas", Font.PLAIN, 20));
-                g.drawString(p.getTotalPoints()+"", 320, 300); //these are x and y positions
+                
+                for(int i=0; i<10; i++){
+                    String spaces = "";
+                    int r = 30-(scores[i][0].length()+scores[i][1].length());
+                    for(int j=0; j<=r; j++){
+                        spaces+=" ";
+                    }
+                    g.drawString(scores[i][0]+""+spaces+scores[i][1], 170, 190+20*i); 
+                }
+
+                
             }
         }; //Gets background image
         bkg.setVisible(true);
@@ -107,8 +118,8 @@ public class Main {
 
     public void level2() {
         java.net.URL imgUrl = Main.class.getResource("Level 2 Start.jpg");
-         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-         bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
+        icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
+        bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
@@ -191,13 +202,13 @@ public class Main {
                 play.charSelect();
             } else if (screen.getScreen() == 30) { // PPE selection page
                 play.PPEOptions();
-            } else if(input.screen.getScreen() == 32){ //failed screen
+            } else if (input.screen.getScreen() == 32) { // failed screen
                 play.failed();
-            }else if(input.screen.getScreen() == 33){ //passed screen
+            } else if (input.screen.getScreen() == 33) { // passed screen
                 play.passed();
-            } 
+            }
             System.out.print("");
-            
+
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe

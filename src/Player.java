@@ -6,14 +6,14 @@ import javax.swing.ImageIcon;
 public class Player {
     int x, dx, y, dy, nx2, pos, ePos;
     String player;
-    HashMap<String, Boolean> ppe ;
+    HashMap<String, Boolean> ppe;
     HashMap<String, ArrayList<Image>> ppeItems;
-    String [][] scores = new String [11][2];
+    String[][] scores = new String[11][2];
 
     ArrayList<Image> mask;
     ArrayList<Image> goggles;
     ArrayList<Image> handSani;
-    ArrayList<Image> viewsBelle ;
+    ArrayList<Image> viewsBelle;
     ArrayList<Image> viewsBarry;
 
     int view;
@@ -83,6 +83,11 @@ public class Player {
         viewsBarry.add((new ImageIcon(getClass().getClassLoader().getResource("Barry [left].png"))).getImage()
                 .getScaledInstance(180, 100, 100));
 
+        for (int x = 0; x < scores.length; x++) {
+            scores[x][0] = "XXXX";
+            scores[x][1] = "0000";
+        }
+
     }
 
     public void move() {
@@ -131,8 +136,8 @@ public class Player {
         character = n;
     }
 
-    public int getNx2(){
-        return nx2; 
+    public int getNx2() {
+        return nx2;
     }
 
     public String getCharacter() {
@@ -194,25 +199,25 @@ public class Player {
 
     }
 
-    public void highscores() {
-        for (int i = 0; i < 10; i++){
-            if (Integer.parseInt (scores[i][1]) <= getTotalPoints())
-            {
-                for (int x = 9; x >= i; x--)
-                {
-                    scores[x+1][0] = scores [x][0];
-                    scores[x+1][1] = scores [x][1];
+    public String[][] highscores() {
+        for (int i = 0; i < 10; i++) {
+            if (Integer.parseInt(scores[i][1]) <= getTotalPoints()) {
+                for (int x = 9; x >= i; x--) {
+                    scores[x + 1][0] = scores[x][0];
+                    scores[x + 1][1] = scores[x][1];
                 }
-                scores [i][0] = name;
-                scores [i][1] = Integer.toString(getTotalPoints());
+                scores[i][0] = name;
+                scores[i][1] = Integer.toString(getTotalPoints());
             }
         }
+
+        return scores;
     }
 
     public void clearScores() {
-        for (int i = 0; i < 10; i++){
-            scores [i][0] = "N/A";
-            scores [i][1] = "0";
+        for (int i = 0; i < 10; i++) {
+            scores[i][0] = "N/A";
+            scores[i][1] = "0";
         }
     }
 

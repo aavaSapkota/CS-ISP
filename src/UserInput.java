@@ -46,6 +46,8 @@ public class UserInput {
     int nameCounter;
     boolean charSelect;
 
+    AL keyInput = new AL();
+
     final int pC = 700;
 
     public UserInput(JFrame game, Vars screen, Level1 learn, Level2 play, Player p) {
@@ -58,7 +60,7 @@ public class UserInput {
         game.addMouseListener(new ML());
         incorrect = 0;
 
-        game.addKeyListener(new AL());
+
         game.setFocusable(true);
         java.net.URL imgUrl = Main.class.getResource("Level2 background (1).jpg");
         ImageIcon i = new ImageIcon(imgUrl);
@@ -320,11 +322,11 @@ public class UserInput {
                         p.setCharacter("barry");
                         proceed = true;
                     }
-                System.out.println(charSelect);
-                System.out.println(p.getCharacter());
+
 
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
                     screen.setScreen(30);
+                    game.addKeyListener(keyInput);
                 }
                 extraLife = 0;
 
@@ -354,6 +356,7 @@ public class UserInput {
                 g.setVisible(true);
                 game.setVisible(true);
             } else if (screen.getScreen() == 32) { // fail screen
+                game.removeKeyListener(keyInput);
                 g.setVisible(false);
                 game.getContentPane().remove(g);
                 play.failed();
@@ -364,6 +367,7 @@ public class UserInput {
                     screen.setScreen(2);
                 }
             } else if (screen.getScreen() == 33) {
+                
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
@@ -371,7 +375,8 @@ public class UserInput {
                 }
                 charSelect = false;
                 nameCounter = 0;
-                p.highscores();
+                
+                game.removeKeyListener(keyInput);
             }
 
             if (!skip.getSkip())
