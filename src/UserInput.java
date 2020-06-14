@@ -393,6 +393,7 @@ public class UserInput {
         int pointTime;
         int timing;
 
+        //board constructor
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
@@ -471,7 +472,7 @@ public class UserInput {
                 g.fillRoundRect(50, 40, 30, 30, 7, 7);
                 g.setColor(Color.black);
                 g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                g.drawString("Equiped with: ", 15, 30);
+                g.drawString("Equiped with: ", 15, 30);             //option for handsanitizer and takeout bag
                 for (int i = 0; i < extraLife + 3; i++) {
                     g.drawImage(life, 680 - (25 * i), 10, null);
                 }
@@ -484,22 +485,22 @@ public class UserInput {
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
                         g.drawString("Use the arrow keys to move", 180 - p.getPos() + 300, 100);
-                        g.drawString("around your neighboor hood.", 180 - p.getPos() + 300, 115);
+                        g.drawString("around your neighboorhood.", 180 - p.getPos() + 300, 115);
                     } else if (p.getPos() >= 600 && p.getPos() <= 800) {
                         g.setColor(Color.white);
                         g.fillRect(470, 40, 150, 20);
                         g.fillRect(450 - (20 * extraLife), 5, 150, 20);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Here are your points -->", 470, 55);
-                        g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);
+                        g.drawString("Here are your points -->", 470, 55);                          //gestures to point
+                        g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);        //life/health points expressed in hearts
                     } else if (p.getPos() >= 1000 && p.getPos() <= 1200) {
                         System.out.println("dude");
                         g.setColor(Color.white);
                         g.fillRect(220 - p.getPos() + 1000, 65, 200, 50);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Wanna walk faster? Click on ", 230 - p.getPos() + 1000, 80);
+                        g.drawString("Wanna walk faster? Click on ", 230 - p.getPos() + 1000, 80);  //next checkpoint
                         g.drawString("the screen to speed up the .", 230 - p.getPos() + 1000, 95);
                         g.drawString("animation.", 230 - p.getPos() + 1000, 110);
                     } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
@@ -507,7 +508,7 @@ public class UserInput {
                         g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Despite the Quarantine,", 180 - p.getPos() + 1710, 100);
+                        g.drawString("Despite the quarantine,", 180 - p.getPos() + 1710, 100);      //warning label near park
                         g.drawString("people are still going", 180 - p.getPos() + 1710, 115);
                         g.drawString("outside... stay clear of ", 180 - p.getPos() + 1710, 130);
                         g.drawString("of all the infected people!", 180 - p.getPos() + 1710, 145);
@@ -523,7 +524,7 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 3710 + pC, 215, 130, 50, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225);
+                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225);  //Sal's message (if you help)
                             g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
                             g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
                         } else {
@@ -532,9 +533,9 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 3710 + pC, 190, 130, 85, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205);
+                            g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205);  //Sal explaining the problem
                             g.drawString("small business. We're really ", 275 - p.getPos() + 3710 + pC, 220);
-                            g.drawString("having a hard time with this ", 275 - p.getPos() + 3710 + pC, 235);
+                            g.drawString("having a hard time during this ", 275 - p.getPos() + 3710 + pC, 235);
                             g.drawString("pandemic; there's just not ", 275 - p.getPos() + 3710 + pC, 250);
                             g.drawString("enough customers coming!", 275 - p.getPos() + 3710 + pC, 265);
 
@@ -542,7 +543,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support a small businesss", 200, 495);
+                            g.drawString("Task: Support a small businesss", 200, 495);      //task                         
 
                             g.setColor(Color.red);
                             int[] x = { 410 - p.getPos() + 3710 + pC + 20, 385 - p.getPos() + 3710 + pC + 20,
@@ -565,7 +566,7 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 4875 + pC + 200, 190, 100, 50, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Thank you so much! ", 275 - p.getPos() + 4875 + pC + 200, 205);
+                            g.drawString("Thank you so much! ", 275 - p.getPos() + 4875 + pC + 200, 205);       //Nurse's message    
                             g.drawString("Please stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
 
                         } else {
@@ -574,7 +575,7 @@ public class UserInput {
                             g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);
+                            g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);         //explanation of healthcare dilemma
                             g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC + 200, 220);
                             g.drawString("during this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
                             g.drawString("don't receive the support they need, ", 175 - p.getPos() + 4875 + pC + 200,
@@ -586,7 +587,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support Frontline workers", 200, 495);
+                            g.drawString("Task: Support Frontline workers", 200, 495);          //second task
 
                             g.setColor(new Color(50, 100, 50));
                             g.fillRect(315 - p.getPos() + 4875 + pC + 200, 300, 70, 40);
@@ -606,6 +607,7 @@ public class UserInput {
                         }
                     }
                 }
+                //options for PPE and changes depending on view 
                 if (inf.getY() < p.getY()) {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
