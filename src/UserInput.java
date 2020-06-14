@@ -85,7 +85,7 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("screen: " + screen.getScreen());
+            System.out.println("x: "+x+" y: "+y);
             if (screen.getScreen() == 2) {
                 charSelect = false;
                 nameCounter = 0;
@@ -113,7 +113,6 @@ public class UserInput {
                 if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
                     screen.setScreen(7);
                     counter = 0;
-                    // System.out.println(learn);
                 } // -------------------------------------------------------------GAME SCREENS
                   // START ( LEVEL ONE )
             } else if (screen.getScreen() == 7) { // question 1
@@ -306,6 +305,7 @@ public class UserInput {
                 if (!charSelect) {
                     p = new Player("jumbo");
                     charSelect = true;
+                    proceed = false; 
                 }
                 play.setPlayer(p);
                 if (nameCounter == 0)
@@ -325,6 +325,7 @@ public class UserInput {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
                 }
+                System.out.println(p.getCharacter());
                 extraLife = 0;
 
             } else if (screen.getScreen() == 30) { // PPE Selection
@@ -353,6 +354,7 @@ public class UserInput {
                 g.setVisible(true);
                 game.setVisible(true);
             } else if (screen.getScreen() == 32) { // fail screen
+                System.out.println("bitch wtf");
                 game.removeKeyListener(keyInput);
                 g.setVisible(false);
                 game.getContentPane().remove(g);
@@ -360,9 +362,11 @@ public class UserInput {
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
                     screen.setScreen(28);// set back to play screen
                     charSelect = false;
-                } else {
+                } else if(x >= 480 && y >= 315 && x <= 610 && y <= 340){
                     screen.setScreen(2);
                 }
+                charSelect = false;
+                nameCounter = 0;
             } else if (screen.getScreen() == 33) {
                 Player.highscores(p);
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
@@ -408,6 +412,8 @@ public class UserInput {
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
+            tasks[0]=false; 
+            tasks[1]=false; 
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -428,6 +434,8 @@ public class UserInput {
                 } else if (p.getY() <= 250 && p.getPos() >= 4875 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
                     tasks[1] = true;
                 }
+
+                System.out.println("pos: "+p.getPos());
 
                 if (intersect()) {// check if player and infected player collide
                     exposure++; // increase exposure
@@ -491,6 +499,15 @@ public class UserInput {
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
                         g.drawString("Here are your points -->", 470, 55);
                         g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);
+                    } else if (p.getPos() >= 1000 && p.getPos() <= 1200) {
+                        System.out.println("dude");
+                        g.setColor(Color.white);
+                        g.fillRect(220 - p.getPos() + 1000, 65, 200, 50);
+                        g.setColor(Color.black);
+                        g.setFont(new Font("Calibri", Font.PLAIN, 15));
+                        g.drawString("Wanna walk faster? Click on ", 230 - p.getPos() + 1000, 80);
+                        g.drawString("the screen to speed up the .", 230 - p.getPos() + 1000, 95);
+                        g.drawString("animation.", 230 - p.getPos() + 1000, 110);
                     } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
                         g.setColor(Color.white);
                         g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);

@@ -25,7 +25,7 @@ public class Player {
 
     public Player(String c) {
         character = c;
-        x = 175;
+        x = 125;
         pos = 175;
         y = 300;
         nx2 = 2000;
@@ -87,7 +87,6 @@ public class Player {
         for (int x = 0; x < scores.length; x++) {
             scores[x][0] = "XXXX";
             scores[x][1] = "0000";
-            System.out.println(scores[x][0]+"    "+scores[x][1]);
         }
 
     }
@@ -106,7 +105,7 @@ public class Player {
         }
 
         y += dy;
-        if (y < 250)
+        if (y < 240)
             y = y - dy + 1;
         else if (y > 400)
             y = y - dy - 1;
