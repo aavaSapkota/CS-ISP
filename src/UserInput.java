@@ -13,9 +13,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.Timer;
-import javax.swing.JFrame.*;
-import java.io.*;
-import java.util.*;
 import java.awt.Graphics;
 
 public class UserInput {
@@ -317,6 +314,7 @@ public class UserInput {
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
+                    counter=0; 
                 }
                 extraLife = 0;
 
@@ -489,14 +487,6 @@ public class UserInput {
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
                         g.drawString("Here are your points -->", 470, 55);                          //gestures to point
                         g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);        //life/health points expressed in hearts
-                    } else if (p.getPos() >= 1000 && p.getPos() <= 1200) {
-                        g.setColor(Color.white);
-                        g.fillRect(220 - p.getPos() + 1000, 65, 200, 50);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Wanna walk faster? Click on ", 230 - p.getPos() + 1000, 80);  //next checkpoint
-                        g.drawString("the screen to speed up the .", 230 - p.getPos() + 1000, 95);
-                        g.drawString("animation.", 230 - p.getPos() + 1000, 110);
                     } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
                         g.setColor(Color.white);
                         g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
@@ -724,9 +714,8 @@ public class UserInput {
         private boolean intersect() {
             return (((p.getX() + 100 >= inf.getX() - 10 && p.getX() + 100 < inf.getX() + 100)
                     || (p.getX() >= inf.getX() - 10 && p.getX() < inf.getX() + 100))
-                    && ((p.getY() >= inf.getY() - 10 && p.getY() <= inf.getY() + 100)
-                    || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 100)));
-
+                    && ((p.getY() >= inf.getY()  && p.getY() <= inf.getY() + 90)
+                    || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 90)));
         }
 
     }

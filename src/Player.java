@@ -214,22 +214,20 @@ public class Player {
 
     //highscores code
     public static void highscores(Player p) {
-        int index =0; 
+        int index =10; 
         for (int i = 0; i < 10; i++) {
             if (Integer.parseInt(scores[i][1]) <= p.getTotalPoints()) {
                 for (int x = 9; x >= i; x--) {
                     scores[x + 1][0] = scores[x][0];
                     scores[x + 1][1] = scores[x][1];
-                    break;
                 }
-                
-            }else {
                 index = i; 
-                break;
+                break; 
             }
         }
-        scores[index][0] = p.getName();
-        scores[index][1] = Integer.toString(p.getTotalPoints());
+        
+        scores[10-index][0] = p.getName();
+        scores[10-index][1] = Integer.toString(p.getTotalPoints());
     }
 
     //get highscores
