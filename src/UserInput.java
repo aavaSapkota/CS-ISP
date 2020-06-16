@@ -13,9 +13,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.Timer;
-import javax.swing.JFrame.*;
-import java.io.*;
-import java.util.*;
 import java.awt.Graphics;
 
 public class UserInput {
@@ -79,7 +76,6 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("x: "+x+" y: "+y);
             if (screen.getScreen() == 2) {
                 charSelect = false;
                 nameCounter = 0;
@@ -318,8 +314,8 @@ public class UserInput {
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
+                    counter=0; 
                 }
-                System.out.println(p.getCharacter());
                 extraLife = 0;
 
             } else if (screen.getScreen() == 30) { // PPE Selection
@@ -348,7 +344,6 @@ public class UserInput {
                 g.setVisible(true);
                 game.setVisible(true);
             } else if (screen.getScreen() == 32) { // fail screen
-                System.out.println("bitch wtf");
                 game.removeKeyListener(keyInput);
                 g.setVisible(false);
                 game.getContentPane().remove(g);
@@ -430,8 +425,6 @@ public class UserInput {
                     tasks[1] = true;
                 }
 
-                System.out.println("pos: "+p.getPos());
-
                 if (intersect()) {// check if player and infected player collide
                     exposure++; // increase exposure
                     if (exposure % 100 == 0) {
@@ -494,15 +487,6 @@ public class UserInput {
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
                         g.drawString("Here are your points -->", 470, 55);                          //gestures to point
                         g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);        //life/health points expressed in hearts
-                    } else if (p.getPos() >= 1000 && p.getPos() <= 1200) {
-                        System.out.println("dude");
-                        g.setColor(Color.white);
-                        g.fillRect(220 - p.getPos() + 1000, 65, 200, 50);
-                        g.setColor(Color.black);
-                        g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Wanna walk faster? Click on ", 230 - p.getPos() + 1000, 80);  //next checkpoint
-                        g.drawString("the screen to speed up the .", 230 - p.getPos() + 1000, 95);
-                        g.drawString("animation.", 230 - p.getPos() + 1000, 110);
                     } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
                         g.setColor(Color.white);
                         g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
@@ -730,9 +714,8 @@ public class UserInput {
         private boolean intersect() {
             return (((p.getX() + 100 >= inf.getX() - 10 && p.getX() + 100 < inf.getX() + 100)
                     || (p.getX() >= inf.getX() - 10 && p.getX() < inf.getX() + 100))
-                    && ((p.getY() >= inf.getY() - 10 && p.getY() <= inf.getY() + 100)
-                    || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 100)));
-
+                    && ((p.getY() >= inf.getY()  && p.getY() <= inf.getY() + 90)
+                    || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 90)));
         }
 
     }
