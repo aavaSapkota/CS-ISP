@@ -9,11 +9,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.JFrame.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.JComponent;
-import javax.imageio.ImageIO;
 import java.awt.Graphics;
 
 public class Main {
@@ -32,7 +27,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(1); // set up starting screen
+        screen = new Vars(28); // set up starting screen
         learn = new Level1(mainScreen);
         play = new Level2(mainScreen);
         input = new UserInput(mainScreen, screen, play, p);
@@ -151,8 +146,8 @@ public class Main {
      */
     public static void main(String args[]) {
         Main m = new Main();
-        m.splashScreen();
-        m.introduction();
+        // m.splashScreen();
+        // m.introduction();
         while (true) {
             if (screen.getScreen() == 2) {
                 m.mainMenu();

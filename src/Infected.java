@@ -15,8 +15,7 @@ public class Infected {
         start = s; 
         startB= false; 
         java.net.URL imgUrl = Main.class.getResource("Infected [left].png");
-        ImageIcon i = new ImageIcon(imgUrl);
-        still = i.getImage().getScaledInstance(130, 100, 100);
+        still = (new ImageIcon(imgUrl)).getImage().getScaledInstance(130, 100, 100);
         x = 730;
         y = yL;
     }

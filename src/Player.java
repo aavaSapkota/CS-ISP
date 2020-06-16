@@ -5,24 +5,24 @@ import javax.swing.ImageIcon;
 
 public class Player {
     /*VARIABLE DECLARATIONS*/
-    int x, dx, y, dy, nx2, pos, ePos;             //positions 
-    String player;                                //player
-    HashMap<String, Boolean> ppe;                 //PPE select
-    HashMap<String, ArrayList<Image>> ppeItems;   //PPE images 
-    static String[][] scores = new String[11][2]; //highscores
+    private int x, dx, y, dy, nx2, pos, ePos;             //positions 
+    private String player;                                //player
+    private HashMap<String, Boolean> ppe;                 //PPE select
+    private HashMap<String, ArrayList<Image>> ppeItems;   //PPE images 
+    private static String[][] scores = new String[11][2]; //highscores
 
-    ArrayList<Image> mask;          //mask
-    ArrayList<Image> goggles;       //goggles
-    ArrayList<Image> handSani;      //hand sanitizer
-    ArrayList<Image> viewsBelle;    //Belle views (left, right. front)
-    ArrayList<Image> viewsBarry;    //Barry views (left, right. front)
+    private ArrayList<Image> mask;          //mask
+    private ArrayList<Image> goggles;       //goggles
+    private ArrayList<Image> handSani;      //hand sanitizer
+    private ArrayList<Image> viewsBelle;    //Belle views (left, right. front)
+    private ArrayList<Image> viewsBarry;    //Barry views (left, right. front)
 
-    int view;                       //view
+    private int view;                       //view
 
-    String name;                    //username
-    int pointsL2;                   //Level two points
-    boolean move;                   //movement
-    String character;               //character 
+    private String name;                    //username
+    private int pointsL2;                   //Level two points
+    private boolean move;                   //movement
+    private String character;               //character 
 
     //player constructor
     public Player(String c) {
@@ -123,6 +123,10 @@ public class Player {
         }
         return handSani.get(0);
 
+    }
+
+    public void ppeSet(String key, boolean val){
+        ppe.replace(key, val);
     }
 
     //find PPE 
@@ -245,6 +249,10 @@ public class Player {
 
     public String getName(){
         return name; 
+    }
+
+    public boolean getMove(){
+        return move; 
     }
 
     //movement based on arrow keys AAVA

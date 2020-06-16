@@ -25,7 +25,7 @@ public class UserInput {
 
     private Player p;
     private Infected inf;
-    private  Image bkg;
+    private Image bkg;
     private Timer time;
     private boolean run;
 
@@ -38,6 +38,8 @@ public class UserInput {
 
     private int nameCounter;
     private boolean charSelect;
+
+    int runCounter = 0;
 
     private AL keyInput = new AL();
 
@@ -295,7 +297,7 @@ public class UserInput {
                 if (!charSelect) {
                     p = new Player("jumbo");
                     charSelect = true;
-                    proceed = false; 
+                    proceed = false;
                 }
                 play.setPlayer(p);
                 if (nameCounter == 0)
@@ -305,6 +307,13 @@ public class UserInput {
                 if (counter % 2 == 0)
                     if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
                         p.setCharacter("belle");
+                        game.getContentPane().add(new JLabel() {
+                            protected void paintComponent(Graphics g) {
+                                g.setColor(Color.GREEN);
+                                g.drawRect(100, 200, 240, 230);
+                            }
+                        });
+                        game.setVisible(true);
                         proceed = true;
                     } else if (x >= 380 && y >= 200 && x <= 630 && y <= 430) {
                         p.setCharacter("barry");
@@ -314,24 +323,24 @@ public class UserInput {
                 if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
-                    counter=0; 
+                    counter = 0;
                 }
                 extraLife = 0;
 
             } else if (screen.getScreen() == 30) { // PPE Selection
                 counter++;
 
-                if (x >= 125 && y >= 185 && x <= 370 && y <= 300 && p.ppe.get("gloves") == false) {
-                    p.ppe.replace("gloves", true);
+                if (x >= 125 && y >= 185 && x <= 370 && y <= 300 && p.ppeI("gloves") == false) {
+                    p.ppeSet("gloves", true);
                     extraLife++;
-                } else if (x >= 395 && y >= 185 && x <= 635 && y <= 305 && p.ppe.get("mask") == false) {
-                    p.ppe.replace("mask", true);
+                } else if (x >= 395 && y >= 185 && x <= 635 && y <= 305 && p.ppeI("mask") == false) {
+                    p.ppeSet("mask", true);
                     extraLife++;
-                } else if (x >= 125 && y >= 325 && x <= 370 && y <= 445 && p.ppe.get("goggles") == false) {
-                    p.ppe.replace("goggles", true);
+                } else if (x >= 125 && y >= 325 && x <= 370 && y <= 445 && p.ppeI("goggles") == false) {
+                    p.ppeSet("goggles", true);
                     extraLife++;
-                } else if (x >= 395 && y >= 325 && x <= 635 && y <= 445 && p.ppe.get("hand-sanitizer") == false) {
-                    p.ppe.replace("hand-sanitizer", true);
+                } else if (x >= 395 && y >= 325 && x <= 635 && y <= 445 && p.ppeI("hand-sanitizer") == false) {
+                    p.ppeSet("hand-sanitizer", true);
                     extraLife++;
                 }
                 if (counter % 2 == 0)
@@ -339,24 +348,29 @@ public class UserInput {
                         screen.setScreen(31);
                     }
             } else if (screen.getScreen() == 31) { // Game Screen
-                g = new Board();// Make new instance of Board
-                game.add(g); // add to JFrame
-                g.setVisible(true);
-                game.setVisible(true);
+                if (runCounter == 0) {
+                    g = new Board();// Make new instance of Board
+                    game.add(g); // add to JFrame
+                    g.setVisible(true);
+                    game.setVisible(true);
+                }
+
             } else if (screen.getScreen() == 32) { // fail screen
                 game.removeKeyListener(keyInput);
                 g.setVisible(false);
                 game.getContentPane().remove(g);
+                runCounter=0; 
                 play.failed();
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
                     screen.setScreen(28);// set back to play screen
                     charSelect = false;
-                } else if(x >= 480 && y >= 315 && x <= 610 && y <= 340){
+                } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
                     screen.setScreen(2);
                 }
                 charSelect = false;
                 nameCounter = 0;
             } else if (screen.getScreen() == 33) {
+                runCounter=0;
                 Player.highscores(p);
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
@@ -387,13 +401,15 @@ public class UserInput {
         int t;
         int pointTime;
         int timing;
+        Trash garbage; 
 
-        //board constructor
+        // board constructor
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
-            inf = new Infected(3000 + pC, p, 350);
+            inf = new Infected(200, p, 350);
+            garbage = new Trash(300, p); 
             run = true;
             counter = 0;
             pointTime = 0;
@@ -402,8 +418,8 @@ public class UserInput {
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
-            tasks[0]=false; 
-            tasks[1]=false; 
+            tasks[0] = false;
+            tasks[1] = false;
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -429,15 +445,23 @@ public class UserInput {
                     exposure++; // increase exposure
                     if (exposure % 100 == 0) {
                         extraLife--; // decrease health
-                        p.decrementPoints(); // decreace points
+                        p.decrementPoints(); // decrease points
                     }
                 }
-                if (inf.getX() < -100 && (p.getPos() > 2000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
-                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)) { // timing for new infected
-                                                                                             // players
+                if (inf.getX() < 0 && (p.getPos() > 2000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
+                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200) && t % 100 == 0) { // timing
+                                                                                                             // for new
+                                                                                                             // infected
+                    // players
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);
                     timing++;
                 }
+
+                if(garbage.getX()>garbage.getCheckpoint()){
+                    garbage = new Trash(250 + ((int) (Math.random() * 150) + 1), p);
+                    
+                }
+
 
             } else if (run == false && counter == 0) {
                 exposure = 0;
@@ -465,7 +489,7 @@ public class UserInput {
                 g.fillRoundRect(50, 40, 30, 30, 7, 7);
                 g.setColor(Color.black);
                 g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                g.drawString("Equiped with: ", 15, 30);             //option for handsanitizer and takeout bag
+                g.drawString("Equiped with: ", 15, 30); // option for handsanitizer and takeout bag
                 for (int i = 0; i < extraLife + 3; i++) {
                     g.drawImage(life, 680 - (25 * i), 10, null);
                 }
@@ -485,14 +509,16 @@ public class UserInput {
                         g.fillRect(450 - (20 * extraLife), 5, 150, 20);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Here are your points -->", 470, 55);                          //gestures to point
-                        g.drawString("Here is your health -->", 450 - (20 * extraLife), 20);        //life/health points expressed in hearts
+                        g.drawString("Here are your points -->", 470, 55); // gestures to point
+                        g.drawString("Here is your health -->", 450 - (20 * extraLife), 20); // life/health points
+                                                                                             // expressed in hearts
                     } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
                         g.setColor(Color.white);
                         g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Despite the quarantine,", 180 - p.getPos() + 1710, 100);      //warning label near park
+                        g.drawString("Despite the quarantine,", 180 - p.getPos() + 1710, 100); // warning label near
+                                                                                               // park
                         g.drawString("people are still going", 180 - p.getPos() + 1710, 115);
                         g.drawString("outside... stay clear of ", 180 - p.getPos() + 1710, 130);
                         g.drawString("of all the infected people!", 180 - p.getPos() + 1710, 145);
@@ -508,7 +534,10 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 3710 + pC, 215, 130, 50, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225);  //Sal's message (if you help)
+                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225); // Sal's
+                                                                                                           // message
+                                                                                                           // (if you
+                                                                                                           // help)
                             g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
                             g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
                         } else {
@@ -517,7 +546,10 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 3710 + pC, 190, 130, 85, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205);  //Sal explaining the problem
+                            g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205); // Sal
+                                                                                                               // explaining
+                                                                                                               // the
+                                                                                                               // problem
                             g.drawString("small business. We're really ", 275 - p.getPos() + 3710 + pC, 220);
                             g.drawString("having a hard time during this ", 275 - p.getPos() + 3710 + pC, 235);
                             g.drawString("pandemic; there's just not ", 275 - p.getPos() + 3710 + pC, 250);
@@ -527,7 +559,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support a small businesss", 200, 495);      //task                         
+                            g.drawString("Task: Support a small businesss", 200, 495); // task
 
                             g.setColor(Color.red);
                             int[] x = { 410 - p.getPos() + 3710 + pC + 20, 385 - p.getPos() + 3710 + pC + 20,
@@ -550,7 +582,8 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 4875 + pC + 200, 190, 100, 50, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Thank you so much! ", 275 - p.getPos() + 4875 + pC + 200, 205);       //Nurse's message    
+                            g.drawString("Thank you so much! ", 275 - p.getPos() + 4875 + pC + 200, 205); // Nurse's
+                                                                                                          // message
                             g.drawString("Please stay safe! ", 275 - p.getPos() + 4875 + pC + 200, 220);
 
                         } else {
@@ -559,7 +592,10 @@ public class UserInput {
                             g.fillRoundRect(170 - p.getPos() + 4875 + pC + 200, 190, 150, 85, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205);         //explanation of healthcare dilemma
+                            g.drawString("Frontline workers are some of", 175 - p.getPos() + 4875 + pC + 200, 205); // explanation
+                                                                                                                    // of
+                                                                                                                    // healthcare
+                                                                                                                    // dilemma
                             g.drawString("the most essential service workers", 175 - p.getPos() + 4875 + pC + 200, 220);
                             g.drawString("during this time. However many ", 175 - p.getPos() + 4875 + pC + 200, 235);
                             g.drawString("don't receive the support they need, ", 175 - p.getPos() + 4875 + pC + 200,
@@ -571,7 +607,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support Frontline workers", 200, 495);          //second task
+                            g.drawString("Task: Support Frontline workers", 200, 495); // second task
 
                             g.setColor(new Color(50, 100, 50));
                             g.fillRect(315 - p.getPos() + 4875 + pC + 200, 300, 70, 40);
@@ -591,7 +627,7 @@ public class UserInput {
                         }
                     }
                 }
-                //options for PPE and changes depending on view 
+                // options for PPE and changes depending on view
                 if (inf.getY() < p.getY()) {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
@@ -600,7 +636,7 @@ public class UserInput {
                             g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
                         }
                         if (p.ppeI("goggles")) {
-                            if (p.view == 1) {
+                            if (p.getView() == 1) {
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
                             } else
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
@@ -698,6 +734,12 @@ public class UserInput {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
 
+
+                if(p.getPos()>2500){
+                    g.drawImage(garbage.getImage(),730-garbage.getX(), 250, null);
+                    System.out.println("bruh+ "+garbage.getX());
+                }
+
                 if (tasks[0]) {
                     g.drawImage(p.getTask(1), 55, 40, null);
                 }
@@ -714,8 +756,8 @@ public class UserInput {
         private boolean intersect() {
             return (((p.getX() + 100 >= inf.getX() - 10 && p.getX() + 100 < inf.getX() + 100)
                     || (p.getX() >= inf.getX() - 10 && p.getX() < inf.getX() + 100))
-                    && ((p.getY() >= inf.getY()  && p.getY() <= inf.getY() + 90)
-                    || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 90)));
+                    && ((p.getY() >= inf.getY() && p.getY() <= inf.getY() + 90)
+                            || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 90)));
         }
 
     }
