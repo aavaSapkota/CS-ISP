@@ -23,7 +23,7 @@ public class Infected {
     public void move() {
         if(p.getPos()>start)
             startB = true; 
-        if(startB) x-=2;
+        if(startB) x-=4;
         if(x<0)startB=false; 
     }
 

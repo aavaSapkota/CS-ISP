@@ -258,21 +258,23 @@ public class Player {
     //movement based on arrow keys AAVA
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        move = true;
+        // move = true;
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
+            dx = -3;
             view = 1;
+            move = true;
         }
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
+            dx = 3;
             view = 0;
+            move = true;
         }
         if (key == KeyEvent.VK_UP) {
-            dy = -1;
+            dy = -3;
         }
         if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
+            dy = 3;
         }
 
     }

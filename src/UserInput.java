@@ -43,7 +43,10 @@ public class UserInput {
 
     private AL keyInput = new AL();
 
-    private final int pC = 700;
+    private final int pC = 1000;
+
+    Image backgroundImg = (new ImageIcon(Main.class.getResource("Level 2 background (1).png"))).getImage()
+            .getScaledInstance(7000, 500, java.awt.Image.SCALE_SMOOTH);
 
     public UserInput(JFrame game, Vars screen, Level2 play, Player p) {
         this.game = game;
@@ -55,9 +58,7 @@ public class UserInput {
         incorrect = 0;
 
         game.setFocusable(true);
-        java.net.URL imgUrl = Main.class.getResource("Level2 background (1).jpg");
-        ImageIcon i = new ImageIcon(imgUrl);
-        bkg = i.getImage().getScaledInstance(8000, 500, java.awt.Image.SCALE_SMOOTH);
+        bkg = backgroundImg;
         exposure = 0;
         extraLife = 0;
 
@@ -359,7 +360,7 @@ public class UserInput {
                 game.removeKeyListener(keyInput);
                 g.setVisible(false);
                 game.getContentPane().remove(g);
-                runCounter=0; 
+                runCounter = 0;
                 play.failed();
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
                     screen.setScreen(28);// set back to play screen
@@ -370,7 +371,7 @@ public class UserInput {
                 charSelect = false;
                 nameCounter = 0;
             } else if (screen.getScreen() == 33) {
-                runCounter=0;
+                runCounter = 0;
                 Player.highscores(p);
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
@@ -401,15 +402,16 @@ public class UserInput {
         int t;
         int pointTime;
         int timing;
-        Trash garbage; 
+        Trash garbage;
+        int c = 0;
 
         // board constructor
         public Board() {
             addKeyListener(new AL());
             time = new Timer(5, this);
             time.start();
-            inf = new Infected(200, p, 350);
-            garbage = new Trash(300, p); 
+            inf = new Infected(2000, p, 350);
+            garbage = new Trash(300, p, 2500);
             run = true;
             counter = 0;
             pointTime = 0;
@@ -450,18 +452,22 @@ public class UserInput {
                 }
                 if (inf.getX() < 0 && (p.getPos() > 2000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
                         && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200) && t % 100 == 0) { // timing
-                                                                                                             // for new
-                                                                                                             // infected
-                    // players
-                    inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);
-                    timing++;
+                    inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);// infected
+                    timing++;// players
                 }
 
-                if(garbage.getX()>garbage.getCheckpoint()){
-                    garbage = new Trash(250 + ((int) (Math.random() * 150) + 1), p);
-                    
+                if (intersect(0)) {
+                    garbage.pickedUp = true;
                 }
 
+                if (p.getPos() >= garbage.getCheckPoint() + 700) {
+                    while (garbage.getCheckPoint() < p.getPos())
+                        garbage.nextCheckpoint();
+                    System.out.println("bruh " + garbage.getCheckPoint());
+
+                }
+                System.out.println("pos: " + p.getPos());
+                System.out.println("y: " + p.getY());
 
             } else if (run == false && counter == 0) {
                 exposure = 0;
@@ -471,7 +477,6 @@ public class UserInput {
                 else
                     screen.setScreen(33);
                 counter++;
-
             }
 
         }
@@ -512,16 +517,16 @@ public class UserInput {
                         g.drawString("Here are your points -->", 470, 55); // gestures to point
                         g.drawString("Here is your health -->", 450 - (20 * extraLife), 20); // life/health points
                                                                                              // expressed in hearts
-                    } else if (p.getPos() >= 1710 && p.getPos() <= 3000) {
+                    } else if (p.getPos() >= 1410 && p.getPos() <= 2700) {
                         g.setColor(Color.white);
-                        g.fillRect(150 - p.getPos() + 1740, 85, 170, 70);
+                        g.fillRect(180 - p.getPos() + 1410, 85, 170, 70);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Despite the quarantine,", 180 - p.getPos() + 1710, 100); // warning label near
+                        g.drawString("Despite the quarantine,", 180 - p.getPos() + 1410, 100); // warning label near
                                                                                                // park
-                        g.drawString("people are still going", 180 - p.getPos() + 1710, 115);
-                        g.drawString("outside... stay clear of ", 180 - p.getPos() + 1710, 130);
-                        g.drawString("of all the infected people!", 180 - p.getPos() + 1710, 145);
+                        g.drawString("people are still going", 180 - p.getPos() + 1410, 115);
+                        g.drawString("outside... stay clear of ", 180 - p.getPos() + 1410, 130);
+                        g.drawString("of all the infected people!", 180 - p.getPos() + 1410, 145);
                     } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) {
 
                         g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
@@ -559,7 +564,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support a small businesss", 200, 495); // task
+                            g.drawString("Task: Support a small business's", 200, 495); // task
 
                             g.setColor(Color.red);
                             int[] x = { 410 - p.getPos() + 3710 + pC + 20, 385 - p.getPos() + 3710 + pC + 20,
@@ -734,10 +739,19 @@ public class UserInput {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
 
+                if (garbage.pickedUp == false) {
+                    if (p.getPos() > garbage.getCheckPoint()) {
+                        g.drawImage(garbage.getImage(), 730 - garbage.getX(), 250, null);
+                        System.out.println("false: " + garbage.getX());
+                    }
+                } else {
+                    g.drawImage(garbage.getImage(), 30, 30, null);
+                    System.out.println("true: " + garbage.getX());
+                }
 
-                if(p.getPos()>2500){
-                    g.drawImage(garbage.getImage(),730-garbage.getX(), 250, null);
-                    System.out.println("bruh+ "+garbage.getX());
+                if (p.getPos() >= 2830 && p.getPos() <= 3030 && p.getY() >= 250 && p.getY() <= 300) {
+                    garbage.pickedUp = false;
+                    System.out.println("bitch");
                 }
 
                 if (tasks[0]) {
@@ -758,6 +772,12 @@ public class UserInput {
                     || (p.getX() >= inf.getX() - 10 && p.getX() < inf.getX() + 100))
                     && ((p.getY() >= inf.getY() && p.getY() <= inf.getY() + 90)
                             || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 90)));
+        }
+
+        private boolean intersect(int k) {
+            return (p.getX() >= garbage.getX() && p.getX() <= garbage.getX() + 100 && p.getY() >= garbage.getY()
+                    && p.getY() <= garbage.getY() + 100) || (p.getX() + 100 >= garbage.getX() && p.getX() + 100 <= garbage.getX() + 100
+                            && p.getY() + 100 >= garbage.getY() && p.getY() + 100 <= garbage.getY() + 100);
         }
 
     }

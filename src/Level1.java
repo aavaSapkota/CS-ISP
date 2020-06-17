@@ -21,7 +21,7 @@ public class Level1 {
 
     //Question 1 graphics
     public void question1() {
-        icon = new ImageIcon("Question 1.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Question 1.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -30,7 +30,7 @@ public class Level1 {
 
     //Info 1 graphics
     public void info1() {
-        icon = new ImageIcon("Info 1.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 1.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -39,7 +39,7 @@ public class Level1 {
 
     //Question 2 graphics
     public void question2() {
-        icon = new ImageIcon("Question 2.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Question 2.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -48,7 +48,7 @@ public class Level1 {
 
     //Info 2 graphics
     public void info2() {
-        icon = new ImageIcon("Info 2.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 2.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -57,7 +57,7 @@ public class Level1 {
 
     //Question 3 graphics
     public void question3() {
-        icon = new ImageIcon("Question 3.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Question 3.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -66,7 +66,7 @@ public class Level1 {
 
     //Info 3 graphics
     public void info3() {
-        icon = new ImageIcon("Info 3.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 3.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -75,7 +75,7 @@ public class Level1 {
 
     //Question 4 graphics
     public void question4() {
-        icon = new ImageIcon("Question 4.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Question 4.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -84,7 +84,7 @@ public class Level1 {
 
     //Info 4 graphics
     public void info4() {
-        icon = new ImageIcon("Info 4.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 4.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -93,7 +93,7 @@ public class Level1 {
 
     //Question 5 graphics
     public void question5() {
-        icon = new ImageIcon("Question 5.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Question 5.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -102,7 +102,7 @@ public class Level1 {
 
     //Info 5 graphics
     public void info5() {
-        java.net.URL imgUrl = Main.class.getResource("Info 5.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Info 5.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -112,7 +112,7 @@ public class Level1 {
 
     //Question 6 graphics
     public void question6() {
-        java.net.URL imgUrl = Main.class.getResource("Question 6 (1).jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Question 6.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -122,7 +122,7 @@ public class Level1 {
 
     //Info 6 graphics
     public void info6() {
-        icon = new ImageIcon("Info 6.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 6.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -131,7 +131,7 @@ public class Level1 {
 
     //Question 7 graphics
     public void question7() {
-        java.net.URL imgUrl = Main.class.getResource("Question 7.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Question 7.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -141,7 +141,7 @@ public class Level1 {
 
     //Info 7 graphics
     public void info7() {
-        icon = new ImageIcon("Info 7.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 7.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -150,7 +150,7 @@ public class Level1 {
 
     //Question 8 graphics
     public void question8() {
-        java.net.URL imgUrl = Main.class.getResource("Question 8.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Question 8.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -160,7 +160,7 @@ public class Level1 {
 
     //Info 8 graphics
     public void info8() {
-        icon = new ImageIcon("Info 8.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 8.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);
@@ -169,7 +169,7 @@ public class Level1 {
 
     //Question 9 graphics
     public void question9() {
-        java.net.URL imgUrl = Main.class.getResource("Question 9.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Question 9.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -179,7 +179,7 @@ public class Level1 {
 
     //Info 9 graphics
     public void info9() {
-        icon = new ImageIcon("Info 9.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Info 9.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);

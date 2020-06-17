@@ -47,7 +47,7 @@ public class Main {
 
     //title card graphic
     public void introduction() {
-        icon = new ImageIcon("Title Card.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Title Card.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
@@ -98,7 +98,7 @@ public class Main {
     
     //Instructions graphics
     public void learn() {
-        java.net.URL imgUrl = Main.class.getResource("Instruction.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Instructions.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
@@ -146,8 +146,8 @@ public class Main {
      */
     public static void main(String args[]) {
         Main m = new Main();
-        // m.splashScreen();
-        // m.introduction();
+        m.splashScreen();
+        m.introduction();
         while (true) {
             if (screen.getScreen() == 2) {
                 m.mainMenu();

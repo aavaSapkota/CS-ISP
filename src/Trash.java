@@ -7,29 +7,36 @@ public class Trash {
     Image still;
     Player p;
     boolean pickedUp;
-    static int objectCount=0;
-    int checkpoint = 0; 
+    static int objectCount = 0;
+    int start;
+    int[] checkPoints = { 1700, 2700, 3700, 4700 };
+    int c = 0;
 
-
-    public Trash(int yL, Player p) {
+    public Trash(int yL, Player p, int s) {
         this.p = p;
         pickedUp = false;
         java.net.URL imgUrl = Main.class.getResource("Infected [right].png");
         still = (new ImageIcon(imgUrl)).getImage().getScaledInstance(130, 100, 100);
-        x = 751;
+        x = 750;
         y = yL;
-        checkpoint=2500+(500*(objectCount-1));
+        start = s;
         objectCount++;
     }
 
-
     public int getX() {
-
-        return  (p.getPos()-checkpoint) ;
+        if (pickedUp == false) {
+            return (p.getPos() - checkPoints[c]);
+        }
+        return 30;
     }
 
-    public int getCheckpoint(){
-        return 2500+(500*(objectCount-1));
+    public void nextCheckpoint() {
+        if (c+1 < 4)
+            c++;
+    }
+
+    public int getCheckPoint() {
+        return checkPoints[c];
     }
 
     public int getY() {
