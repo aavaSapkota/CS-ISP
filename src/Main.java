@@ -130,9 +130,14 @@ public class Main {
         icon = new ImageIcon("FINAL Exit.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
-        mainScreen.add(bkg);
+        mainScreen.getContentPane().add(bkg);
         mainScreen.setVisible(true);
-    }
+        System.out.println ("WORKS");
+        
+        // source:
+        // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
+        //mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
+        }
 
     //end credits
     public void credits() {
@@ -158,7 +163,7 @@ public class Main {
             } else if (screen.getScreen() == 5) {
                 m.level1();
             } else if (screen.getScreen() == 6) {
-                m.goodbye();
+                System.out.println ("MAIN METHOD");
                 break;
             } else if (screen.getScreen() == 7) { // question 1
                 learn.question1();
@@ -214,10 +219,7 @@ public class Main {
                 play.passed();
             }
             System.out.print("");
-
         }
-        // source:
-        // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
-        mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
+        m.goodbye();
     }
 }
