@@ -82,7 +82,6 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println ("X: " + e.getX() + " Y: " + e.getY());
             if (screen.getScreen() == 2) { //menu
                 charSelect = false;
                 nameCounter = 0;
@@ -371,17 +370,19 @@ public class UserInput {
                 game.getContentPane().remove(g);
                 runCounter = 0;
                 play.failed();
+                System.out.println("extra life: "+ extraLife);
                 if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
-                    screen.setScreen(28);// set back to play screen
+                    screen.setScreen(2);// set back to play screen
                     charSelect = false;
                 } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
-                    screen.setScreen(2);
+                    screen.setScreen(28);
                 }
                 charSelect = false;
                 nameCounter = 0;
             } else if (screen.getScreen() == 33) {
                 runCounter = 0;
                 Player.highscores(p);
+                System.out.println(p.getTotalPoints());
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
                 } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
@@ -456,7 +457,7 @@ public class UserInput {
                     landed[0] = true;
                     taskCompletion++;
                     extraLife--;
-                } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC && p.getPos() <= 5005 + pC) {
+                } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC +100&& p.getPos() <= 5005 + pC+100) {
                     landed[1] = true;
                     taskCompletion++;
                     extraLife--;
@@ -478,7 +479,7 @@ public class UserInput {
             } else if (run == false && counter == 0) {
                 exposure = 0;
                 time.stop(); // stop timer
-                if (3 + extraLife <= 0)
+                if (3 + extraLife <= 0||!tasks[0]||!tasks[1])
                     screen.setScreen(32);
                 else if(tasks[0]&&tasks[1])
                     screen.setScreen(33);
@@ -750,8 +751,6 @@ public class UserInput {
                     g.drawImage(landing1, 0, 0, null);
                     game.getContentPane().addMouseListener(new MouseAdapter(){
                         public void mousePressed(MouseEvent e){
-                            System.out.println(e.getX());
-                            System.out.println(e.getY());
                             if(e.getX()>=51&&e.getY()>=375&&e.getX()<=295&&e.getY()<=450){
                                 landed[0]=false; 
                                 game.getContentPane().removeMouseListener(this);
@@ -769,8 +768,6 @@ public class UserInput {
                     g.drawImage(landing2, 0, 0, null);
                     game.getContentPane().addMouseListener(new MouseAdapter(){
                         public void mousePressed(MouseEvent e){
-                            System.out.println(e.getX());
-                            System.out.println(e.getY());
                             if(e.getX()>=51&&e.getY()>=375&&e.getX()<=295&&e.getY()<=450){
                                 landed[1]=false; 
                                 game.getContentPane().removeMouseListener(this);

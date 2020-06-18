@@ -86,12 +86,16 @@ public class Player {
                 .getScaledInstance(180, 100, 100));
 
         name = "XXXX";
+        
+
+    }
+
+    public void resetScore(){
         //ORIGINAL HIGHSCORES DEFAULT
         for (int x = 0; x < scores.length; x++) {
             scores[x][0] = "XXXX";
             scores[x][1] = "0000";
         }
-
     }
 
     public void move() {
@@ -221,6 +225,7 @@ public class Player {
         int index =10; 
         for (int i = 0; i < 10; i++) {
             if (Integer.parseInt(scores[i][1]) <= p.getTotalPoints()) {
+                
                 for (int x = 9; x >= i; x--) {
                     scores[x + 1][0] = scores[x][0];
                     scores[x + 1][1] = scores[x][1];
@@ -229,9 +234,10 @@ public class Player {
                 break; 
             }
         }
-        
-        scores[10-index][0] = p.getName();
-        scores[10-index][1] = Integer.toString(p.getTotalPoints());
+        System.out.println("index: "+index);
+        System.out.println("highscores: "+scores[10-index][1]);
+        scores[index][0] = p.getName();
+        scores[index][1] = Integer.toString(p.getTotalPoints());
     }
 
     //get highscores
