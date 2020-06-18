@@ -27,7 +27,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(28); // set up starting screen
+        screen = new Vars(1); // set up starting screen
         learn = new Level1(mainScreen);
         play = new Level2(mainScreen);
         input = new UserInput(mainScreen, screen, play, p);
@@ -43,6 +43,7 @@ public class Main {
         } catch (Exception e) {
         }
         a.end();
+        mainScreen.getContentPane().setBackground(Color.WHITE);
     }
 
     //title card graphic
@@ -52,14 +53,13 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
-        
         screen.setScreen(screen.getScreen() + 1);
 
     }
     
     //main menu graphics
     public void mainMenu() {
-        java.net.URL imgUrl = Main.class.getResource("Menu.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Menu.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setBounds(0, 0, 705, 510);
@@ -72,7 +72,7 @@ public class Main {
     public void highscores() {
         
         String[][] scores = Player.getScores();
-        java.net.URL imgUrl = Main.class.getResource("Highscores (1).jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Highscores.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         JLabel bkg = new JLabel(new ImageIcon (icon)){
             public void paintComponent(Graphics g) {
@@ -108,7 +108,7 @@ public class Main {
 
     //Level 1 start graphics
     public void level1() {
-        icon = new ImageIcon("Level 1 Start (1).jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Level 1 Start.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
@@ -117,7 +117,7 @@ public class Main {
 
     //Level 2 start graphics
     public void level2() {
-        java.net.URL imgUrl = Main.class.getResource("Level 2 Start.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Level 2 Start.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
         bkg.setVisible(true);
@@ -127,7 +127,7 @@ public class Main {
 
     //exit graphic
     public void goodbye() {
-        icon = new ImageIcon("Exit.jpg").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon("FINAL Exit.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
