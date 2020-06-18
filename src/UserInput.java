@@ -437,7 +437,7 @@ public class UserInput {
                 }
                 if(p.getMove()==true)
                     t++;
-                if (t>0&&t % 50 == 0){
+                if (t>0&&t % 10 == 0){
                     p.addPointsL2(10);
                     t++;
                 }
@@ -451,7 +451,7 @@ public class UserInput {
                     landed[0] = true;
                     taskCompletion++;
                     extraLife--;
-                } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
+                } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC && p.getPos() <= 5005 + pC) {
                     landed[1] = true;
                     taskCompletion++;
                     extraLife--;
@@ -465,7 +465,7 @@ public class UserInput {
                     }
                 }
                 if (inf.getX() < 0 && (p.getPos() > 1000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
-                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)) { // timing
+                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)&&!landed[0]&&!landed[1]) { // timing
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);// infected
                     timing++;// players
                 }
@@ -575,7 +575,7 @@ public class UserInput {
 
                         }
 
-                    } else if (p.getPos() >= 4775 + pC && p.getPos() <= 5005 + pC) {
+                    } else if (p.getPos() >= 4775 + pC && p.getPos() <= 5305 + pC) {
                         g.drawImage(nurse, 150 - p.getPos() + 4875 + pC, 280, null);
                         if (tasks[1]) {
                             if (pointTime == 0) {
@@ -753,8 +753,9 @@ public class UserInput {
                                 tasks[0]=true;
                             }else if(e.getX()>=425&&e.getY()>=375&&e.getX()<=672&&e.getY()<=445){
                                 landed[0]=false; 
-                                game.getContentPane().removeMouseListener(this);
                                 taskCompletion=0;
+                                p.setDefaultPos();
+                                game.getContentPane().removeMouseListener(this);
                             }
                             
                         }
@@ -771,8 +772,10 @@ public class UserInput {
                                 tasks[1]=true;
                             }else if(e.getX()>=425&&e.getY()>=375&&e.getX()<=672&&e.getY()<=445){
                                 landed[1]=false; 
+                                taskCompletion=1;
+                                p.setDefaultPos();
                                 game.getContentPane().removeMouseListener(this);
-                                // taskCompletion=1;
+                                
                             }
                             
                         }
