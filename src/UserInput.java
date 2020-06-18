@@ -281,9 +281,9 @@ public class UserInput {
                     screen.setScreen(25);
                 }
             } else if (screen.getScreen() == 25) { // passed screen
-                if (x >= 120 && y >= 325 && x <= 250 && y <= 355) { // go to main menu
+                if (x >= 120 && y >= 345 && x <= 250 && y <= 370) { // go to main menu
                     screen.setScreen(2);
-                } else if (x >= 475 && y >= 330 && x <= 605 && y <= 355) {// go to next level
+                } else if (x >= 475 && y >= 345 && x <= 605 && y <= 370) {// go to next level
                     screen.setScreen(28);
                 }
             } else if (screen.getScreen() == 26) {// incorrect page
@@ -315,7 +315,7 @@ public class UserInput {
                 nameCounter++;
                 counter++;
                 if (counter % 2 == 0)
-                    if (x >= 100 && y >= 200 && x <= 340 && y <= 430) {
+                    if (x >= 90 && y >= 190 && x <= 335 && y <= 420) {
                         p.setCharacter("belle");
                         game.getContentPane().add(new JLabel() {
                             protected void paintComponent(Graphics g) {
@@ -325,12 +325,12 @@ public class UserInput {
                         });
                         game.setVisible(true);
                         proceed = true;
-                    } else if (x >= 380 && y >= 200 && x <= 630 && y <= 430) {
+                    } else if (x >= 390 && y >= 190 && x <= 640 && y <= 420) {
                         p.setCharacter("barry");
                         proceed = true;
                     }
 
-                if (x >= 320 && y >= 485 && x <= 415 && y <= 508 && proceed == true) {
+                if (x >= 320 && y >= 455 && x <= 410 && y <= 480 && proceed == true) {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
                     counter = 0;
@@ -339,14 +339,13 @@ public class UserInput {
 
             } else if (screen.getScreen() == 30) { // PPE Selection
                 counter++;
-
-                if (x >= 125 && y >= 185 && x <= 370 && y <= 300 && p.ppeI("gloves") == false) {
+                if (x >= 105 && y >= 185 && x <= 355 && y <= 305 && p.ppeI("gloves") == false) {
                     p.ppeSet("gloves", true);
                     extraLife++;
                 } else if (x >= 395 && y >= 185 && x <= 635 && y <= 305 && p.ppeI("mask") == false) {
                     p.ppeSet("mask", true);
                     extraLife++;
-                } else if (x >= 125 && y >= 325 && x <= 370 && y <= 445 && p.ppeI("goggles") == false) {
+                } else if (x >= 105 && y >= 325 && x <= 355 && y <= 445 && p.ppeI("goggles") == false) {
                     p.ppeSet("goggles", true);
                     extraLife++;
                 } else if (x >= 395 && y >= 325 && x <= 635 && y <= 445 && p.ppeI("hand-sanitizer") == false) {
@@ -354,9 +353,9 @@ public class UserInput {
                     extraLife++;
                 }
                 if (counter % 2 == 0)
-                    if (x >= 300 && y >= 475 && x <= 430 && y <= 500) {
+                    if (x >= 315 && y >= 470 && x <= 430 && y <= 495) {
                         screen.setScreen(31);
-                    }
+                    }            
             } else if (screen.getScreen() == 31) { // Game Screen
                 if (runCounter == 0) {
                     g = new Board();// Make new instance of Board
@@ -371,11 +370,11 @@ public class UserInput {
                 game.getContentPane().remove(g);
                 runCounter = 0;
                 play.failed();
-                if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
+                if (x >= 120 && y >= 330 && x <= 260 && y <= 360) {
+                    screen.setScreen(2);
+                } else if (x >= 470 && y >= 330 && x <= 605 && y <= 360) {
                     screen.setScreen(28);// set back to play screen
                     charSelect = false;
-                } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
-                    screen.setScreen(2);
                 }
                 charSelect = false;
                 nameCounter = 0;
