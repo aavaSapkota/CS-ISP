@@ -33,7 +33,7 @@ public class UserInput {
     private Board g;
     private Level2 play;
     private int extraLife;
-    
+
     private boolean proceed = false;
 
     private int nameCounter;
@@ -42,17 +42,19 @@ public class UserInput {
     int runCounter = 0;
 
     AL keyInput = new AL();
+    int taskCompletion = 0;
+    private boolean[] tasks = { false, false };
+    private boolean[] landed = { false, false };
+    int timing;
 
     private final int pC = 920;
 
     Image backgroundImg = (new ImageIcon(Main.class.getResource("Level 2 background (1).png"))).getImage()
             .getScaledInstance(7000, 500, java.awt.Image.SCALE_SMOOTH);
-    Image landing1 = (new ImageIcon(Main.class.getResource("FINAL Task 1.PNG"))).getImage()
-    .getScaledInstance(730, 500, java.awt.Image.SCALE_SMOOTH);
-    Image landing2 = (new ImageIcon(Main.class.getResource("FINAL Task 2.PNG"))).getImage()
-    .getScaledInstance(730, 500, java.awt.Image.SCALE_SMOOTH);
-
-
+    Image landing1 = (new ImageIcon(Main.class.getResource("FINAL Task 1.PNG"))).getImage().getScaledInstance(730, 500,
+            java.awt.Image.SCALE_SMOOTH);
+    Image landing2 = (new ImageIcon(Main.class.getResource("FINAL Task 2.PNG"))).getImage().getScaledInstance(730, 500,
+            java.awt.Image.SCALE_SMOOTH);
 
     public UserInput(JFrame game, Vars screen, Level2 play, Player p) {
         this.game = game;
@@ -82,41 +84,41 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            if (screen.getScreen() == 2) { //menu
+            if (screen.getScreen() == 2) { // menu
                 charSelect = false;
                 nameCounter = 0;
-                if (x >= 210 && x <= 520 && y >= 235 && y <= 260) { //highscores
+                if (x >= 210 && x <= 520 && y >= 235 && y <= 260) { // highscores
                     screen.setScreen(3);
-                } else if (x >= 210 && x <= 520 && y >= 275 && y <= 300) { //instructions
+                } else if (x >= 210 && x <= 520 && y >= 275 && y <= 300) { // instructions
                     screen.setScreen(4);
-                } else if (x >= 210 && x <= 520 && y >= 320 && y <= 345) { //level 1 start
+                } else if (x >= 210 && x <= 520 && y >= 320 && y <= 345) { // level 1 start
                     screen.setScreen(5);
-                } else if (x >= 210 && x <= 520 && y >= 360 && y <= 385) { //exit
+                } else if (x >= 210 && x <= 520 && y >= 360 && y <= 385) { // exit
                     screen.setScreen(6);
                 }
-            } else if (screen.getScreen() == 3) { //highscores
-                if (x >= 240 && x <= 315 && y >= 450 && y <= 485) { //clear
+            } else if (screen.getScreen() == 3) { // highscores
+                if (x >= 240 && x <= 315 && y >= 450 && y <= 485) { // clear
                     screen.setScreen(2);
-                } else if (x >= 415 && x <= 490 && y >= 450 && y <= 485) { //menu
+                } else if (x >= 415 && x <= 490 && y >= 450 && y <= 485) { // menu
                     Player.clearScores();
                 }
-            } else if (screen.getScreen() == 4) { //instructions
+            } else if (screen.getScreen() == 4) { // instructions
                 if (x >= 300 && x <= 430 && y >= 430 && y <= 460) {
                     screen.setScreen(2);
                 }
-            } else if (screen.getScreen() == 5) { //level 1 start
+            } else if (screen.getScreen() == 5) { // level 1 start
                 if (x >= 300 && y >= 440 && x <= 430 && y <= 470) {
                     screen.setScreen(7);
                     counter = 0;
                 } // -------------------------------------------------------------GAME SCREENS
                   // START ( LEVEL ONE )
-            } else if(screen.getScreen()==6){
+            } else if (screen.getScreen() == 6) {
                 counter++;
-                if(counter%2==0){
+                if (counter % 2 == 0) {
                     screen.setScreen(34);
                 }
-                
-            }else if (screen.getScreen() == 7) { // question 1
+
+            } else if (screen.getScreen() == 7) { // question 1
                 counter++;
                 if (counter % 2 == 0)
                     if (x >= 380 && y >= 145 && x <= 675 && y <= 300) { // correct answer: B
@@ -333,7 +335,9 @@ public class UserInput {
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
                     counter = 0;
+
                 }
+                runCounter = 0;
                 extraLife = 0;
 
             } else if (screen.getScreen() == 30) { // PPE Selection
@@ -354,14 +358,19 @@ public class UserInput {
                 if (counter % 2 == 0)
                     if (x >= 315 && y >= 470 && x <= 430 && y <= 495) {
                         screen.setScreen(31);
-                    }            
+                    }
             } else if (screen.getScreen() == 31) { // Game Screen
                 if (runCounter == 0) {
-                    g = new Board();// Make new instance of Board
-                    game.add(g); // add to JFrame
-                    g.setVisible(true);
-                    game.setVisible(true);
+                    tasks[0] = false;
+                    tasks[1] = false;
+                    timing = 0;
+                    taskCompletion = 0;
+                    runCounter++;
                 }
+                g = new Board();// Make new instance of Board
+                game.add(g); // add to JFrame
+                g.setVisible(true);
+                game.setVisible(true);
 
             } else if (screen.getScreen() == 32) { // fail screen
                 game.removeKeyListener(keyInput);
@@ -369,32 +378,28 @@ public class UserInput {
                 game.getContentPane().remove(g);
                 runCounter = 0;
                 play.failed();
-<<<<<<< HEAD
-                System.out.println("extra life: "+ extraLife);
-                if (x >= 120 && y >= 315 && x <= 255 && y <= 340) {
-                    screen.setScreen(2);// set back to play screen
-                    charSelect = false;
-                } else if (x >= 480 && y >= 315 && x <= 610 && y <= 340) {
-                    screen.setScreen(28);
-=======
+                System.out.println("extra life: " + extraLife);
+
                 if (x >= 120 && y >= 330 && x <= 260 && y <= 360) {
                     screen.setScreen(2);
                 } else if (x >= 470 && y >= 330 && x <= 605 && y <= 360) {
                     screen.setScreen(28);// set back to play screen
                     charSelect = false;
->>>>>>> 38294f40701ae5e7fc2b24c339394a4bbaf56b5e
                 }
                 charSelect = false;
                 nameCounter = 0;
-            } else if (screen.getScreen() == 33) {
+            } else if (screen.getScreen() == 33) {// pass screen
                 runCounter = 0;
                 System.out.println(p.getTotalPoints());
-                if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
-                    screen.setScreen(2);
-                    Player.highscores(p);
-                } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
-                    screen.setScreen(28);
-                    Player.highscores(p);
+                counter++;
+                if (counter % 2 == 0) {
+                    if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
+                        // screen.setScreen(2);
+                        Player.highscores(p);
+                    } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
+                        // screen.setScreen(28);
+                        Player.highscores(p);
+                    }
                 }
                 charSelect = false;
                 nameCounter = 0;
@@ -419,12 +424,9 @@ public class UserInput {
         int counter;
         int t;
         int pointTime;
-        int timing;
+
         // Trash garbage;
         int c = 0;
-        int taskCompletion = 0;
-        private boolean[] tasks = { false, false };
-    private boolean [] landed = {false,false}; 
 
         // board constructor
         public Board() {
@@ -435,14 +437,12 @@ public class UserInput {
             run = true;
             counter = 0;
             pointTime = 0;
-            timing = 0;
             t = 0;
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
-            tasks[0] = false;
-            tasks[1] = false;
-            System.out.println("Starting level: "+extraLife);
+
+            System.out.println("Starting level: " + extraLife);
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -450,9 +450,9 @@ public class UserInput {
                 if ((3 + extraLife) <= 0 || p.getPos() >= 6440) { // check if there is enough health to continue.
                     run = false;
                 }
-                if(p.getMove()==true)
+                if (p.getMove() == true)
                     t++;
-                if (t>0&&t % 10 == 0){
+                if (t > 0 && t % 10 == 0) {
                     p.addPointsL2(10);
                     t++;
                 }
@@ -461,29 +461,31 @@ public class UserInput {
                 inf.move(); // moves infected player
                 repaint();
 
-                if (taskCompletion==0&&p.getY() <= 250 && p.getPos() >= 3875 + pC && p.getPos() <= 3935 + pC) {
+                if (!landed[0] && taskCompletion == 0 && p.getY() <= 250 && p.getPos() >= 3875 + pC
+                        && p.getPos() <= 3935 + pC) {
                     landed[0] = true;
                     taskCompletion++;
                     extraLife--;
-                    System.out.println("Closer to death at shop"+(extraLife+3));
-                } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC +100&& p.getPos() <= 5005 + pC+100) {
+                    System.out.println("Closer to death at shop " + (extraLife + 3));
+                } else if (!landed[1] && taskCompletion == 1 && p.getY() <= 250 && p.getPos() >= 4875 + pC + 100
+                        && p.getPos() <= 5005 + pC + 100) {
                     landed[1] = true;
                     taskCompletion++;
                     extraLife--;
-                    System.out.println("Closer to death "+(extraLife+3));
+                    System.out.println("Closer to death at hospital " + (extraLife + 3));
                 }
 
-                if (intersect()) {// check if player and infected player collide
+                if (intersect() && !landed[0] && !landed[1]) {// check if player and infected player collide
                     exposure++; // increase exposure
                     if (exposure % 100 == 0) {
-                        System.out.println("Life before death: "+(extraLife+3));
+                        System.out.println("Life before death: " + (extraLife + 3));
                         extraLife--; // decrease health
                         p.decrementPoints(); // decrease points
-                        System.out.println("Closer to death "+(extraLife+3));
+                        System.out.println("Closer to death " + (extraLife + 3));
                     }
                 }
                 if (inf.getX() < 0 && (p.getPos() > 1000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
-                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)&&!landed[0]&&!landed[1]) { // timing
+                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200) && !landed[0] && !landed[1]) { // timing
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);// infected
                     timing++;// players
                 }
@@ -491,12 +493,9 @@ public class UserInput {
             } else if (run == false && counter == 0) {
                 exposure = 0;
                 time.stop(); // stop timer
-                if (3 + extraLife <= 0||!tasks[0]||!tasks[1]){
-                    System.out.println(3 + extraLife);
-                    System.out.println(tasks[0]);
-                    System.out.println(tasks[1]);
+                if (3 + extraLife <= 0 || !tasks[0] || !tasks[1]) {
                     screen.setScreen(32);
-                }else if(tasks[0]&&tasks[1])
+                } else if (tasks[0] && tasks[1])
                     screen.setScreen(33);
                 counter++;
             }
@@ -506,7 +505,7 @@ public class UserInput {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            if (run&&!landed[0]&&!landed[1]) {
+            if (run && !landed[0] && !landed[1]) {
                 g.drawImage(bkg, p.getImageX(), 0, null);
 
                 g.setColor(new Color(201, 242, 195));
@@ -562,7 +561,10 @@ public class UserInput {
                             g.fillRoundRect(270 - p.getPos() + 3710 + pC, 215, 130, 50, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
-                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225); // Sal's message (if you help)
+                            g.drawString("Thank you so much! Please ", 275 - p.getPos() + 3710 + pC, 225); // Sal's
+                                                                                                           // message
+                                                                                                           // (if you
+                                                                                                           // help)
                             g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
                             g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
                         } else {
@@ -757,51 +759,53 @@ public class UserInput {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
 
-                if (tasks[0]&&!tasks[1]) {
+                if (tasks[0] && !tasks[1]) {
                     g.drawImage(p.getTask(1), 55, 40, null);
                 }
 
                 g.setColor(Color.black);
-                g.fillOval(p.getX(), p.getY(), 20,20); 
+                g.fillOval(p.getX(), p.getY(), 20, 20);
 
-            } else if(landed[0]||landed[1]){
-                if(landed[0]){
+            } else if (landed[0] || landed[1]) {
+                if (landed[0]) {
                     g.drawImage(landing1, 0, 0, null);
-                    game.getContentPane().addMouseListener(new MouseAdapter(){
-                        public void mousePressed(MouseEvent e){
-                            if(e.getX()>=51&&e.getY()>=375&&e.getX()<=295&&e.getY()<=450){
-                                landed[0]=false; 
+                    game.getContentPane().addMouseListener(new MouseAdapter() {
+                        public void mousePressed(MouseEvent e) {
+                            if (e.getX() >= 51 && e.getY() >= 375 && e.getX() <= 295 && e.getY() <= 450) {
+                                landed[0] = false;
                                 game.getContentPane().removeMouseListener(this);
-                                tasks[0]=true;
-                            }else if(e.getX()>=425&&e.getY()>=375&&e.getX()<=672&&e.getY()<=445){
-                                landed[0]=false; 
-                                taskCompletion=0;
+                                tasks[0] = true;
+                                p.setDefaultPos();
+                            } else if (e.getX() >= 425 && e.getY() >= 375 && e.getX() <= 672 && e.getY() <= 445) {
+                                landed[0] = false;
+                                taskCompletion = 0;
                                 p.setDefaultPos();
                                 game.getContentPane().removeMouseListener(this);
                             }
-                            
+
                         }
                     });
-                }else if(landed[1]){
+                } else if (landed[1]) {
                     g.drawImage(landing2, 0, 0, null);
-                    game.getContentPane().addMouseListener(new MouseAdapter(){
-                        public void mousePressed(MouseEvent e){
-                            if(e.getX()>=51&&e.getY()>=375&&e.getX()<=295&&e.getY()<=450){
-                                landed[1]=false; 
+                    game.getContentPane().addMouseListener(new MouseAdapter() {
+                        public void mousePressed(MouseEvent e) {
+                            if (e.getX() >= 51 && e.getY() >= 375 && e.getX() <= 295 && e.getY() <= 450) {
+                                landed[1] = false;
                                 game.getContentPane().removeMouseListener(this);
-                                tasks[1]=true;
-                            }else if(e.getX()>=425&&e.getY()>=375&&e.getX()<=672&&e.getY()<=445){
-                                landed[1]=false; 
-                                taskCompletion=1;
+                                tasks[1] = true;
+                                p.setDefaultPos();
+                            } else if (e.getX() >= 425 && e.getY() >= 375 && e.getX() <= 672 && e.getY() <= 445) {
+                                landed[1] = false;
+                                taskCompletion = 1;
                                 p.setDefaultPos();
                                 game.getContentPane().removeMouseListener(this);
-                                
+
                             }
-                            
+
                         }
                     });
                 }
-            }else {
+            } else {
 
                 g.setColor(Color.cyan);
                 g.fillRect(0, 0, 700, 500);
@@ -816,8 +820,6 @@ public class UserInput {
                     && ((p.getY() >= inf.getY() && p.getY() <= inf.getY() + 90)
                             || (p.getY() + 100 >= inf.getY() && p.getY() + 100 <= inf.getY() + 90)));
         }
-
-        
 
     }
 

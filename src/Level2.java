@@ -45,7 +45,7 @@ public class Level2 {
 
     //source: https://stackoverflow.com/questions/36271536/jlabel-text-position
     public void passed() {
-        java.net.URL imgUrl = Main.class.getResource("Passed 2.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL_Passed_2.png");
          icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
          bkg = new JLabel(new ImageIcon (icon)){
             public void paintComponent(Graphics g) {

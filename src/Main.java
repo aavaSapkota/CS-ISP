@@ -27,11 +27,7 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-<<<<<<< HEAD
         screen = new Vars(28); // set up starting screen
-=======
-        screen = new Vars(27); // set up starting screen
->>>>>>> 38294f40701ae5e7fc2b24c339394a4bbaf56b5e
         learn = new Level1(mainScreen);
         play = new Level2(mainScreen);
         input = new UserInput(mainScreen, screen, play, p);
@@ -93,11 +89,16 @@ public class Main {
 
                 for (int i = 0; i < 10; i++) {
                     String spaces = "";
-                    int r = 80 - (scores[i][0].length() + scores[i][1].length());
+                    int r = 82 - (scores[i][0].length() + scores[i][1].length());
                     for (int j = 0; j <= r; j++) {
                         spaces += " ";
                     }
-                    g.drawString(scores[i][0] + "" + spaces + scores[i][1], 200, 190 + 20 * i);
+                    if(scores[i][0].equals("")){
+                        g.drawString( "Anonymous" + spaces + scores[i][1], 200, 190 + 20 * i);
+                    }else{
+                        g.drawString(scores[i][0] + "" + spaces + scores[i][1], 200, 190 + 20 * i);
+                    }
+                   
                 }
 
             }
