@@ -27,7 +27,11 @@ public class Main {
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
+<<<<<<< HEAD
         screen = new Vars(28); // set up starting screen
+=======
+        screen = new Vars(27); // set up starting screen
+>>>>>>> 38294f40701ae5e7fc2b24c339394a4bbaf56b5e
         learn = new Level1(mainScreen);
         play = new Level2(mainScreen);
         input = new UserInput(mainScreen, screen, play, p);
