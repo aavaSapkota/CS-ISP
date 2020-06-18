@@ -24,17 +24,16 @@ public class Music
     static String filePath; 
   
     // constructor to initialize streams and clip 
-    public Music() 
+    public Music(String filePath) 
         throws UnsupportedAudioFileException, 
         IOException, LineUnavailableException  
     { 
+        this.filePath = filePath;
         // create AudioInputStream object 
-        audioInputStream =  
-                AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile()); 
+        audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile()); 
           
         // create clip reference 
         clip = AudioSystem.getClip(); 
-          
         // open audioInputStream to the clip 
         clip.open(audioInputStream); 
           
@@ -43,36 +42,7 @@ public class Music
   
     public static void main(String[] args)  
     { 
-        try
-        { 
-            filePath = "AAVA"; 
-            Music audioPlayer =  
-                            new Music(); 
-              
-            audioPlayer.play(); 
-            Scanner sc = new Scanner(System.in); 
-              
-            while (true) 
-            { 
-                System.out.println("1. pause"); 
-                System.out.println("2. resume"); 
-                System.out.println("3. restart"); 
-                System.out.println("4. stop"); 
-                System.out.println("5. Jump to specific time"); 
-                int c = sc.nextInt(); 
-                audioPlayer.gotoChoice(c); 
-                if (c == 4) 
-                break; 
-            } 
-            sc.close(); 
-        }  
-          
-        catch (Exception ex)  
-        { 
-            System.out.println("Error with playing sound."); 
-            ex.printStackTrace(); 
-          
-          } 
+        
     } 
       
     // Work as the user enters his choice 

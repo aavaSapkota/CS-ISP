@@ -33,6 +33,14 @@ public class Main {
         input = new UserInput(mainScreen, screen, play, p);
         p = new Player("jumbo");
         p.resetScore();
+        try {
+            Music audioPlayer = new Music("bkg-song.wav");
+            audioPlayer.play();
+        }catch (Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+
+        }
     }
 
     // splashscreen animation

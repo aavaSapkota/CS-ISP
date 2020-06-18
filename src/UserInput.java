@@ -41,7 +41,7 @@ public class UserInput {
 
     int runCounter = 0;
 
-    private AL keyInput = new AL();
+    AL keyInput = new AL();
 
     private final int pC = 920;
 
@@ -381,12 +381,13 @@ public class UserInput {
                 nameCounter = 0;
             } else if (screen.getScreen() == 33) {
                 runCounter = 0;
-                Player.highscores(p);
                 System.out.println(p.getTotalPoints());
                 if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
                     screen.setScreen(2);
+                    Player.highscores(p);
                 } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
                     screen.setScreen(28);
+                    Player.highscores(p);
                 }
                 charSelect = false;
                 nameCounter = 0;
@@ -434,11 +435,12 @@ public class UserInput {
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
             tasks[0] = false;
             tasks[1] = false;
+            System.out.println("Starting level: "+extraLife);
         }
 
         public void actionPerformed(ActionEvent e) {
             if (run) {
-                if (3 + extraLife <= 0 || p.getPos() >= 6440) { // check if there is enough health to continue.
+                if ((3 + extraLife) <= 0 || p.getPos() >= 6440) { // check if there is enough health to continue.
                     run = false;
                 }
                 if(p.getMove()==true)
@@ -447,7 +449,6 @@ public class UserInput {
                     p.addPointsL2(10);
                     t++;
                 }
-                    
 
                 p.move(); // moves player
                 inf.move(); // moves infected player
@@ -457,17 +458,21 @@ public class UserInput {
                     landed[0] = true;
                     taskCompletion++;
                     extraLife--;
+                    System.out.println("Closer to death at shop"+(extraLife+3));
                 } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC +100&& p.getPos() <= 5005 + pC+100) {
                     landed[1] = true;
                     taskCompletion++;
                     extraLife--;
+                    System.out.println("Closer to death "+(extraLife+3));
                 }
 
                 if (intersect()) {// check if player and infected player collide
                     exposure++; // increase exposure
                     if (exposure % 100 == 0) {
+                        System.out.println("Life before death: "+(extraLife+3));
                         extraLife--; // decrease health
                         p.decrementPoints(); // decrease points
+                        System.out.println("Closer to death "+(extraLife+3));
                     }
                 }
                 if (inf.getX() < 0 && (p.getPos() > 1000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
@@ -479,9 +484,12 @@ public class UserInput {
             } else if (run == false && counter == 0) {
                 exposure = 0;
                 time.stop(); // stop timer
-                if (3 + extraLife <= 0||!tasks[0]||!tasks[1])
+                if (3 + extraLife <= 0||!tasks[0]||!tasks[1]){
+                    System.out.println(3 + extraLife);
+                    System.out.println(tasks[0]);
+                    System.out.println(tasks[1]);
                     screen.setScreen(32);
-                else if(tasks[0]&&tasks[1])
+                }else if(tasks[0]&&tasks[1])
                     screen.setScreen(33);
                 counter++;
             }
@@ -745,6 +753,9 @@ public class UserInput {
                 if (tasks[0]&&!tasks[1]) {
                     g.drawImage(p.getTask(1), 55, 40, null);
                 }
+
+                g.setColor(Color.black);
+                g.fillOval(p.getX(), p.getY(), 20,20); 
 
             } else if(landed[0]||landed[1]){
                 if(landed[0]){
