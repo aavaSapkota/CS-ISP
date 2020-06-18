@@ -9,7 +9,7 @@ public class Trash {
     boolean pickedUp;
     static int objectCount = 0;
     int start;
-    int[] checkPoints = { 1700, 2700, 3700, 4700 };
+    int[] checkPoints = { 1700, 2500, 3700, 4700 };
     int c = 0;
 
     public Trash(int yL, Player p, int s) {
