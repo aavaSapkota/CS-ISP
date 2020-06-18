@@ -188,7 +188,7 @@ public class Level1 {
 
     //Failed graphic
     public void failed() {
-        java.net.URL imgUrl = Main.class.getResource("Failed.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Failed.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -198,7 +198,7 @@ public class Level1 {
 
     //Incorrect graphic
     public void incorrect() {
-        java.net.URL imgUrl = Main.class.getResource("Incorrect.jpg");
+        java.net.URL imgUrl = Main.class.getResource("FINAL Incorrect.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
@@ -208,7 +208,7 @@ public class Level1 {
 
     //Level 1 Passed graphic
     public void passed() {
-        icon = new ImageIcon(Main.class.getResource("Passed 1.jpg")).getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon(Main.class.getResource("FINAL Passed 1.PNG")).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
         game.add(bkg);

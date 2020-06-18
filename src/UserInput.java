@@ -82,6 +82,7 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
+            System.out.println ("X: " + e.getX() + " Y: " + e.getY());
             if (screen.getScreen() == 2) {
                 charSelect = false;
                 nameCounter = 0;
