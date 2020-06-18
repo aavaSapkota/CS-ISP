@@ -47,9 +47,9 @@ public class UserInput {
 
     Image backgroundImg = (new ImageIcon(Main.class.getResource("Level 2 background (1).png"))).getImage()
             .getScaledInstance(7000, 500, java.awt.Image.SCALE_SMOOTH);
-    Image landing1 = (new ImageIcon(Main.class.getResource("Landing-task1.png"))).getImage()
+    Image landing1 = (new ImageIcon(Main.class.getResource("FINAL Task 1.PNG"))).getImage()
     .getScaledInstance(730, 500, java.awt.Image.SCALE_SMOOTH);
-    Image landing2 = (new ImageIcon(Main.class.getResource("Landing-task2.png"))).getImage()
+    Image landing2 = (new ImageIcon(Main.class.getResource("FINAL Task 2.PNG"))).getImage()
     .getScaledInstance(730, 500, java.awt.Image.SCALE_SMOOTH);
 
 
