@@ -449,9 +449,11 @@ public class UserInput {
                 if (taskCompletion==0&&p.getY() <= 250 && p.getPos() >= 3875 + pC && p.getPos() <= 3935 + pC) {
                     landed[0] = true;
                     taskCompletion++;
+                    extraLife--;
                 } else if (taskCompletion==1&&p.getY() <= 250 && p.getPos() >= 4875 + pC + 200 && p.getPos() <= 5005 + pC + 200) {
                     landed[1] = true;
                     taskCompletion++;
+                    extraLife--;
                 }
 
                 if (intersect()) {// check if player and infected player collide
@@ -462,7 +464,7 @@ public class UserInput {
                     }
                 }
                 if (inf.getX() < 0 && (p.getPos() > 1000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
-                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200) && t % 100 == 0) { // timing
+                        && (p.getPos() < 4775 + pC + 200 || p.getPos() > 5005 + pC + 200)) { // timing
                     inf = new Infected(250 + ((int) (Math.random() * 150) + 1), p, 500 * timing);// infected
                     timing++;// players
                 }
@@ -472,7 +474,7 @@ public class UserInput {
                 time.stop(); // stop timer
                 if (3 + extraLife <= 0)
                     screen.setScreen(32);
-                else
+                else if(tasks[0]&&tasks[1])
                     screen.setScreen(33);
                 counter++;
             }
@@ -733,7 +735,7 @@ public class UserInput {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                 }
 
-                if (tasks[0]) {
+                if (tasks[0]&&!tasks[1]) {
                     g.drawImage(p.getTask(1), 55, 40, null);
                 }
 

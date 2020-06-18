@@ -132,6 +132,9 @@ public class Main {
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
+        try{
+            Thread.sleep(2000);
+        }catch(Exception e){}
     }
 
     //end credits
