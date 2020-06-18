@@ -111,7 +111,13 @@ public class UserInput {
                     counter = 0;
                 } // -------------------------------------------------------------GAME SCREENS
                   // START ( LEVEL ONE )
-            } else if (screen.getScreen() == 7) { // question 1
+            } else if(screen.getScreen()==6){
+                counter++;
+                if(counter%2==0){
+                    screen.setScreen(34);
+                }
+                
+            }else if (screen.getScreen() == 7) { // question 1
                 counter++;
                 if (counter % 2 == 0)
                     if (x >= 380 && y >= 145 && x <= 675 && y <= 300) { // correct answer: B

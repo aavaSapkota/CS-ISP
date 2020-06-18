@@ -21,20 +21,20 @@ public class Main {
     private JLabel bkg;
     private static Player p;
 
-    //main class constructor
+    // main class constructor
     public Main() {
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(730, 540);
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
-        screen = new Vars(28); // set up starting screen
+        screen = new Vars(1); // set up starting screen
         learn = new Level1(mainScreen);
         play = new Level2(mainScreen);
         input = new UserInput(mainScreen, screen, play, p);
         p = new Player("jumbo");
     }
 
-    //splashscreen animation
+    // splashscreen animation
     public void splashScreen() {
         Splashscreen a = new Splashscreen(mainScreen);
         a.start();
@@ -46,7 +46,7 @@ public class Main {
         mainScreen.getContentPane().setBackground(Color.WHITE);
     }
 
-    //title card graphic
+    // title card graphic
     public void introduction() {
         icon = new ImageIcon("FINAL Title Card.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -56,8 +56,8 @@ public class Main {
         screen.setScreen(screen.getScreen() + 1);
 
     }
-    
-    //main menu graphics
+
+    // main menu graphics
     public void mainMenu() {
         java.net.URL imgUrl = Main.class.getResource("FINAL Menu.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
@@ -68,35 +68,33 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
-    //highscores display
+    // highscores display
     public void highscores() {
-        
+
         String[][] scores = Player.getScores();
         java.net.URL imgUrl = Main.class.getResource("FINAL Highscores.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon (icon)){
+        JLabel bkg = new JLabel(new ImageIcon(icon)) {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                
-                for(int i=0; i<10; i++){
+
+                for (int i = 0; i < 10; i++) {
                     String spaces = "";
-                    int r = 80-(scores[i][0].length()+scores[i][1].length());
-                    for(int j=0; j<=r; j++){
-                        spaces+=" ";
+                    int r = 80 - (scores[i][0].length() + scores[i][1].length());
+                    for (int j = 0; j <= r; j++) {
+                        spaces += " ";
                     }
-                    g.drawString(scores[i][0]+""+spaces+scores[i][1], 200, 190+20*i); 
+                    g.drawString(scores[i][0] + "" + spaces + scores[i][1], 200, 190 + 20 * i);
                 }
 
-                
             }
-        }; //Gets background image
+        }; // Gets background image
         bkg.setVisible(true);
         mainScreen.add(bkg);
         mainScreen.setVisible(true);
     }
 
-    
-    //Instructions graphics
+    // Instructions graphics
     public void learn() {
         java.net.URL imgUrl = Main.class.getResource("FINAL Instructions.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
@@ -106,7 +104,7 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
-    //Level 1 start graphics
+    // Level 1 start graphics
     public void level1() {
         icon = new ImageIcon("FINAL Level 1 Start.PNG").getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -115,7 +113,7 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
-    //Level 2 start graphics
+    // Level 2 start graphics
     public void level2() {
         java.net.URL imgUrl = Main.class.getResource("FINAL Level 2 Start.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
@@ -125,21 +123,14 @@ public class Main {
         mainScreen.setVisible(true);
     }
 
-    //exit graphic
+    // exit graphic
     public void goodbye() {
-        icon = new ImageIcon("FINAL Exit.PNG").getImage().getScaledInstance(700, 500, 100);
+        icon = new ImageIcon(Main.class.getResource("FINAL Exit.PNG")).getImage().getScaledInstance(700, 500, 100);
         bkg = new JLabel(new ImageIcon(icon)); // Gets background image
         bkg.setVisible(true);
-        mainScreen.add(bkg);
+        mainScreen.getContentPane().add(bkg);
         mainScreen.setVisible(true);
-        try{
-            Thread.sleep(2000);
-        }catch(Exception e){}
-    }
 
-    //end credits
-    public void credits() {
-        mainScreen.getContentPane().setBackground(Color.black);
     }
 
     /**
@@ -162,7 +153,6 @@ public class Main {
                 m.level1();
             } else if (screen.getScreen() == 6) {
                 m.goodbye();
-                break;
             } else if (screen.getScreen() == 7) { // question 1
                 learn.question1();
             } else if (screen.getScreen() == 8) {// info 1 screen
@@ -215,12 +205,14 @@ public class Main {
                 play.failed();
             } else if (screen.getScreen() == 33) { // passed screen
                 play.passed();
+            } else if (screen.getScreen() == 34) {
+                break;
             }
             System.out.print("");
-
         }
         // source:
         // https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
         mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
+
     }
 }
