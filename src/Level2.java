@@ -14,10 +14,12 @@ public class Level2 {
     private Image icon; 
     private JLabel bkg;
 
-    public Level2(JFrame game, Player p) {
+    //Level2 constructor
+    public Level2(JFrame game) {
         this.game = game;
     }
 
+    //character selection graphics
     public void charSelect() {
          icon = new ImageIcon("FINAL Character Selection.PNG").getImage().getScaledInstance(700, 500, 100);
          bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -26,6 +28,7 @@ public class Level2 {
         game.setVisible(true);
     }
 
+    //PPE graphics
     public void PPEOptions() {
          icon = new ImageIcon("FINAL PPE.PNG").getImage().getScaledInstance(700, 500, 100);
          bkg = new JLabel(new ImageIcon(icon)); // Gets background image
@@ -34,6 +37,7 @@ public class Level2 {
         game.setVisible(true);
     }
 
+    //failed graphics
     public void failed() {
         java.net.URL imgUrl = Main.class.getResource("FINAL Failed.PNG");
          icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
