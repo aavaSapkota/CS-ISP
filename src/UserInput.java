@@ -6,6 +6,7 @@
  * Project: ISP
  */
 
+//import libraries
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -20,34 +21,32 @@ public class UserInput {
     private int incorrect; // count number of incorrect questions, level1 
     private int goBack;//record return screen to after
     private Vars skip; //skip 
-    private int counter;
+    private int counter;//counts number of times end sequence runs
 
-    private Player p;
-    private Infected inf;
-    private Image bkg;
-    private Timer time;
-    private boolean run;
+    private Player p;//stores player info
+    private Infected inf;//created infected person
+    private Image bkg;//stores background images
+    private Timer time;//timer for animation
+    private boolean run;//checks if game is running
+    private int nameCounter;// checks number of times name is asked for
+    private boolean charSelect; //checks if character has been selected or not
 
-    private int exposure;
+    //game variables
+    private int exposure;//check player exposure to virus
     private Board g;
     private Level2 play;
-    private int extraLife;
-
-    private boolean proceed = false;
-
-    private int nameCounter;
-    private boolean charSelect;
-
-    int runCounter = 0;
-
+    private int extraLife; //holds extra life 
+    int runCounter = 0;//checks number of times new game is created
     AL keyInput = new AL();
-    int taskCompletion = 0;
-    private boolean[] tasks = { false, false };
-    private boolean[] landed = { false, false };
-    int timing;
+    int taskCompletion = 0; //checks number of times task completed is run
+    private boolean[] tasks = { false, false };//task status
+    private boolean[] landed = { false, false };//location landed status
+    int timing;//time for infected people
+    private boolean proceed = false;//continue to next slide after chacter select
 
-    private final int pC = 920;
+    private final int pC = 920; //offset variable
 
+    //background images
     Image backgroundImg = (new ImageIcon(Main.class.getResource("FINAL Level 2 Background.png"))).getImage()
             .getScaledInstance(7000, 500, java.awt.Image.SCALE_SMOOTH);
     Image landing1 = (new ImageIcon(Main.class.getResource("FINAL Task 1.PNG"))).getImage().getScaledInstance(730, 500,
@@ -83,7 +82,6 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
-            System.out.println("x: " + x + " y: " + y);
             if (screen.getScreen() == 2) { // menu
                 charSelect = false;
                 nameCounter = 0;
@@ -378,7 +376,6 @@ public class UserInput {
                 game.getContentPane().remove(g);
                 runCounter = 0;
                 play.failed();
-                System.out.println("extra life: " + extraLife);
 
                 if (x >= 120 && y >= 330 && x <= 260 && y <= 360) { //menu
                     screen.setScreen(2);
@@ -390,7 +387,6 @@ public class UserInput {
                 nameCounter = 0;
             } else if (screen.getScreen() == 33) {// pass screen
                 runCounter = 0;
-                System.out.println(p.getTotalPoints());
                 counter++;
                 if (counter % 2 == 0) {
                     if (x >= 120 && y >= 340 && x <= 250 && y <= 365) { // go to main menu
@@ -421,13 +417,10 @@ public class UserInput {
     private class Board extends JPanel implements ActionListener {
 
         //variable declaration
-        Image life, owner, nurse, continuePage;
+        Image life, owner, nurse, continuePage; //images
         int counter;
         int t;
         int pointTime;
-
-        // Trash garbage;
-        int c = 0;
 
         // board constructor
         public Board() {
@@ -435,16 +428,15 @@ public class UserInput {
             time = new Timer(5, this);
             time.start();
             inf = new Infected(2000, p, 350);
-            run = true;
-            counter = 0;
-            pointTime = 0;
-            t = 0;
+            run = true;//checks if runs
+            counter = 0; //counts numeber of times program runs the ending procedure
+            pointTime = 0; //counts number of times points have been added
+            t = 0; //overall game timing
             owner = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
-            continuePage = (new ImageIcon(getClass().getResource("FINAL Continue.png"))).getImage().getScaledInstance(730, 510, 100);
+            continuePage = (new ImageIcon(getClass().getResource("FINAL Continue.PNG"))).getImage().getScaledInstance(730, 510, 100);
 
-            System.out.println("Starting level: " + extraLife);
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -452,9 +444,9 @@ public class UserInput {
                 if ((3 + extraLife) <= 0 || p.getPos() >= 6440) { // check if there is enough health to continue.
                     run = false;
                 }
-                if (p.isMoving() == true)
+                if (p.isMoving() == true)//check if player is moving
                     t++;
-                if (t > 0 && t % 10 == 0) {
+                if (t > 0 && t % 10 == 0) {// add points
                     p.addPointsL2(10);
                     t++;
                 }
@@ -468,22 +460,18 @@ public class UserInput {
                     landed[0] = true;
                     taskCompletion++;
                     extraLife--;
-                    System.out.println("Closer to death at shop " + (extraLife + 3));
                 } else if (!landed[1] && taskCompletion == 1 && p.getY() <= 250 && p.getPos() >= 4875 + pC + 100
                         && p.getPos() <= 5005 + pC + 100) {
                     landed[1] = true;
                     taskCompletion++;
                     extraLife--;
-                    System.out.println("Closer to death at hospital " + (extraLife + 3));
                 }
 
                 if (intersect() && !landed[0] && !landed[1]) {// check if player and infected player collide
                     exposure++; // increase exposure
                     if (exposure % 100 == 0) {
-                        System.out.println("Life before death: " + (extraLife + 3));
                         extraLife--; // decrease health
                         p.decrementPoints(); // decrease points
-                        System.out.println("Closer to death " + (extraLife + 3));
                     }
                 }
                 if (inf.getX() < 0 && (p.getPos() > 1000) && (p.getPos() < 3540 + pC || p.getPos() >= 4000 + pC)
@@ -492,22 +480,23 @@ public class UserInput {
                     timing++;// players
                 }
 
-            } else if (run == false && counter == 0) {
+            } else if (run == false && counter == 0) {//if game ends
                 exposure = 0;
                 time.stop(); // stop timer
-                if (3 + extraLife <= 0 || !tasks[0] || !tasks[1]) {
+                if (3 + extraLife <= 0 || !tasks[0] || !tasks[1]) { //check if player loses
                     screen.setScreen(32);
-                } else if (tasks[0] && tasks[1])
+                } else if (tasks[0] && tasks[1])//check if player wins
                     screen.setScreen(33);
                 counter++;
             }
 
         }
 
-        public void paintComponent(Graphics g) {
+        public void paintComponent(Graphics g) { //draw all components
             super.paintComponent(g);
 
-            if (run && !landed[0] && !landed[1]) {
+            if (run && !landed[0] && !landed[1]) { 
+                //background and side images
                 g.drawImage(bkg, p.getImageX(), 0, null);
 
                 g.setColor(new Color(201, 242, 195));
@@ -524,7 +513,7 @@ public class UserInput {
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
                 g.drawString(p.getPointsL2() + "", 650, 50);
                 if (p.getNx2() > 2000) {
-                    if (p.getPos() <= 300 && p.getPos() < 750) {
+                    if (p.getPos() <= 300 && p.getPos() < 750) { //begining instructions
                         g.setColor(Color.white);
                         g.fillRect(170 - p.getPos() + 300, 85, 200, 50);
                         g.setColor(Color.black);
@@ -539,7 +528,7 @@ public class UserInput {
                         g.drawString("Here are your points -->", 470, 55); // gestures to point
                         g.drawString("Here is your health -->", 450 - (20 * extraLife), 20); // life/health points
                                                                                              // expressed in hearts
-                    } else if (p.getPos() >= 800 && p.getPos() <= 1000) {
+                    } else if (p.getPos() >= 800 && p.getPos() <= 1000) {//more instructions 
                         g.setColor(Color.white);
                         g.fillRect(175 - p.getPos() + 800, 85, 170, 70);
                         g.setColor(Color.black);
@@ -549,12 +538,10 @@ public class UserInput {
                         g.drawString("people are still going", 180 - p.getPos() + 800, 115);
                         g.drawString("outside... stay clear of ", 180 - p.getPos() + 800, 130);
                         g.drawString("of all the infected people!", 180 - p.getPos() + 800, 145);
-                    } else if (p.getPos() >= 1410 && p.getPos() <= 2700) {
-
-                    } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) {
+                    } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) { //sal's diner
 
                         g.drawImage(owner, 300 - p.getPos() + 3710 + pC, 300, null);
-                        if (tasks[0]) {
+                        if (tasks[0]) {//check if task 1 is completed
                             if (pointTime == 0) {
                                 p.addPointsL2(100);
                             }
@@ -569,12 +556,13 @@ public class UserInput {
                                                                                                            // help)
                             g.drawString("enjoy your meal, and come ", 275 - p.getPos() + 3710 + pC, 240);
                             g.drawString("back any time!", 275 - p.getPos() + 3710 + pC, 255);
-                        } else {
+                        } else {//if task not completed
                             pointTime = 0;
                             g.setColor(Color.white);
                             g.fillRoundRect(270 - p.getPos() + 3710 + pC, 190, 130, 85, 10, 10);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 10));
+                            //message
                             g.drawString("Hey there, I'm Sal! I own this", 275 - p.getPos() + 3710 + pC, 205); // Sal
                                                                                                                // explaining
                                                                                                                // the
@@ -600,7 +588,7 @@ public class UserInput {
 
                         }
 
-                    } else if (p.getPos() >= 4775 + pC && p.getPos() <= 5305 + pC) {
+                    } else if (p.getPos() >= 4775 + pC && p.getPos() <= 5305 + pC) { //hospital scene
                         g.drawImage(nurse, 150 - p.getPos() + 4875 + pC, 280, null);
                         if (tasks[1]) {
                             if (pointTime == 0) {
@@ -615,7 +603,7 @@ public class UserInput {
                                                                                                     // message
                             g.drawString("Please stay safe! ", 275 - p.getPos() + 4875 + pC, 220);
 
-                        } else {
+                        } else { 
                             pointTime = 0;
                             g.setColor(Color.white);
                             g.fillRoundRect(170 - p.getPos() + 4875 + pC, 190, 150, 85, 10, 10);
@@ -758,25 +746,25 @@ public class UserInput {
                         }
 
                     }
-                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
+                    g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null); //draw infected person
                 }
 
-                if (tasks[0] && !tasks[1]) {
+                if (tasks[0] ) {//check to display takeout bag
                     g.drawImage(p.getTask(1), 55, 40, null);
                 }
 
 
-            } else if (landed[0] || landed[1]) {
+            } else if (landed[0] || landed[1]) { // user input for if landed at task 1
                 if (landed[0]) {
                     g.drawImage(landing1, 0, 0, null);
                     game.getContentPane().addMouseListener(new MouseAdapter() {
                         public void mousePressed(MouseEvent e) {
-                            if (e.getX() >= 51 && e.getY() >= 375 && e.getX() <= 295 && e.getY() <= 450) {
+                            if (e.getX() >= 51 && e.getY() >= 375 && e.getX() <= 295 && e.getY() <= 450) {//pass
                                 landed[0] = false;
                                 game.getContentPane().removeMouseListener(this);
                                 tasks[0] = true;
                                 p.setDefaultPos();
-                            } else if (e.getX() >= 425 && e.getY() >= 375 && e.getX() <= 672 && e.getY() <= 445) {
+                            } else if (e.getX() >= 425 && e.getY() >= 375 && e.getX() <= 672 && e.getY() <= 445) {//fail
                                 landed[0] = false;
                                 taskCompletion = 0;
                                 p.setDefaultPos();
@@ -785,16 +773,16 @@ public class UserInput {
 
                         }
                     });
-                } else if (landed[1]) {
+                } else if (landed[1]) { //user input if landed at task 2
                     g.drawImage(landing2, 0, 0, null);
                     game.getContentPane().addMouseListener(new MouseAdapter() {
                         public void mousePressed(MouseEvent e) {
-                            if (e.getX() >= 51 && e.getY() >= 375 && e.getX() <= 295 && e.getY() <= 450) {
+                            if (e.getX() >= 51 && e.getY() >= 375 && e.getX() <= 295 && e.getY() <= 450) { //pass
                                 landed[1] = false;
                                 game.getContentPane().removeMouseListener(this);
                                 tasks[1] = true;
                                 p.setDefaultPos();
-                            } else if (e.getX() >= 425 && e.getY() >= 375 && e.getX() <= 672 && e.getY() <= 445) {
+                            } else if (e.getX() >= 425 && e.getY() >= 375 && e.getX() <= 672 && e.getY() <= 445) {//fail
                                 landed[1] = false;
                                 taskCompletion = 1;
                                 p.setDefaultPos();
@@ -811,6 +799,7 @@ public class UserInput {
             }
         }
 
+        //check for player and infected person intersection
         private boolean intersect() {
             return (((p.getX() + 100 >= inf.getX() - 10 && p.getX() + 100 < inf.getX() + 100)
                     || (p.getX() >= inf.getX() - 10 && p.getX() < inf.getX() + 100))
