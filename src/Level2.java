@@ -58,7 +58,7 @@ public class Level2 {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setFont(new Font("Consolas", Font.PLAIN, 20));
-                g.drawString(player.getTotalPoints()+"", 330, 275); //these are x and y positions
+                g.drawString(player.getTotalPoints()+"", 340, 277); //these are x and y positions
             }
         }; //Gets background image
         
