@@ -420,7 +420,7 @@ public class UserInput {
     // source: https://www.youtube.com/watch?v=hzsPwDr8ibE
     private class Board extends JPanel implements ActionListener {
 
-        Image life, ownwer, nurse, continuePage;
+        Image life, owner, nurse, continuePage;
         int counter;
         int t;
         int pointTime;
@@ -438,7 +438,7 @@ public class UserInput {
             counter = 0;
             pointTime = 0;
             t = 0;
-            ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
+            owner = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
             continuePage = (new ImageIcon(getClass().getResource("FINAL Continue.png"))).getImage().getScaledInstance(730, 510, 100);
@@ -552,7 +552,7 @@ public class UserInput {
 
                     } else if (p.getPos() >= 3540 + pC && p.getPos() <= 4000 + pC) {
 
-                        g.drawImage(ownwer, 300 - p.getPos() + 3710 + pC, 300, null);
+                        g.drawImage(owner, 300 - p.getPos() + 3710 + pC, 300, null);
                         if (tasks[0]) {
                             if (pointTime == 0) {
                                 p.addPointsL2(100);
