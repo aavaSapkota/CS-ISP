@@ -288,7 +288,7 @@ public class UserInput {
                     screen.setScreen(28);
                 }
             } else if (screen.getScreen() == 26) {// incorrect page
-                if (x >= 315 && y >= 360 && x <= 415 && y <= 380) {
+                if (x >= 315 && y >= 355 && x <= 415 && y <= 375) {
                     screen.setScreen(goBack);
                     skip.setSkip(true);
                 }
@@ -420,7 +420,7 @@ public class UserInput {
     // source: https://www.youtube.com/watch?v=hzsPwDr8ibE
     private class Board extends JPanel implements ActionListener {
 
-        Image life, ownwer, nurse;
+        Image life, ownwer, nurse, continuePage;
         int counter;
         int t;
         int pointTime;
@@ -441,6 +441,7 @@ public class UserInput {
             ownwer = ((new ImageIcon(getClass().getResource("Owner.png"))).getImage().getScaledInstance(50, 50, 100));
             nurse = ((new ImageIcon(getClass().getResource("Nurse.png"))).getImage().getScaledInstance(100, 70, 100));
             life = (new ImageIcon(getClass().getResource("Life.png"))).getImage().getScaledInstance(20, 20, 100);
+            continuePage = (new ImageIcon(getClass().getResource("FINAL Continue.png"))).getImage().getScaledInstance(730, 510, 100);
 
             System.out.println("Starting level: " + extraLife);
         }
@@ -805,10 +806,7 @@ public class UserInput {
                 }
             } else {
 
-                g.setColor(Color.cyan);
-                g.fillRect(0, 0, 700, 500);
-                g.setColor(Color.black);
-                g.drawString("Click any where to continue", 200, 200);
+                g.drawImage(continuePage, 0, 0, null);
             }
         }
 

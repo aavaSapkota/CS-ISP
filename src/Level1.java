@@ -1,4 +1,11 @@
+/**
+ * Creators: Aava Sapkota and Sarah Zhao
+ * Class: ICS4UO-1
+ * Teacher: Ms.Krasteva
+ * Project: ISP
+ */
 
+ //import libraries
 import java.awt.*;
 import javax.swing.*;
 
