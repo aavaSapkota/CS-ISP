@@ -763,8 +763,6 @@ public class UserInput {
                     g.drawImage(p.getTask(1), 55, 40, null);
                 }
 
-                g.setColor(Color.black);
-                g.fillOval(p.getX(), p.getY(), 20, 20);
 
             } else if (landed[0] || landed[1]) {
                 if (landed[0]) {
