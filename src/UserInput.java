@@ -49,7 +49,7 @@ public class UserInput {
 
     private final int pC = 920;
 
-    Image backgroundImg = (new ImageIcon(Main.class.getResource("Level 2 background (1).png"))).getImage()
+    Image backgroundImg = (new ImageIcon(Main.class.getResource("FINAL Level 2 Background.png"))).getImage()
             .getScaledInstance(7000, 500, java.awt.Image.SCALE_SMOOTH);
     Image landing1 = (new ImageIcon(Main.class.getResource("FINAL Task 1.PNG"))).getImage().getScaledInstance(730, 500,
             java.awt.Image.SCALE_SMOOTH);
@@ -84,6 +84,7 @@ public class UserInput {
             game.getContentPane().removeAll();
             int x = e.getX();
             int y = e.getY();
+            System.out.println("x: " + x + " y: " + y);
             if (screen.getScreen() == 2) { // menu
                 charSelect = false;
                 nameCounter = 0;
@@ -315,21 +316,20 @@ public class UserInput {
                     p.setName(JOptionPane.showInputDialog("What's your name?"));
                 nameCounter++;
                 counter++;
-                if (counter % 2 == 0)
+                if (counter % 2 == 0){
                     if (x >= 90 && y >= 190 && x <= 335 && y <= 420) {
                         p.setCharacter("belle");
-                        game.getContentPane().add(new JLabel() {
-                            protected void paintComponent(Graphics g) {
-                                g.setColor(Color.GREEN);
-                                g.drawRect(100, 200, 240, 230);
-                            }
-                        });
                         game.setVisible(true);
                         proceed = true;
                     } else if (x >= 390 && y >= 190 && x <= 640 && y <= 420) {
                         p.setCharacter("barry");
                         proceed = true;
                     }
+                    
+                }
+                    
+                
+                
 
                 if (x >= 320 && y >= 455 && x <= 410 && y <= 480 && proceed == true) {
                     screen.setScreen(30);
@@ -355,6 +355,7 @@ public class UserInput {
                     p.ppeSet("hand-sanitizer", true);
                     extraLife++;
                 }
+
                 if (counter % 2 == 0)
                     if (x >= 315 && y >= 470 && x <= 430 && y <= 495) {
                         screen.setScreen(31);
@@ -393,11 +394,11 @@ public class UserInput {
                 System.out.println(p.getTotalPoints());
                 counter++;
                 if (counter % 2 == 0) {
-                    if (x >= 120 && y >= 400 && x <= 250 && y <= 430) { // go to main menu
-                        // screen.setScreen(2);
+                    if (x >= 120 && y >= 340 && x <= 250 && y <= 365) { // go to main menu
+                        screen.setScreen(2);
                         Player.highscores(p);
-                    } else if (x >= 475 && y >= 400 && x <= 605 && y <= 430) {// Play again.
-                        // screen.setScreen(28);
+                    } else if (x >= 475 && y >= 340 && x <= 605 && y <= 365) {// Play again.
+                        screen.setScreen(28);
                         Player.highscores(p);
                     }
                 }
