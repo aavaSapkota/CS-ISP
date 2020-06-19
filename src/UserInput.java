@@ -312,15 +312,15 @@ public class UserInput {
                 }
                 play.setPlayer(p);
                 if (nameCounter == 0)
-                    p.setName(JOptionPane.showInputDialog("What's your name?"));
+                    p.setName(JOptionPane.showInputDialog("What's your name?")); //username
                 nameCounter++;
                 counter++;
                 if (counter % 2 == 0){
-                    if (x >= 90 && y >= 190 && x <= 335 && y <= 420) {
+                    if (x >= 90 && y >= 190 && x <= 335 && y <= 420) { //character select: belle
                         p.setCharacter("belle");
                         game.setVisible(true);
                         proceed = true;
-                    } else if (x >= 390 && y >= 190 && x <= 640 && y <= 420) {
+                    } else if (x >= 390 && y >= 190 && x <= 640 && y <= 420) { //character select: barry 
                         p.setCharacter("barry");
                         proceed = true;
                     }
@@ -330,7 +330,7 @@ public class UserInput {
                 
                 
 
-                if (x >= 320 && y >= 455 && x <= 410 && y <= 480 && proceed == true) {
+                if (x >= 320 && y >= 455 && x <= 410 && y <= 480 && proceed == true) { //continue
                     screen.setScreen(30);
                     game.addKeyListener(keyInput);
                     counter = 0;
@@ -341,21 +341,21 @@ public class UserInput {
 
             } else if (screen.getScreen() == 30) { // PPE Selection
                 counter++;
-                if (x >= 105 && y >= 185 && x <= 355 && y <= 305 && p.ppeI("gloves") == false) {
+                if (x >= 105 && y >= 185 && x <= 355 && y <= 305 && p.ppeI("gloves") == false) { //select gloves
                     p.ppeSet("gloves", true);
                     extraLife++;
-                } else if (x >= 395 && y >= 185 && x <= 635 && y <= 305 && p.ppeI("mask") == false) {
+                } else if (x >= 395 && y >= 185 && x <= 635 && y <= 305 && p.ppeI("mask") == false) {  //select mask
                     p.ppeSet("mask", true);
                     extraLife++;
-                } else if (x >= 105 && y >= 325 && x <= 355 && y <= 445 && p.ppeI("goggles") == false) {
+                } else if (x >= 105 && y >= 325 && x <= 355 && y <= 445 && p.ppeI("goggles") == false) { //select goggles
                     p.ppeSet("goggles", true);
                     extraLife++;
-                } else if (x >= 395 && y >= 325 && x <= 635 && y <= 445 && p.ppeI("hand-sanitizer") == false) {
+                } else if (x >= 395 && y >= 325 && x <= 635 && y <= 445 && p.ppeI("hand-sanitizer") == false) { //select sanitizer
                     p.ppeSet("hand-sanitizer", true);
                     extraLife++;
                 }
 
-                if (counter % 2 == 0)
+                if (counter % 2 == 0) //continue
                     if (x >= 315 && y >= 470 && x <= 430 && y <= 495) {
                         screen.setScreen(31);
                     }
@@ -380,7 +380,7 @@ public class UserInput {
                 play.failed();
                 System.out.println("extra life: " + extraLife);
 
-                if (x >= 120 && y >= 330 && x <= 260 && y <= 360) {
+                if (x >= 120 && y >= 330 && x <= 260 && y <= 360) { //menu
                     screen.setScreen(2);
                 } else if (x >= 470 && y >= 330 && x <= 605 && y <= 360) {
                     screen.setScreen(28);// set back to play screen
@@ -420,6 +420,7 @@ public class UserInput {
     // source: https://www.youtube.com/watch?v=hzsPwDr8ibE
     private class Board extends JPanel implements ActionListener {
 
+        //variable declaration
         Image life, owner, nurse, continuePage;
         int counter;
         int t;
@@ -528,7 +529,7 @@ public class UserInput {
                         g.fillRect(170 - p.getPos() + 300, 85, 200, 50);
                         g.setColor(Color.black);
                         g.setFont(new Font("Calibri", Font.PLAIN, 15));
-                        g.drawString("Use the arrow keys to move", 180 - p.getPos() + 300, 100);
+                        g.drawString("Use the arrow keys to move", 180 - p.getPos() + 300, 100); //movement instructions 
                         g.drawString("around your neighboorhood.", 180 - p.getPos() + 300, 115);
                         g.setColor(Color.white);
                         g.fillRect(470, 40, 150, 20);
@@ -587,7 +588,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support a small business's", 200, 495); // task
+                            g.drawString("Task: Support a small business's", 200, 495); // task 1
 
                             g.setColor(Color.red);
                             int[] x = { 410 - p.getPos() + 3710 + pC + 20, 385 - p.getPos() + 3710 + pC + 20,
@@ -633,7 +634,7 @@ public class UserInput {
                             g.fillRect(0, 470, 730, 40);
                             g.setColor(Color.black);
                             g.setFont(new Font("Calibri", Font.PLAIN, 25));
-                            g.drawString("Task: Support Frontline workers", 200, 495); // second task
+                            g.drawString("Task: Support Frontline workers", 200, 495); // task 2
 
                             g.setColor(new Color(50, 100, 50));
                             g.fillRect(315 - p.getPos() + 4875 + pC, 300, 70, 40);
@@ -657,20 +658,20 @@ public class UserInput {
                 if (inf.getY() < p.getY()) {
                     g.drawImage(inf.getImage(), inf.getX(), inf.getY(), null);
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                    if (p.getCharacter().equals("barry")) {
-                        if (p.ppeI("mask")) {
+                    if (p.getCharacter().equals("barry")) { //barry profiles
+                        if (p.ppeI("mask")) { //if mask was selected
                             g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
                         }
-                        if (p.ppeI("goggles")) {
+                        if (p.ppeI("goggles")) {  //if goggles were selected
                             if (p.getView() == 1) {
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
                             } else
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
                         }
-                        if (p.ppeI("hand-sanitizer")) {
+                        if (p.ppeI("hand-sanitizer")) { //if sanitizer was selected
                             g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
                         }
-                        if (p.ppeI("gloves")) {
+                        if (p.ppeI("gloves")) { //if gloves were selected
                             g.setColor(Color.blue);
                             if (p.getView() == 1) {
                                 g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
@@ -678,25 +679,25 @@ public class UserInput {
                                 g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
                             }
                         }
-                    } else {
+                    } else { //belle profiles
 
-                        if (p.ppeI("mask")) {
+                        if (p.ppeI("mask")) { //if mask was selected
                             if (p.getView() == 1)
                                 g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
                             else
                                 g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
 
                         }
-                        if (p.ppeI("goggles")) {
+                        if (p.ppeI("goggles")) { //if goggles were selected
                             if (p.getView() == 1) {
                                 g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
                             } else
                                 g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
                         }
-                        if (p.ppeI("hand-sanitizer")) {
+                        if (p.ppeI("hand-sanitizer")) { //if sanitizer was selected
                             g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
                         }
-                        if (p.ppeI("gloves")) {
+                        if (p.ppeI("gloves")) { //if gloves were selected
                             g.setColor(Color.blue);
                             if (p.getView() == 1) {
                                 g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
@@ -708,20 +709,20 @@ public class UserInput {
 
                 } else {
                     g.drawImage(p.getImage(), p.getX(), p.getY(), null);
-                    if (p.getCharacter().equals("barry")) {
-                        if (p.ppeI("mask")) {
+                    if (p.getCharacter().equals("barry")) {  //barry profiles
+                        if (p.ppeI("mask")) { //if mask was selected
                             g.drawImage(p.getPpeItem("mask", "barry"), p.getX() + 7, p.getY() + 23, null);
                         }
-                        if (p.ppeI("goggles")) {
+                        if (p.ppeI("goggles")) { //if goggles were selected
                             if (p.getView() == 1) {
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() + 30, p.getY() + 10, null);
                             } else
                                 g.drawImage(p.getPpeItem("goggles", "barry"), p.getX() - 5, p.getY() + 10, null);
                         }
-                        if (p.ppeI("hand-sanitizer")) {
+                        if (p.ppeI("hand-sanitizer")) { //if sanitizer was selected
                             g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
                         }
-                        if (p.ppeI("gloves")) {
+                        if (p.ppeI("gloves")) { //if gloves were selected
                             g.setColor(Color.blue);
                             if (p.getView() == 1) {
                                 g.fillOval(p.getX() + 100, p.getY() + 70, 12, 12);
@@ -729,25 +730,25 @@ public class UserInput {
                                 g.fillOval(p.getX() + 50, p.getY() + 70, 12, 12);
                             }
                         }
-                    } else {
-                        if (p.ppeI("mask")) {
+                    } else { //belle profiles
+                        if (p.ppeI("mask")) { //if mask was selected
                             if (p.getView() == 1)
                                 g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 50, p.getY() + 35, null);
                             else
                                 g.drawImage(p.getPpeItem("mask", "belle"), p.getX() + 35, p.getY() + 35, null);
 
                         }
-                        if (p.ppeI("goggles")) {
+                        if (p.ppeI("goggles")) { //if goggles were selected
                             if (p.getView() == 1) {
                                 g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 55, p.getY() + 35, null);
                             } else
                                 g.drawImage(p.getPpeItem("goggles", "belle"), p.getX() + 50, p.getY() + 30, null);
                         }
-                        if (p.ppeI("hand-sanitizer")) {
+                        if (p.ppeI("hand-sanitizer")) { //if sanitizer was selected
                             g.drawImage(p.getPpeItem("hand-sanitizer", "both"), 20, 40, null);
 
                         }
-                        if (p.ppeI("gloves")) {
+                        if (p.ppeI("gloves")) { //if gloves were selected
                             g.setColor(Color.blue);
                             if (p.getView() == 1) {
                                 g.fillOval(p.getX() + 100, p.getY() + 80, 12, 12);
