@@ -6,20 +6,22 @@
  * Project: ISP
  */
 
+//import libraries. 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Graphics;
 
 public class Main {
+    //variable initialization
     private static Vars screen;
     private static UserInput input;
     private static JFrame mainScreen = new JFrame("Game Title");
     private static Level1 learn;
     private static Level2 play;
-    private Image icon;
+    private Image icon;//image background
     private JLabel bkg;
-    private static Player p;
+    private static Player p;//player variable
 
     // main class constructor
     public Main() {
@@ -28,11 +30,14 @@ public class Main {
         mainScreen.setVisible(true);
         mainScreen.setLocationRelativeTo(null);
         screen = new Vars(28); // set up starting screen
-        learn = new Level1(mainScreen);
-        play = new Level2(mainScreen, p);
+        //initialize the level objects
+        learn = new Level1(mainScreen); 
+        play = new Level2(mainScreen);
         input = new UserInput(mainScreen, screen, play, p);
         p = new Player("jumbo");
         p.resetScore();
+
+        //play music
         try {
             Music audioPlayer = new Music("bkg-song.wav");
             audioPlayer.play();
@@ -70,7 +75,7 @@ public class Main {
     public void mainMenu() {
         java.net.URL imgUrl = Main.class.getResource("FINAL Menu.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        bkg = new JLabel(new ImageIcon(icon)); // gets flowers image
+        bkg = new JLabel(new ImageIcon(icon)); // get background
         bkg.setBounds(0, 0, 705, 510);
         bkg.setVisible(true);
         mainScreen.add(bkg);
@@ -83,17 +88,17 @@ public class Main {
         String[][] scores = Player.getScores();
         java.net.URL imgUrl = Main.class.getResource("FINAL Highscores.PNG");
         icon = new ImageIcon(imgUrl).getImage().getScaledInstance(700, 500, 100);
-        JLabel bkg = new JLabel(new ImageIcon(icon)) {
+        JLabel bkg = new JLabel(new ImageIcon(icon)) { //display Highscores
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
                 for (int i = 0; i < 10; i++) {
                     String spaces = "";
-                    int r = 82 - (scores[i][0].length() + scores[i][1].length());
+                    int r = 82 - (scores[i][0].length() + scores[i][1].length());//get spaces in between
                     for (int j = 0; j <= r; j++) {
-                        spaces += " ";
+                        spaces += " ";//add middle spaces
                     }
-                    if(scores[i][0].equals("")){
+                    if(scores[i][0].equals("")){//check if name is empty
                         g.drawString( "Anonymous" + spaces + scores[i][1], 200, 190 + 20 * i);
                     }else{
                         g.drawString(scores[i][0] + "" + spaces + scores[i][1], 200, 190 + 20 * i);
@@ -157,15 +162,15 @@ public class Main {
         m.splashScreen();
         m.introduction();
         while (true) {
-            if (screen.getScreen() == 2) {
+            if (screen.getScreen() == 2) { //main menu screen
                 m.mainMenu();
-            } else if (screen.getScreen() == 3) {
+            } else if (screen.getScreen() == 3) { // display highscores
                 m.highscores();
-            } else if (screen.getScreen() == 4) {
+            } else if (screen.getScreen() == 4) { //display instructions
                 m.learn();
-            } else if (screen.getScreen() == 5) {
+            } else if (screen.getScreen() == 5) {//play Level 1
                 m.level1();
-            } else if (screen.getScreen() == 6) {
+            } else if (screen.getScreen() == 6) { //end screen 
                 m.goodbye();
             } else if (screen.getScreen() == 7) { // question 1
                 learn.question1();
@@ -219,7 +224,7 @@ public class Main {
                 play.failed();
             } else if (screen.getScreen() == 33) { // passed screen
                 play.passed();
-            } else if (screen.getScreen() == 34) {
+            } else if (screen.getScreen() == 34) { //exit program
                 break;
             }
             System.out.print("");

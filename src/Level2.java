@@ -1,11 +1,5 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.JFrame.*;
-import java.io.*;
-import java.util.*;
-
-import javax.imageio.ImageIO;
 
 public class Level2 {
 
@@ -64,6 +58,7 @@ public class Level2 {
         
     }
 
+    //set player variable
     public void setPlayer(Player p){
         player = p;
     }

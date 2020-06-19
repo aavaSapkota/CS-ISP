@@ -36,6 +36,7 @@ public class Player {
         view = 0;
         move = false;
 
+        //Initialize all the data structures
         ppe = new HashMap<String, Boolean>();
         ppeItems = new HashMap<String, ArrayList<Image>>();
         mask = new ArrayList<Image>();
@@ -48,6 +49,7 @@ public class Player {
         ppe.put("goggles", false);
         ppe.put("hand-sanitizer", false);
 
+        //Add images
         mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY LEFT (1).png"))).getImage()
                 .getScaledInstance(170, 80, 100));
         mask.add((new ImageIcon(getClass().getClassLoader().getResource("MASK - BARRY RIGHT (1).png"))).getImage()
@@ -102,7 +104,7 @@ public class Player {
         // incremments position relative to background
         pos += dx;
 
-        // add
+        // move background
         if (nx2 <= 9285 && nx2 >= 2000) {
             nx2 += dx;
         } else if (nx2 < 2000) {
@@ -111,6 +113,7 @@ public class Player {
             nx2--;
         }
 
+        //move character up and down
         y += dy;
         if (y < 240)
             y = y - dy + 1;
@@ -129,6 +132,7 @@ public class Player {
 
     }
 
+    //replace value in ppSet
     public void ppeSet(String key, boolean val){
         ppe.replace(key, val);
     }
@@ -178,7 +182,7 @@ public class Player {
         return x;
     }
 
-    //AAVA
+    //get Image relitive image
     public int getImageX() {
         return 2000 - nx2;
     }
@@ -196,46 +200,51 @@ public class Player {
         return viewsBelle.get(view);
     }
 
+    //display task image
     public Image getTask(int t) {
         return handSani.get(t);
     }
 
+    //return total number of player points
     public int getTotalPoints() {
         return pointsL2;
     }
 
+    //get position of character relative to background
     public int getPos() {
         return pos;
     }
 
+    //check if character is moving
     public boolean isMoving() {
         return move;
     }
 
+    //add points to total points
     public void addPointsL2(int p) {
         pointsL2 += p;
     }
 
+    //get current view of character
     public int getView() {
         return view;
     }
 
     //highscores code
     public static void highscores(Player p) {
-        int index =10; 
+        int index =10;  //default position
         for (int i = 0; i < 10; i++) {
             if (Integer.parseInt(scores[i][1]) <= p.getTotalPoints()) {
                 
                 for (int x = 9; x >= i; x--) {
-                    scores[x + 1][0] = scores[x][0];
+                    scores[x + 1][0] = scores[x][0]; //shift previous scores
                     scores[x + 1][1] = scores[x][1];
                 }
-                index = i; 
+                index = i; //get index of score position
                 break; 
             }
         }
-        System.out.println("index: "+index);
-        System.out.println("highscores: "+scores[10-index][1]);
+        //insert score
         scores[index][0] = p.getName();
         scores[index][1] = Integer.toString(p.getTotalPoints());
     }
@@ -253,14 +262,12 @@ public class Player {
         }
     }
 
+    //return name of player
     public String getName(){
         return name; 
     }
 
-    public boolean getMove(){
-        return move; 
-    }
-
+    //reset y position 
     public void setDefaultPos(){
         y=300; 
     }

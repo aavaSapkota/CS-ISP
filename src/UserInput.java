@@ -5,9 +5,6 @@
  * Teacher: Ms.Krasteva
  * Project: ISP
  */
-/**
- * THIS IS TO SEE IF YOU CAN SEE THIS
- */
 
 import java.awt.*;
 import java.awt.event.*;
@@ -16,11 +13,13 @@ import javax.swing.Timer;
 import java.awt.Graphics;
 
 public class UserInput {
-    private JFrame game;
-    private Vars screen;
-    private int incorrect;
-    private int goBack;
-    private Vars skip;
+
+    //declare variables
+    private JFrame game; //main frame
+    private Vars screen; //store screen
+    private int incorrect; // count number of incorrect questions, level1 
+    private int goBack;//record return screen to after
+    private Vars skip; //skip 
     private int counter;
 
     private Player p;
@@ -451,7 +450,7 @@ public class UserInput {
                 if ((3 + extraLife) <= 0 || p.getPos() >= 6440) { // check if there is enough health to continue.
                     run = false;
                 }
-                if (p.getMove() == true)
+                if (p.isMoving() == true)
                     t++;
                 if (t > 0 && t % 10 == 0) {
                     p.addPointsL2(10);

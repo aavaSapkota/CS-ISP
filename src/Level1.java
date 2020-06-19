@@ -1,20 +1,14 @@
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.JFrame.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.JComponent;
-import javax.imageio.ImageIO;
-import java.awt.Graphics;
 
 public class Level1 {
+    //variables in level
     private JFrame game;
     private JLabel bkg;
     private Image icon;
 
-    public Level1(JFrame game) {
+    public Level1(JFrame game) { //class constructor
         this.game = game;
 
     }

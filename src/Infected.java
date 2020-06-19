@@ -1,12 +1,13 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
 public class Infected {
-    int x, y, dy, dx, cx, cy;
-    Image still;
-    Player p; 
+    //variable declarations
+    int x, y, dy, dx, cx, cy; //infected person position
+    Image still; //image of infected 
+    Player p;  //Player variable
+    //animation 
     int start;
     boolean startB; 
 

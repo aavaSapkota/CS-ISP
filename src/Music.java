@@ -1,15 +1,23 @@
+/**
+ * Creators: Aava Sapkota and Sarah Zhao
+ * Class: ICS4UO-1
+ * Teacher: Ms.Krasteva
+ * Project: ISP
+ */
+
+
 // Java program to play an Audio 
 // file using Clip Object 
 import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner; 
+import java.io.IOException;
   
 import javax.sound.sampled.AudioInputStream; 
 import javax.sound.sampled.AudioSystem; 
 import javax.sound.sampled.Clip; 
 import javax.sound.sampled.LineUnavailableException; 
 import javax.sound.sampled.UnsupportedAudioFileException; 
-  
+
+//source: https://www.geeksforgeeks.org/play-audio-file-using-java/
 public class Music  
 { 
   

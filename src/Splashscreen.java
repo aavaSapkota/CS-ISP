@@ -26,6 +26,7 @@ public class Splashscreen extends JPanel
         }
     }
 
+    //end animation
     public void end(){
         p.setVisible(false);
         frame.getContentPane().remove(p);
